@@ -13,7 +13,7 @@
 	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	
 	
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="styles/style.css">
   
 </head>
 	<body>
@@ -21,7 +21,7 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 			<div class="navbar-header">
-			  <a class="navbar-brand" href="#"><img style=""src="livePortal.png"></a>
+			  <a class="navbar-brand" href="#"><img src="images/livePortal.png"></a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
@@ -40,7 +40,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 				</ul>
 			</div>
 		  </div>
@@ -65,7 +65,7 @@
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 				<div class="item active">
-				  <img src="img_chania.jpg" alt="Chania">
+				  <img src="images/img_chania.jpg" alt="Chania">
 				  <div class="carousel-caption">
 					<h3>She Shrek</h3>
 					<p>This is what Shrek looks like as a woman</p>
@@ -73,7 +73,7 @@
 				</div>
 
 				<div class="item">
-				  <img src="img_chania2.jpg" alt="Chania">
+				  <img src="images/img_chania2.jpg" alt="Chania">
 				  <div class="carousel-caption">
 					<h3>Shrek</h3>
 					<p><a href="http://vimeo.com/97688364" target="_blank">Shrek is love Shrek is life</a></p>
@@ -81,7 +81,7 @@
 				</div>
 
 				<div class="item">
-				  <img src="img_flower.jpg" alt="Flower">
+				  <img src="images/img_flower.jpg" alt="Flower">
 				  <div class="carousel-caption">
 					<h3>Donkey</h3>
 					<p>Donkey!</p>
@@ -89,7 +89,7 @@
 				</div>
 
 				<div class="item">
-				  <img src="img_flower2.jpg" alt="Flower">
+				  <img src="images/img_flower2.jpg" alt="Flower">
 				  <div class="carousel-caption">
 					<h3>Puss in the Stars</h3>
 					<p>You can see his soul</p>
