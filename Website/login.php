@@ -1,8 +1,5 @@
 <?php
 
-require_once('includes/loginFunctions.php');
-require_once('includes/functions.php');
-
 ?>
 
 
@@ -27,7 +24,15 @@ require_once('includes/functions.php');
   
 </head>
 	<body>
-
+		<form action="includes/loginFunctions.php">
+		Username:<br>
+		<input type="text" id="username" name="username" value="test">
+		<br>
+		Password:<br>
+		<input type="password" id="password" name="password" value="test">
+		<br><br>
+		<input type="submit" value="Submit">
+		</form>
 
 	</body>
 </html>
