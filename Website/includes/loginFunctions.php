@@ -1,20 +1,32 @@
 <?php
-
-
-
-
 require_once('databaseConnect.php');
 require_once('functions.php');
 
+
+#################### start process user login ####################
 #username and password variables from login.php
 $username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
 $password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
 
-login($username,$password);
+if (isset($_REQUEST["loginButton"]))
+{
+	login($username,$password);
+}
+#################### end process user login ####################
+
+#################### start process user logout ####################
+if (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true)
+{
+	logout();
+}
+#################### end process user logout ####################
+
+
+
 //generate the test password
 //echo password_hash("test", PASSWORD_DEFAULT)."\n";
 
-#######login Functions#########
+#################### start login Functions ####################
 
 function login($username,$password)
 {
@@ -27,6 +39,8 @@ function login($username,$password)
 		
 	}
 	echo($_SESSION['_user_agent']." <br> ".$_SESSION['_remote_addr']." <br> ".$_SESSION['username']);
+	
+	header('Location: ../index.php');
 }
 
 function logout()
@@ -46,19 +60,24 @@ function logout()
 
 	// Finally, destroy the session.
 	session_destroy();
+	
+	
+	header('Location: ../index.php');
 }
 
 //check that the user is logged in
 function isLoggedIn()
 {
-	if (isset($_SESSION['username']))
+	if (isset($_SESSION['username']) && isset($_SESSION['_user_agent']) && isset($_SESSION['_remote_addr']))
 	{
 		global $db;
 		$query = "SELECT * FROM Accounts WHERE username = '".$_SESSION['username']."'";
 	
 		$result = mysqli_query($db, $query);
 		//echo (mysqli_fetch_assoc($result));
-		if($result != false)
+		
+		//if there is a username of that value and the user agent and ip address are okay then the user is logged in
+		if($result != false && $_SESSION['_user_agent'] == $_SERVER['HTTP_USER_AGENT'] && $_SESSION['_remote_addr'] == $_SERVER['REMOTE_ADDR'])
 		{
 			return true;
 		}
@@ -93,9 +112,10 @@ function checkCredentials($username, $password)
 	}
 	return false;
 }
+#################### end login Functions ####################
 
 
-######### registration functions ##########
+#################### start registration functions ####################
 
 #registers the user
 function register()
@@ -177,5 +197,6 @@ function makePass()
 	return $pass;
 }
 
+#################### end registration functions ####################
 
 ?>

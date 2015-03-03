@@ -1,3 +1,10 @@
+<?php
+require_once('includes/functions.php');
+require_once('includes/loginFunctions.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +46,32 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					
+					<?php
+					//if logged in show logout button
+					if (isLoggedIn())
+					{
+					?>
+						<li><a href="includes/loginFunctions.php?logout=true"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+					<?php
+					}
+					//else show login burron
+					else
+					{
+					?>
+					
+					<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<?php
+					}
+					?>
+					
+					
+					
+				
+				
+				
+				
 				</ul>
 			</div>
 		  </div>
@@ -48,7 +79,13 @@
 		<div class="container">
 		
 			<div class="jumbotron">
-				<h1>LivePortal.gq</h1> 
+				<h1>Welcome to LivePortal.gq "<?php
+				if (isLoggedIn())
+				{
+					echo ($_SESSION['username']);
+				}
+				?>"
+				</h1> 
 				<p>LivePortal is a new place to stream whatever you think people want to see.</p> 
 			</div>
 		
