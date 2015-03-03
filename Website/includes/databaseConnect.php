@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 $host = "liveportal.gq";
 $user = "rdb05250_live";
 $password = "b3XfYkqSKzOqLDaP59Ho";
