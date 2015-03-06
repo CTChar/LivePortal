@@ -3,6 +3,8 @@ require_once('databaseConnect.php');
 require_once('functions.php');
 
 
+$errors = array();
+
 #################### start process user login ####################
 #username and password variables from login.php
 $username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
@@ -115,17 +117,97 @@ function checkCredentials($username, $password)
 #################### end login Functions ####################
 
 
+#################### start registration process ####################
+$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
+$email = isset($_REQUEST["email"]) ? $_REQUEST["email"] : "";	
+$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
+$confirmPassword = isset($_REQUEST["confirmPassword"]) ? $_REQUEST["confirmPassword"] : "";	
+$dob = isset($_REQUEST["dob"]) ? $_REQUEST["dob"] : "";	
+//$phone = isset($_REQUEST["phone"]) ? $_REQUEST["phone"] : "";	
+//$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
+//$state = isset($_REQUEST["state"]) ? $_REQUEST["state"] : "";	
+
+//$registerButton = isset($_REQUEST["registerButton"]) ? $_REQUEST["registerButton"] : "";	
+
+
+
+#################### end registration process ####################
+
+
 #################### start registration functions ####################
 
 #registers the user
-function register()
+function register($username,$email,$password,$confirmPassword,$dob,$phone,$country,$state)
 {
+	//validate username
+	if (checkUsername($username))
+	{
+		if (validUsername($username))
+		{
+			//validate password
+			if (comparePassword($password,$confirmPassword))
+			{
+				if (validPass($password))
+				{
+					//validate email
+					if (validEmail($email))
+					{
+						$query = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, '".$username."', '".$password."', '".$email."', CURRENT_TIMESTAMP, '".$dob."', '0', NULL)";
+					
+						$result = mysqli_query($link, $query);
+						if($result == false)
+						{
+							printf("Errorcode: %d\n", mysqli_errno($link));
+						}
+						else
+						{
+							$accountId = mysqli_insert_id($link));
+						}
 	
+						
+						
+						$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `displayName`, `bio`, `Accounts_accountId`, `phone`, `country`) VALUES (NULL, NULL, NULL, NULL, '3', NULL, NULL)";
+						$result = mysqli_query($link, $query);
+						if($result == false)
+						{
+							printf("Errorcode: %d\n", mysqli_errno($link));
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 #checks to see that username is not in use
-function checkUsername()
+//true if taken false if not taken
+function checkUsername($username)
 {
+	
+	global $db;
+	$query = "SELECT * FROM Accounts WHERE username = '".$username."'";
+
+	$result = mysqli_query($db, $query);
+	//echo (mysqli_fetch_assoc($result));
+	
+	//if there is a username of that value and the user agent and ip address are okay then the user is logged in
+	if($result != false)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+#checks to see that username is not in use
+function validUsername($candidate)
+{
+	if(strlen($candidate)<8)
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -149,6 +231,28 @@ function validPass($candidate) {
    return TRUE;
 }
 
+function comparePassword($pass1,$pass2)
+{
+	if ($pass1 == $pass2)
+	{
+		return true;
+	}
+	return false;
+}
+
+//check to see that a phone number is valid
+function validPhone($phone)
+{
+	//Here's a regex for a 7 or 10 digit number, with extensions allowed, delimiters are spaces, dashes, or periods:
+	//http://stackoverflow.com/questions/123559/a-comprehensive-regex-for-phone-number-validation
+	$validPhone = '^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$';
+	if(preg_match($validPhone, $phone) != 0)
+	{
+		return true;
+	}
+	return false;
+}
+
 #checks to see that the email is valid
 function validEmail($email)
 {
@@ -160,30 +264,22 @@ function validEmail($email)
 	return false;
 }
 
-#checks to see that the username is valid
-function validUsername()
+//validates DOB dd-mm-yyyy format
+function validDob($dob)
 {
-	return true;
+	
+	$validDOBExpr = '^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$';
+	if(preg_match($validDOBExpr, $dob) != 0)
+	{
+		return true;
+	}
+	return false;
 }
 
 //returns a hashed password
 function hashPassword($toHash)
 {
 	return password_hash($toHash, PASSWORD_DEFAULT);
-}
-
-/* creates a random salt for sha-512 password encryption*/
-function makeSalt() 
-{
-	static $seed = "./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	$algo = '$6$';
-	$strength = 'rounds=5000';
-	$salt = '$';
-	for ($i = 0; $i < 16; $i++) {
-		$salt .= substr($seed, mt_rand(0, 63), 1);
-	}
-	$salt .= '$';
-	return $algo . $strength . $salt;
 }
 
 /* creates a random password*/

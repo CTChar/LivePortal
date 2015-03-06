@@ -33,6 +33,7 @@ require_once('includes/loginFunctions.php');
 			<div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
+					<li><a href="testStreamPage.html">Stream Page</a></li>
 					<li><a href="#">Browse</a></li>
 					<li><a href="#">Favorites</a></li>
 					<li><a href="#">Messages <span class="badge">12</span></a></li>
