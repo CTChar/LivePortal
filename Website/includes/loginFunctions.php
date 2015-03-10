@@ -4,6 +4,19 @@ require_once('functions.php');
 
 
 $errors = array();
+printErrors($errors);
+
+function printErrors($errors)
+{
+	if (count($errors) > 0)
+	{
+		for($x = 0; $x < count($errors); $x++) 
+		{
+			echo $errors[$x];
+			echo "<br>";
+		}
+	}
+}
 
 #################### start process user login ####################
 #username and password variables from login.php
@@ -32,6 +45,7 @@ if (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true)
 
 function login($username,$password)
 {
+	global $errors;
 	if (checkCredentials($username,$password))
 	{
 		$_SESSION['_user_agent'] = $_SERVER['HTTP_USER_AGENT'];
@@ -39,10 +53,11 @@ function login($username,$password)
 		
 		$_SESSION['username'] = $username;
 		
+		header('Location: ../index.php');
 	}
-	echo($_SESSION['_user_agent']." <br> ".$_SESSION['_remote_addr']." <br> ".$_SESSION['username']);
+	printErrors($errors);
+	//echo($_SESSION['_user_agent']." <br> ".$_SESSION['_remote_addr']." <br> ".$_SESSION['username']);
 	
-	header('Location: ../index.php');
 }
 
 function logout()
@@ -96,7 +111,7 @@ function isLoggedIn()
 
 function checkCredentials($username, $password)
 {
-	global $db;
+	global $db,$errors;
 	$query = "SELECT * FROM Accounts WHERE username = '".clean($username)."'";
 	
 	$result = mysqli_query($db, $query);
@@ -112,6 +127,7 @@ function checkCredentials($username, $password)
 			}
 		}
 	}
+	$errors[]="The username or password are incorrect";
 	return false;
 }
 #################### end login Functions ####################
@@ -130,14 +146,17 @@ $dob = isset($_REQUEST["dob"]) ? $_REQUEST["dob"] : "";
 //$registerButton = isset($_REQUEST["registerButton"]) ? $_REQUEST["registerButton"] : "";	
 
 
-
+if (isset($_REQUEST["registerButton"]))
+{
+	register($username,$email,$password,$confirmPassword,$dob);
+}
 #################### end registration process ####################
 
 
 #################### start registration functions ####################
 
 #registers the user
-function register($username,$email,$password,$confirmPassword,$dob,$phone,$country,$state)
+function register($username,$email,$password,$confirmPassword,$dob)
 {
 	//validate username
 	if (checkUsername($username))
@@ -161,7 +180,7 @@ function register($username,$email,$password,$confirmPassword,$dob,$phone,$count
 						}
 						else
 						{
-							$accountId = mysqli_insert_id($link));
+							$accountId = mysqli_insert_id($link);
 						}
 	
 						
@@ -184,7 +203,7 @@ function register($username,$email,$password,$confirmPassword,$dob,$phone,$count
 function checkUsername($username)
 {
 	
-	global $db;
+	global $db,$errors;
 	$query = "SELECT * FROM Accounts WHERE username = '".$username."'";
 
 	$result = mysqli_query($db, $query);
@@ -193,6 +212,7 @@ function checkUsername($username)
 	//if there is a username of that value and the user agent and ip address are okay then the user is logged in
 	if($result != false)
 	{
+		$errors[]="The username $username is already taken";
 		return true;
 	}
 	else
@@ -201,42 +221,63 @@ function checkUsername($username)
 	}
 }
 
-#checks to see that username is not in use
+#checks to see that username is more than 8 characters
 function validUsername($candidate)
 {
+	global $errors;
 	if(strlen($candidate)<8)
 	{
+		$errors[]="$candidate is not at least 8 characters";
 		return false;
 	}
 	return true;
 }
 
 #checks to see that the password is valid
-function validPass($candidate) {
+function validPass($candidate) 
+{
+	global $errors;
    $r1='/[A-Z]/';  //Uppercase
    $r2='/[a-z]/';  //lowercase
    $r3='/[!@#$%^&*()\-_=+{};:,<.>]/';  // whatever you mean by 'special char'
    $r4='/[0-9]/';  //numbers
 
-   if(preg_match_all($r1,$candidate, $o)<2) return FALSE;
-
-   if(preg_match_all($r2,$candidate, $o)<2) return FALSE;
-
-   if(preg_match_all($r3,$candidate, $o)<2) return FALSE;
-
-   if(preg_match_all($r4,$candidate, $o)<2) return FALSE;
-
-   if(strlen($candidate)<8) return FALSE;
-
+   if(preg_match_all($r1,$candidate, $o)<2) 
+   {
+	   $errors[]="The password must conatin at least 2 uppercase letters";
+	   return FALSE;
+   }
+   if(preg_match_all($r2,$candidate, $o)<2) 
+   {
+	   $errors[]="the password must contain at least 2 lowercase letters";
+	   return FALSE;
+   }
+   if(preg_match_all($r3,$candidate, $o)<2) 
+   {
+	   $errors[]="the password must contain at least 2 special characters";
+	   return FALSE;
+   }
+   if(preg_match_all($r4,$candidate, $o)<2) 
+   {
+	   $errors[]="the password must contain at least 2 numbers";
+	   return FALSE;
+   }
+   if(strlen($candidate)<8) 
+   {
+	   $errors[]="the password must contain at least 8 characters";
+	   return FALSE;
+   }
    return TRUE;
 }
 
 function comparePassword($pass1,$pass2)
 {
+	global $errors;
 	if ($pass1 == $pass2)
 	{
 		return true;
 	}
+	$errors[]="The passwords do not match";
 	return false;
 }
 
@@ -256,23 +297,26 @@ function validPhone($phone)
 #checks to see that the email is valid
 function validEmail($email)
 {
+	global $errors;
 	$validEmailExpr = '/^[a-z0-9\-.]+@[a-z0-9\-]+\.[a-z0-9\-.]+$/i';
 	if(preg_match($validEmailExpr, $email) != 0)
 	{
 		return true;
 	}
+	$errors[]="$email is not a valid email";
 	return false;
 }
 
 //validates DOB dd-mm-yyyy format
 function validDob($dob)
 {
-	
+	global $errors;
 	$validDOBExpr = '^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$';
 	if(preg_match($validDOBExpr, $dob) != 0)
 	{
 		return true;
 	}
+	$errors[]="That is not a valid date of birth";
 	return false;
 }
 
