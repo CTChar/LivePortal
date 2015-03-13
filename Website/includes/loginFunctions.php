@@ -158,8 +158,9 @@ if (isset($_REQUEST["registerButton"]))
 #registers the user
 function register($username,$email,$password,$confirmPassword,$dob)
 {
+	global $db;
 	//validate username
-	if (checkUsername($username))
+	//if (checkUsername($username))
 	{
 		if (validUsername($username))
 		{
@@ -173,23 +174,23 @@ function register($username,$email,$password,$confirmPassword,$dob)
 					{
 						$query = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, '".$username."', '".$password."', '".$email."', CURRENT_TIMESTAMP, '".$dob."', '0', NULL)";
 					
-						$result = mysqli_query($link, $query);
+						$result = mysqli_query($db, $query);
 						if($result == false)
 						{
-							printf("Errorcode: %d\n", mysqli_errno($link));
+							printf("Errorcode account create: %d\n", mysqli_errno($db));
 						}
 						else
 						{
-							$accountId = mysqli_insert_id($link);
+							$accountId = mysqli_insert_id($db);
 						}
 	
 						
 						
-						$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `displayName`, `bio`, `Accounts_accountId`, `phone`, `country`) VALUES (NULL, NULL, NULL, NULL, '3', NULL, NULL)";
-						$result = mysqli_query($link, $query);
+						$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `displayName`, `bio`, `Accounts_accountId`, `phone`, `country`) VALUES (NULL, NULL, NULL, NULL, '".$accountId."', NULL, NULL)";
+						$result = mysqli_query($db, $query);
 						if($result == false)
 						{
-							printf("Errorcode: %d\n", mysqli_errno($link));
+							printf("Errorcode profile create: %d\n", mysqli_errno($db));
 						}
 					}
 				}
