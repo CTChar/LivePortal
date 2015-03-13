@@ -1,14 +1,43 @@
-<!DOCTYPE html>
+</object><!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Test stream page</title>
+		<script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 	</head>
 
 	<body>
-		<video width="320" height="240" controls>
-			<source src="rtmp://server.liveportal.gq/liveportal/test" type="video/mp4">
-			Your browser does not support the video tag.
-		</video>
+		<p>pooping</p>
+	        <div id="pooping">Loading the player...</div>
+		<script type="text/javascript">
+		  jwplayer("myElement").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/pooping",
+		  image: "http://example.com/uploads/myPoster.jpg",
+		  width: 640,
+		  height: 360
+		  });
+		</script>
+
+		<p>mykeyisthis</p>
+		<div id="mykeyisthis">Loading the player...</div>
+		<script type="text/javascript">
+		  jwplayer("myElement").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/mykeyisthis",
+		  image: "http://example.com/uploads/myPoster.jpg",
+		  width: 640,
+		  height: 360
+		  });
+		</script>
+
+		<p>Test</p>
+		<div id="test">Loading the player...</div>
+		<script type="text/javascript">
+		  jwplayer("myElement").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/test",
+		  image: "http://example.com/uploads/myPoster.jpg",
+		  width: 640,
+		  height: 360
+		  });
+		</script>
 	</body>
 </html>
