@@ -3,6 +3,21 @@ require_once('databaseConnect.php');
 require_once('functions.php');
 
 
+$errors = array();
+printErrors($errors);
+
+function printErrors($errors)
+{
+	if (count($errors) > 0)
+	{
+		for($x = 0; $x < count($errors); $x++) 
+		{
+			echo $errors[$x];
+			echo "<br>";
+		}
+	}
+}
+
 #################### start process user login ####################
 #username and password variables from login.php
 $username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
@@ -30,6 +45,7 @@ if (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true)
 
 function login($username,$password)
 {
+	global $errors;
 	if (checkCredentials($username,$password))
 	{
 		$_SESSION['_user_agent'] = $_SERVER['HTTP_USER_AGENT'];
@@ -37,10 +53,11 @@ function login($username,$password)
 		
 		$_SESSION['username'] = $username;
 		
+		header('Location: ../index.php');
 	}
-	echo($_SESSION['_user_agent']." <br> ".$_SESSION['_remote_addr']." <br> ".$_SESSION['username']);
+	printErrors($errors);
+	//echo($_SESSION['_user_agent']." <br> ".$_SESSION['_remote_addr']." <br> ".$_SESSION['username']);
 	
-	header('Location: ../index.php');
 }
 
 function logout()
@@ -94,7 +111,7 @@ function isLoggedIn()
 
 function checkCredentials($username, $password)
 {
-	global $db;
+	global $db,$errors;
 	$query = "SELECT * FROM Accounts WHERE username = '".clean($username)."'";
 	
 	$result = mysqli_query($db, $query);
@@ -110,80 +127,204 @@ function checkCredentials($username, $password)
 			}
 		}
 	}
+	$errors[]="The username or password are incorrect";
 	return false;
 }
 #################### end login Functions ####################
 
 
+#################### start registration process ####################
+$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
+$email = isset($_REQUEST["email"]) ? $_REQUEST["email"] : "";	
+$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
+$confirmPassword = isset($_REQUEST["confirmPassword"]) ? $_REQUEST["confirmPassword"] : "";	
+$dob = isset($_REQUEST["dob"]) ? $_REQUEST["dob"] : "";	
+//$phone = isset($_REQUEST["phone"]) ? $_REQUEST["phone"] : "";	
+//$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
+//$state = isset($_REQUEST["state"]) ? $_REQUEST["state"] : "";	
+
+//$registerButton = isset($_REQUEST["registerButton"]) ? $_REQUEST["registerButton"] : "";	
+
+
+if (isset($_REQUEST["registerButton"]))
+{
+	register($username,$email,$password,$confirmPassword,$dob);
+}
+#################### end registration process ####################
+
+
 #################### start registration functions ####################
 
 #registers the user
-function register()
+function register($username,$email,$password,$confirmPassword,$dob)
 {
+	global $db;
+	//validate username
+	//if (checkUsername($username))
+	{
+		if (validUsername($username))
+		{
+			//validate password
+			if (comparePassword($password,$confirmPassword))
+			{
+				if (validPass($password))
+				{
+					//validate email
+					if (validEmail($email))
+					{
+						$query = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, '".$username."', '".$password."', '".$email."', CURRENT_TIMESTAMP, '".$dob."', '0', NULL)";
+					
+						$result = mysqli_query($db, $query);
+						if($result == false)
+						{
+							printf("Errorcode account create: %d\n", mysqli_errno($db));
+						}
+						else
+						{
+							$accountId = mysqli_insert_id($db);
+						}
 	
+						
+						
+						$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `displayName`, `bio`, `Accounts_accountId`, `phone`, `country`) VALUES (NULL, NULL, NULL, NULL, '".$accountId."', NULL, NULL)";
+						$result = mysqli_query($db, $query);
+						if($result == false)
+						{
+							printf("Errorcode profile create: %d\n", mysqli_errno($db));
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 #checks to see that username is not in use
-function checkUsername()
+//true if taken false if not taken
+function checkUsername($username)
 {
+	
+	global $db,$errors;
+	$query = "SELECT * FROM Accounts WHERE username = '".$username."'";
+
+	$result = mysqli_query($db, $query);
+	//echo (mysqli_fetch_assoc($result));
+	
+	//if there is a username of that value and the user agent and ip address are okay then the user is logged in
+	if($result != false)
+	{
+		$errors[]="The username $username is already taken";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+#checks to see that username is more than 8 characters
+function validUsername($candidate)
+{
+	global $errors;
+	if(strlen($candidate)<8)
+	{
+		$errors[]="$candidate is not at least 8 characters";
+		return false;
+	}
 	return true;
 }
 
 #checks to see that the password is valid
-function validPass($candidate) {
+function validPass($candidate) 
+{
+	global $errors;
    $r1='/[A-Z]/';  //Uppercase
    $r2='/[a-z]/';  //lowercase
    $r3='/[!@#$%^&*()\-_=+{};:,<.>]/';  // whatever you mean by 'special char'
    $r4='/[0-9]/';  //numbers
 
-   if(preg_match_all($r1,$candidate, $o)<2) return FALSE;
-
-   if(preg_match_all($r2,$candidate, $o)<2) return FALSE;
-
-   if(preg_match_all($r3,$candidate, $o)<2) return FALSE;
-
-   if(preg_match_all($r4,$candidate, $o)<2) return FALSE;
-
-   if(strlen($candidate)<8) return FALSE;
-
+   if(preg_match_all($r1,$candidate, $o)<2) 
+   {
+	   $errors[]="The password must conatin at least 2 uppercase letters";
+	   return FALSE;
+   }
+   if(preg_match_all($r2,$candidate, $o)<2) 
+   {
+	   $errors[]="the password must contain at least 2 lowercase letters";
+	   return FALSE;
+   }
+   if(preg_match_all($r3,$candidate, $o)<2) 
+   {
+	   $errors[]="the password must contain at least 2 special characters";
+	   return FALSE;
+   }
+   if(preg_match_all($r4,$candidate, $o)<2) 
+   {
+	   $errors[]="the password must contain at least 2 numbers";
+	   return FALSE;
+   }
+   if(strlen($candidate)<8) 
+   {
+	   $errors[]="the password must contain at least 8 characters";
+	   return FALSE;
+   }
    return TRUE;
 }
 
-#checks to see that the email is valid
-function validEmail($email)
+function comparePassword($pass1,$pass2)
 {
-	$validEmailExpr = '/^[a-z0-9\-.]+@[a-z0-9\-]+\.[a-z0-9\-.]+$/i';
-	if(preg_match($validEmailExpr, $email) != 0)
+	global $errors;
+	if ($pass1 == $pass2)
+	{
+		return true;
+	}
+	$errors[]="The passwords do not match";
+	return false;
+}
+
+//check to see that a phone number is valid
+function validPhone($phone)
+{
+	//Here's a regex for a 7 or 10 digit number, with extensions allowed, delimiters are spaces, dashes, or periods:
+	//http://stackoverflow.com/questions/123559/a-comprehensive-regex-for-phone-number-validation
+	$validPhone = '^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$';
+	if(preg_match($validPhone, $phone) != 0)
 	{
 		return true;
 	}
 	return false;
 }
 
-#checks to see that the username is valid
-function validUsername()
+#checks to see that the email is valid
+function validEmail($email)
 {
-	return true;
+	global $errors;
+	$validEmailExpr = '/^[a-z0-9\-.]+@[a-z0-9\-]+\.[a-z0-9\-.]+$/i';
+	if(preg_match($validEmailExpr, $email) != 0)
+	{
+		return true;
+	}
+	$errors[]="$email is not a valid email";
+	return false;
+}
+
+//validates DOB dd-mm-yyyy format
+function validDob($dob)
+{
+	global $errors;
+	$validDOBExpr = '^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$';
+	if(preg_match($validDOBExpr, $dob) != 0)
+	{
+		return true;
+	}
+	$errors[]="That is not a valid date of birth";
+	return false;
 }
 
 //returns a hashed password
 function hashPassword($toHash)
 {
 	return password_hash($toHash, PASSWORD_DEFAULT);
-}
-
-/* creates a random salt for sha-512 password encryption*/
-function makeSalt() 
-{
-	static $seed = "./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	$algo = '$6$';
-	$strength = 'rounds=5000';
-	$salt = '$';
-	for ($i = 0; $i < 16; $i++) {
-		$salt .= substr($seed, mt_rand(0, 63), 1);
-	}
-	$salt .= '$';
-	return $algo . $strength . $salt;
 }
 
 /* creates a random password*/

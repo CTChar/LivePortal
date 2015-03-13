@@ -29,7 +29,7 @@
 		<input type="text" id="username" name="username" value="test">
 		<br>
 		Email:<br>
-		<input type="text" id="email" name="email" value="test">
+		<input type="email" id="email" name="email" value="test">
 		<br>
 		Password:<br>
 		<input type="password" id="password" name="password" value="test">
@@ -38,10 +38,11 @@
 		<input type="password" id="confirmPassword" name="confirmPassword" value="test">
 		<br>
 		DOB<br>
-		<input type="text" id="dob" name="dob" value="test">
+		<input type="date" id="dob" name="dob" value="test">
 		<br>
+		<!--
 		Phone Number:<br>
-		<input type="text" id="phone" name="phone" value="test">
+		<input type="tel" id="phone" name="phone" value="test">
 		<br>
 		Country:<br>
 		<input type="text" id="country" name="country" value="test">
@@ -49,6 +50,7 @@
 		State:<br>
 		<input type="text" id="state" name="state" value="test">
 		<br>
+		-->
 		
 		<input type="submit" name="registerButton" value="Submit">
 		</form>
