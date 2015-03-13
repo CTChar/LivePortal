@@ -1,5 +1,5 @@
 <?php
-require_once('includes/loginFunctions.php');
+require_once('includes/functions.php');
 
 ?>
 
