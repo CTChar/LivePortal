@@ -24,7 +24,7 @@
   
 </head>
 	<body>
-		<form action="includes/loginFunctions.php">
+		<form action="includes/functions.php">
 		Username:<br>
 		<input type="text" id="username" name="username" value="test">
 		<br>
