@@ -1,5 +1,6 @@
 <?php
-
+require_once('functions.php');
+	//echo ("Session userId:".$_SESSION['userId']);
 ?>
 
 
@@ -25,21 +26,35 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 			<div class="navbar-header">
-			  <a class="navbar-brand" href="#"><img src="images/livePortal.png"></a>
+			  <a class="navbar-brand" href="index.php"><img src="images/livePortal.png"></a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="testStreamPage.html">Stream Page html</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
+					<li><a href="stream.php?key=<?php echo('test');?>">Stream</a></li>
 					<!-- <li><a href="testStreamPage.php">Stream Page php</a></li> -->
-					<li><a href="#">Browse</a></li>
+					<li><a href="browse.php">Browse</a></li>
+					<li><a href="irc.php">IRC</a></li>
+					<!-- 
 					<li><a href="#">Favorites</a></li>
 					<li><a href="#">Messages <span class="badge">12</span></a></li>
+					-->
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Username<span class="caret"></span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<?php
+								if (isLoggedIn())
+								{
+									echo ($_SESSION['username']);
+								}
+								else
+								{
+									echo ("Username");
+								}
+							?>
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Profile</a></li>
-							<li><a href="#">Settings</a></li>
+							<li><a href="profile.php?userId=<?php if (isLoggedIn()){echo ($_SESSION['userId']);} ?>">Profile</a></li>
 						</ul>
 					</li>
 				</ul>

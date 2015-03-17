@@ -2,14 +2,11 @@
 require_once('includes/functions.php');
 
 #################### start registration process ####################
-$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
-$email = isset($_REQUEST["email"]) ? $_REQUEST["email"] : "";	
-$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
-$confirmPassword = isset($_REQUEST["confirmPassword"]) ? $_REQUEST["confirmPassword"] : "";	
-$dob = isset($_REQUEST["dob"]) ? $_REQUEST["dob"] : "";	
-//$phone = isset($_REQUEST["phone"]) ? $_REQUEST["phone"] : "";	
-//$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
-//$state = isset($_REQUEST["state"]) ? $_REQUEST["state"] : "";	
+$username = isset($_REQUEST["username"]) ? clean($_REQUEST["username"]) : "";	
+$email = isset($_REQUEST["email"]) ? clean($_REQUEST["email"]) : "";	
+$password = isset($_REQUEST["password"]) ? clean($_REQUEST["password"]) : "";	
+$confirmPassword = isset($_REQUEST["confirmPassword"]) ? clean($_REQUEST["confirmPassword"]) : "";	
+$dob = isset($_REQUEST["dob"]) ? clean($_REQUEST["dob"]) : "";	
 
 //$registerButton = isset($_REQUEST["registerButton"]) ? $_REQUEST["registerButton"] : "";	
 

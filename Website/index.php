@@ -8,12 +8,13 @@ require_once('includes/header.php');
 		
 		
 		<div class="jumbotron">
-			<h1>Welcome to LivePortal.gq "<?php
-			if (isLoggedIn())
-			{
-				echo ($_SESSION['username']);
-			}
-			?>"
+			<h1>Welcome to LivePortal.gq 
+				<?php
+					if (isLoggedIn())
+					{
+						echo ($_SESSION['username']);
+					}
+				?>
 			</h1> 
 			<p>LivePortal is a new place to stream whatever you think people want to see.</p> 
 		</div>

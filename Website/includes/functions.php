@@ -1,7 +1,7 @@
 <?php
 require_once('databaseConnect.php');
 
-
+#################### Error Processing ####################
 $errors = array();
 printErrors($errors);
 
@@ -16,7 +16,7 @@ function printErrors($errors)
 		}
 	}
 }
-
+#################### Error Processing ####################
 
 
 #################### start process user logout ####################
@@ -27,9 +27,6 @@ if (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true)
 #################### end process user logout ####################
 
 
-
-//generate the test password
-//echo password_hash("test", PASSWORD_DEFAULT)."\n";
 
 #################### start login Functions ####################
 
@@ -42,6 +39,13 @@ function login($username,$password)
 		$_SESSION['_remote_addr'] = $_SERVER['REMOTE_ADDR'];
 		
 		$_SESSION['username'] = $username;
+		
+		
+		$userId =  getFromTable ('Accounts','username',$username,'accountId');
+		//echo ($userId);
+		$_SESSION['userId'] = $userId;
+		
+		
 		
 		header('Location: index.php');
 	}
@@ -147,6 +151,7 @@ function register($username,$email,$password,$confirmPassword,$dob)
 					{
 						if (validDob($dob))
 						{
+							$password = hashPassword($password);
 							$query = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, '".$username."', '".$password."', '".$email."', CURRENT_TIMESTAMP, '".$dob."', '0', NULL)";
 						
 							$result = mysqli_query($db, $query);
@@ -263,6 +268,7 @@ function validPass($candidate)
    return TRUE;
 }
 
+//compares two things
 function comparePassword($pass1,$pass2)
 {
 	global $errors;
@@ -334,10 +340,112 @@ function makePass()
 
 
 #################### start other functions ####################
+function getUsername($userId)
+{
+	global $db;
+	
+	$query = "SELECT * FROM Accounts WHERE accountId = '".$userId."'";
+
+	$result = mysqli_query($db, $query);
+	
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			return $row['username'];
+		}
+	}
+}
+
+function getStreamKey($userId)
+{
+	global $db;
+	
+	$query = "SELECT * FROM Accounts WHERE accountId = '".$userId."'";
+
+	$result = mysqli_query($db, $query);
+	
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			return $row['streamKey'];
+		}
+	}
+}
+
+//returns value from database where $value is a column of the database
+function getFromAccounts ($userId,$value)
+{
+	global $db;
+	
+	$query = "SELECT * FROM Accounts WHERE accountId = '".$userId."'";
+
+	$result = mysqli_query($db, $query);
+	
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			return $row[$value];
+		}
+	}
+}
+
+//returns value from database where 
+//$table is the table to look in 
+//$key is the row to find 
+//$value is a column of the database
+//$return what you want to return
+
+function getFromTable ($table,$key,$value,$return)
+{
+	global $db;
+	
+	$query = "SELECT * FROM ".$table." WHERE ".$key." = '".$value."'";
+
+	$result = mysqli_query($db, $query);
+	if ($db->errno)
+	{
+		echo "Error: (" . $db->errno . ") " . $db->error;
+	}
+	
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			return $row[$return];
+		}
+	}
+}
+
 function canStream($userId)
 {
 	global $db;
+	
+	$query = "SELECT * FROM Accounts WHERE accountId = '".$userId."'";
 
+	$result = mysqli_query($db, $query);
+	
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			if ($row['canStream'] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
 }
 
 // sanitize user input

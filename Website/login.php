@@ -3,8 +3,8 @@ require_once('includes/functions.php');
 
 #################### start process user login ####################
 #username and password variables from login.php
-$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
-$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
+$username = isset($_REQUEST["username"]) ? clean($_REQUEST["username"]) : "";	
+$password = isset($_REQUEST["password"]) ? clean($_REQUEST["password"]) : "";	
 
 if (isset($_REQUEST["loginButton"]))
 {
