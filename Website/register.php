@@ -1,59 +1,51 @@
 <?php
+require_once('includes/functions.php');
 
+#################### start registration process ####################
+$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
+$email = isset($_REQUEST["email"]) ? $_REQUEST["email"] : "";	
+$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
+$confirmPassword = isset($_REQUEST["confirmPassword"]) ? $_REQUEST["confirmPassword"] : "";	
+$dob = isset($_REQUEST["dob"]) ? $_REQUEST["dob"] : "";	
+//$phone = isset($_REQUEST["phone"]) ? $_REQUEST["phone"] : "";	
+//$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
+//$state = isset($_REQUEST["state"]) ? $_REQUEST["state"] : "";	
+
+//$registerButton = isset($_REQUEST["registerButton"]) ? $_REQUEST["registerButton"] : "";	
+
+
+if (isset($_REQUEST["registerButton"]))
+{
+	register($username,$email,$password,$confirmPassword,$dob);
+}
+#################### end registration process ####################
+
+require_once('includes/header.php');
 ?>
 
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>LivePortal.gq</title>
-	<meta charset="utf-8">
-	<!--include jquery-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!--include bootstrap-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<!--include angular-->
-	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-	
-	
-	<link rel="stylesheet" href="login_style.css">
-  
-</head>
-	<body>
-		<form action="includes/functions.php">
+		<form action="register.php">
 		Username:<br>
-		<input type="text" id="username" name="username" value="test">
+		<input type="text" id="username" name="username" value="<?php echo("$username"); ?>">
 		<br>
 		Email:<br>
-		<input type="email" id="email" name="email" value="test">
+		<input type="email" id="email" name="email" value="<?php echo("$email"); ?>">
 		<br>
 		Password:<br>
-		<input type="password" id="password" name="password" value="test">
+		<input type="password" id="password" name="password" value="<?php echo("$password"); ?>">
 		<br>
 		Confirm Password:<br>
-		<input type="password" id="confirmPassword" name="confirmPassword" value="test">
+		<input type="password" id="confirmPassword" name="confirmPassword" value="<?php echo("$confirmPassword"); ?>">
 		<br>
 		DOB<br>
-		<input type="date" id="dob" name="dob" value="test">
+		<input type="date" id="dob" name="dob" value="<?php echo("$dob"); ?>">
 		<br>
-		<!--
-		Phone Number:<br>
-		<input type="tel" id="phone" name="phone" value="test">
-		<br>
-		Country:<br>
-		<input type="text" id="country" name="country" value="test">
-		<br>
-		State:<br>
-		<input type="text" id="state" name="state" value="test">
-		<br>
-		-->
-		
 		<input type="submit" name="registerButton" value="Submit">
 		</form>
 
-	</body>
-</html>
+
+<?php
+require_once('includes/footer.php')
+
+?>

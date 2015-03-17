@@ -17,16 +17,7 @@ function printErrors($errors)
 	}
 }
 
-#################### start process user login ####################
-#username and password variables from login.php
-$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
-$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
 
-if (isset($_REQUEST["loginButton"]))
-{
-	login($username,$password);
-}
-#################### end process user login ####################
 
 #################### start process user logout ####################
 if (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true)
@@ -52,7 +43,7 @@ function login($username,$password)
 		
 		$_SESSION['username'] = $username;
 		
-		header('Location: ../index.php');
+		header('Location: index.php');
 	}
 	printErrors($errors);
 	//echo($_SESSION['_user_agent']." <br> ".$_SESSION['_remote_addr']." <br> ".$_SESSION['username']);
@@ -132,24 +123,7 @@ function checkCredentials($username, $password)
 #################### end login Functions ####################
 
 
-#################### start registration process ####################
-$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
-$email = isset($_REQUEST["email"]) ? $_REQUEST["email"] : "";	
-$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
-$confirmPassword = isset($_REQUEST["confirmPassword"]) ? $_REQUEST["confirmPassword"] : "";	
-$dob = isset($_REQUEST["dob"]) ? $_REQUEST["dob"] : "";	
-//$phone = isset($_REQUEST["phone"]) ? $_REQUEST["phone"] : "";	
-//$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
-//$state = isset($_REQUEST["state"]) ? $_REQUEST["state"] : "";	
 
-//$registerButton = isset($_REQUEST["registerButton"]) ? $_REQUEST["registerButton"] : "";	
-
-
-if (isset($_REQUEST["registerButton"]))
-{
-	register($username,$email,$password,$confirmPassword,$dob);
-}
-#################### end registration process ####################
 
 
 #################### start registration functions ####################

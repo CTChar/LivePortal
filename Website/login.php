@@ -1,38 +1,35 @@
 <?php
+require_once('includes/functions.php');
 
+#################### start process user login ####################
+#username and password variables from login.php
+$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : "";	
+$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : "";	
+
+if (isset($_REQUEST["loginButton"]))
+{
+	login($username,$password);
+}
+#################### end process user login ####################
+
+
+require_once('includes/header.php');
 ?>
 
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>LivePortal.gq</title>
-	<meta charset="utf-8">
-	<!--include jquery-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!--include bootstrap-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<!--include angular-->
-	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-	
-	
-	<link rel="stylesheet" href="login_style.css">
-  
-</head>
-	<body>
-		<form action="includes/functions.php">
+		<form action="login.php">
 		Username:<br>
-		<input type="text" id="username" name="username" value="test">
+		<input type="text" id="username" name="username" value="<?php echo("$username"); ?>">
 		<br>
 		Password:<br>
-		<input type="password" id="password" name="password" value="test">
+		<input type="password" id="password" name="password" value="<?php echo("$password"); ?>">
 		<br><br>
 		<input type="submit" name="loginButton" value="Submit">
 		</form>
 
-	</body>
-</html>
+
+
+<?php
+require_once('includes/footer.php')
+
+?>
