@@ -1,6 +1,8 @@
 <?php
 require_once('functions.php');
 	//echo ("Session userId:".$_SESSION['userId']);
+	
+	
 ?>
 
 
@@ -30,16 +32,16 @@ require_once('functions.php');
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.php">Home</a></li>
-					<li><a href="stream.php?key=<?php echo('test');?>">Stream</a></li>
+					<li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo ('class="active"'); ?>><a href="index.php">Home</a></li>
+					<li <?php if(basename($_SERVER['PHP_SELF']) == 'stream.php') echo ('class="active"'); ?>><a href="stream.php?key=<?php echo('test');?>">Stream</a></li>
 					<!-- <li><a href="testStreamPage.php">Stream Page php</a></li> -->
-					<li><a href="browse.php">Browse</a></li>
-					<li><a href="irc.php">IRC</a></li>
+					<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a href="browse.php">Browse</a></li>
+					<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a href="irc.php">IRC</a></li>
 					<!-- 
 					<li><a href="#">Favorites</a></li>
 					<li><a href="#">Messages <span class="badge">12</span></a></li>
 					-->
-					<li class="dropdown">
+					<li  <?php if(basename($_SERVER['PHP_SELF']) == 'profile.php') echo ('class="active dropdown"'); ?>>
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							<?php
 								if (isLoggedIn())
