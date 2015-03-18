@@ -5,8 +5,10 @@ require_once('includes/header.php');
 $key = isset($_REQUEST["key"]) ? $_REQUEST["key"] : "";	
 ?>
 
-
-<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#partyline" style="border:0; width:100%; height:450px;"></iframe>
+	<div class="jumbotron">
+		<h1>IRC</h1> 
+	</div>
+	<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#partyline" style="border:0; width:100%; height:450px;"></iframe>
 
 
 <?php

@@ -23,12 +23,18 @@ require_once('includes/header.php');
 
 
 		<form action="register.php">
+		>=8 characters <br/>
 		Username:<br>
 		<input type="text" id="username" name="username" value="<?php echo("$username"); ?>">
 		<br>
 		Email:<br>
 		<input type="email" id="email" name="email" value="<?php echo("$email"); ?>">
 		<br>
+		>=2 Uppercase <br/>
+		>=2 Lowercase <br/>
+		>=2 [!@#$%^&*()\-_=+{};:,<.>] <br/>
+		>=2 numbers 0-9 <br/>
+		>=8 characters <br/>
 		Password:<br>
 		<input type="password" id="password" name="password" value="<?php echo("$password"); ?>">
 		<br>

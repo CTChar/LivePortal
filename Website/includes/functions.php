@@ -3,7 +3,7 @@ require_once('databaseConnect.php');
 
 #################### Error Processing ####################
 $errors = array();
-printErrors($errors);
+//printErrors($errors);
 
 function printErrors($errors)
 {
@@ -11,8 +11,7 @@ function printErrors($errors)
 	{
 		for($x = 0; $x < count($errors); $x++) 
 		{
-			echo $errors[$x];
-			echo "<br>";
+			echo ('<span class="errors">'.$errors[$x]."</span><br>");
 		}
 	}
 }
@@ -141,43 +140,66 @@ function register($username,$email,$password,$confirmPassword,$dob)
 	{
 		if (validUsername($username))
 		{
+			if (validPass($password))
 			//validate password
-			if (comparePassword($password,$confirmPassword))
 			{
-				if (validPass($password))
+				if (comparePassword($password,$confirmPassword))
 				{
 					//validate email
+					if (!emailNotUsed($email))
+					{
 					if (validEmail($email))
 					{
 						if (validDob($dob))
 						{
-							$password = hashPassword($password);
-							$query = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, '".$username."', '".$password."', '".$email."', CURRENT_TIMESTAMP, '".$dob."', '0', NULL)";
+							$passwordH = hashPassword($password);
+							$rkey = randomKey();
+							//$rkey = "3f5";
+							$query = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, '".$username."', '".$passwordH."', '".$email."', CURRENT_TIMESTAMP, '".$dob."', '1', '$rkey');";
+						
+							//$sql   = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, \'safgfdg\', \'dsgdsfgfdsg\', \'dsfgsdgdsfgd\', CURRENT_TIMESTAMP, \'2015-03-11\', \'1\', NULL, \'dsfgdsfgdsbg\');";
+							
 						
 							$result = mysqli_query($db, $query);
 							if($result == false)
 							{
-								printf("Errorcode account create: %d\n", mysqli_errno($db));
+								//printf("Errorcode account create: %d\n", mysqli_error($db));
+								printf("Errorcode account create: %s\n", mysqli_error($db));
 							}
 							else
 							{
 								$accountId = mysqli_insert_id($db);
-							}
+							
 		
 							
-							
-							$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `displayName`, `bio`, `Accounts_accountId`, `phone`, `country`) VALUES (NULL, NULL, NULL, NULL, '".$accountId."', NULL, NULL)";
-							$result = mysqli_query($db, $query);
-							if($result == false)
-							{
-								printf("Errorcode profile create: %d\n", mysqli_errno($db));
+								//create profile
+								$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `bio`, `Accounts_accountId`, `phone`, `country`) VALUES (NULL, NULL, NULL, '".$accountId."', NULL, NULL)";
+								$result = mysqli_query($db, $query);
+								if($result == false)
+								{
+									printf("Errorcode profile create: %s\n", mysqli_error($db));
+								}
+								else
+								{
+									$profileId = mysqli_insert_id($db);
+									$query = "UPDATE  `liveportal`.`Accounts` SET  `Profiles_profileId` =  '".$profileId."' WHERE  `Accounts`.`accountId` =".$accountId;
+									$result = mysqli_query($db, $query);
+									if($result == false)
+									{
+										printf("Errorcode account profile id update: %s\n", mysqli_error($db));
+									}
+									
+									//header('Location: login.php?username='.$username.'&password='.$password);
+									login($username,$password);
+								}
 							}
-						}printErrors($errors);
-					}printErrors($errors);
-				}printErrors($errors);
-			}printErrors($errors);
-		}printErrors($errors);
-	}printErrors($errors);
+						}else printErrors($errors);
+					}else printErrors($errors);
+				}else printErrors($errors);
+				}else printErrors($errors);
+			}else printErrors($errors);
+		}else printErrors($errors);
+	}else printErrors($errors);
 }
 
 #checks to see that username is not in use
@@ -187,35 +209,20 @@ function checkUsername($username)
 	
 	global $db,$errors;
 	$query = "SELECT * FROM Accounts WHERE username = '".$username."'";
-
+	
+	
 	$result = mysqli_query($db, $query);
-	//echo (mysqli_fetch_assoc($result));
-	printErrors($result);
-	
-	//if there is a username of that value and the user agent and ip address are okay then the user is logged in
-	
-	if($result != false)
+	if ($db->errno)
 	{
-		$row = mysqli_fetch_assoc($result);
-		if($row)
-		{
-			if (password_verify($password, $row["password"]))
-			{
-				return true;
-			}
-		}
-	}
-	
-	
-	//if($result != false)
-	if(!empty($result))
-	{
-		$errors[]="The username $username is already taken";
-		return true;
+		echo "Error: (" . $db->errno . ") " . $db->error;
 	}
 	else
 	{
-		return false;
+		 while($row = mysqli_fetch_array($result)) 
+		{
+			$errors[]="The username $username is already taken";
+			return true;
+		}
 	}
 }
 
@@ -225,7 +232,7 @@ function validUsername($candidate)
 	global $errors;
 	if(strlen($candidate)<8)
 	{
-		$errors[]="$candidate is not at least 8 characters";
+		$errors[]="The username $candidate is not at least 8 characters";
 		return false;
 	}
 	return true;
@@ -240,34 +247,46 @@ function validPass($candidate)
    $r3='/[!@#$%^&*()\-_=+{};:,<.>]/';  // whatever you mean by 'special char'
    $r4='/[0-9]/';  //numbers
 
+	$fail = 0;
    if(preg_match_all($r1,$candidate, $o)<2) 
    {
 	   $errors[]="The password must conatin at least 2 uppercase letters";
-	   return FALSE;
+	   //return FALSE;
+	   $fail = 1;
    }
    if(preg_match_all($r2,$candidate, $o)<2) 
    {
-	   $errors[]="the password must contain at least 2 lowercase letters";
-	   return FALSE;
+	   $errors[]="The password must contain at least 2 lowercase letters";
+	   //return FALSE;
+	   $fail = 1;
    }
    if(preg_match_all($r3,$candidate, $o)<2) 
    {
-	   $errors[]="the password must contain at least 2 special characters";
-	   return FALSE;
+	   $errors[]="The password must contain at least 2 special characters !@#$%^&*()\-_=+{};:,<.>]";
+	   //return FALSE;
+	   $fail = 1;
    }
    if(preg_match_all($r4,$candidate, $o)<2) 
    {
-	   $errors[]="the password must contain at least 2 numbers";
-	   return FALSE;
+	   $errors[]="The password must contain at least 2 numbers";
+	   //return FALSE;
+	   $fail = 1;
    }
    if(strlen($candidate)<8) 
    {
-	   $errors[]="the password must contain at least 8 characters";
-	   return FALSE;
+	   $errors[]="The password must contain at least 8 characters";
+	  // return FALSE;
+	   $fail = 1;
    }
+   if ($fail == 0)
+   {
    return TRUE;
+   }
+   else
+   {
+	return false;
+	}
 }
-
 //compares two things
 function comparePassword($pass1,$pass2)
 {
@@ -306,17 +325,39 @@ function validEmail($email)
 	return false;
 }
 
+function emailNotUsed ($email)
+{
+	global $db,$errors;
+	$query = "SELECT * FROM Accounts WHERE email = '".$email."'";
+	
+	
+	$result = mysqli_query($db, $query);
+	if ($db->errno)
+	{
+		echo "Error: (" . $db->errno . ") " . $db->error;
+	}
+	else
+	{
+		 while($row = mysqli_fetch_array($result)) 
+		{
+			$errors[]="The email $email is already taken";
+			return true;
+		}
+	}
+}
+
 //validates DOB dd-mm-yyyy format
 function validDob($dob)
 {
+	//bool checkdate ( int $month , int $day , int $year )
 	global $errors;
-	$validDOBExpr = '^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$';
-	if(preg_match($validDOBExpr, $dob) != 0)
-	{
-		return true;
-	}
+	if (preg_match("/^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$/",$dob))
+    {
+        return true;
+    }else{
 	$errors[]="That is not a valid date of birth";
-	return false;
+        return false;
+    }
 }
 
 //returns a hashed password
@@ -463,6 +504,18 @@ function sessionIsOK ()
 {
     return ($_SESSION['_user_agent'] == $_SERVER['HTTP_USER_AGENT'] &&
         $_SESSION['_remote_addr'] == $_SERVER['REMOTE_ADDR']);
+}
+
+function randomKey() {
+    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 20; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+	$pass = implode($pass);
+    return $pass; //turn the array into a string
 }
 #################### end other functions ####################
 

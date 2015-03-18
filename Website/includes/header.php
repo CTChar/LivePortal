@@ -78,14 +78,14 @@ require_once('functions.php');
 					<?php
 					}
 					?>
-					
-					
-					
-				
-				
-				
+
 				
 				</ul>
 			</div>
 		  </div>
 		</nav>
+		
+		
+		
+		
+		<div id="wrapper">
