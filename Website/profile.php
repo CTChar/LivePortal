@@ -26,6 +26,27 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 		</div>
 			Stream: <a href="stream.php?userId=<?php echo($userId); ?>">Go to Stream</a>
 			<br/>
+			
+			
+			<?php
+			
+			if (!favorited($_SESSION['userId'],$userId))
+			{
+			?>
+			<form action="profile.php">
+				<input type="hidden" name="userId" value="<?php echo $userId?>">
+				<input type="submit" name="favoriteSubmit" value="Favorite">
+			</form>
+			<?php
+			}
+			
+			?>
+			
+			
+			
+			
+			
+			<br/>
 			Language: <?php echo ($language);?>
 			<br/>
 			Bio: <?php echo ($bio);?>

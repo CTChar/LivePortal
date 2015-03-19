@@ -154,6 +154,8 @@ function register($username,$email,$password,$confirmPassword,$dob)
 						{
 							$passwordH = hashPassword($password);
 							$rkey = randomKey();
+							$username = strtolower($username);
+							$email = strtolower($email);
 							//$rkey = "3f5";
 							$query = "INSERT INTO `liveportal`.`Accounts` (`accountId`, `username`, `password`, `email`, `registerDate`, `DOB`, `canStream`, `streamKey`) VALUES (NULL, '".$username."', '".$passwordH."', '".$email."', CURRENT_TIMESTAMP, '".$dob."', '1', '$rkey');";
 						
@@ -519,7 +521,42 @@ function randomKey() {
 }
 #################### end other functions ####################
 
+#################### Favorite Process ####################
+function favorited ($favoritor,$favoritee)
+{
+	//should not be able to favorite yourself
+	if ($favoritor == $favoritee)
+	{
+		return true;
+	}
+	global $db;
+	$query = "SELECT * FROM `Favorites` WHERE `favoritorAccountId` = ".$favoritor." and `favoritedAccountId` = ".$favoritee;
 
+	$result = mysqli_query($db, $query);
+	
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUEST["userId"]))
+{
+	$query = "INSERT INTO `liveportal`.`Favorites` (`favId`, `favoritorAccountId`, `favoritedAccountId`, `favoritedTime`) VALUES (NULL, '".$_SESSION['userId']."', '".$_REQUEST["userId"]."', CURRENT_TIMESTAMP)";
+
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		printf("Errorcode add Favorite: %s\n", mysqli_error($db));
+	}
+}
+#################### Favorite Process ####################
 
 
 ?>
