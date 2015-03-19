@@ -57,6 +57,7 @@ require_once('functions.php');
 						<ul class="dropdown-menu">
 							<li><a href="profile.php?userId=<?php if (isLoggedIn()){echo ($_SESSION['userId']);} ?>">Profile</a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>">Stream</a></li>
+							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>">Favorites</a></li>
 						</ul>
 					</li>
 				</ul>
