@@ -24,8 +24,8 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 				?>
 			</h1> 
 		</div>
-	
-		
+			Stream: <a href="stream.php?userId=<?php echo($userId); ?>">Go to Stream</a>
+			<br/>
 			Language: <?php echo ($language);?>
 			<br/>
 			Bio: <?php echo ($bio);?>
