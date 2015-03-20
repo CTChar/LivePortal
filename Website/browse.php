@@ -21,7 +21,9 @@ require_once('includes/header.php');
 		{
 			 while($row = mysqli_fetch_array($result)) 
 			 {
-				echo ("<a href='profile.php?userId=".$row['accountId']."'>".$row['username']."</a>");
+				echo ("<a href='profile.php?userId=".$row['accountId']."'>".$row['username']."</a> ");
+				
+				echo ("<a href='stream.php?userId=".$row['username']."'>Go to Stream</a>");
 				
 				
 				$favorited = $row['accountId'];
