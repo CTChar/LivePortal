@@ -23,7 +23,7 @@ require_once('includes/header.php');
 			 {
 				echo ("<a href='profile.php?userId=".$row['accountId']."'>".$row['username']."</a> ");
 				
-				echo ("<a href='stream.php?userId=".$row['username']."'>Go to Stream</a>");
+				echo ("<a href='stream.php?userId=".$row['accountId']."'>Go to Stream</a>");
 				
 				
 				$favorited = $row['accountId'];
