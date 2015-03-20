@@ -13,7 +13,7 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 	$result = mysqli_query($db, $query);
 	if($result != false)
 	{
-	$count = 0;
+		$count = 0;
 		while($row = mysqli_fetch_array($result)) 
 		{
 			//echo ($row['favoritorAccountId']." Likes ".$row['favoritedAccountId']);
@@ -43,6 +43,10 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 			}
 			//echo (" on ".date( 'Y/m/d H:i:s', strtotime($row['favoritedTime'])));
 			echo (" on ".date( 'l jS \of F Y h:i:s A', strtotime($row['favoritedTime']))."<br/>");
+			
+			$favorited = $row['favoritedAccountId'];
+			require('includes/favoriteButtons.php');
+			
 			
 			$count++;
 		}
