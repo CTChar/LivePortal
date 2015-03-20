@@ -33,7 +33,6 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 		<script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 
 
-		<p>Key: <?php echo("$key");?></p>
 	        <div id="player">Loading the player...</div>
 		<script type="text/javascript">
 		  jwplayer("player").setup({

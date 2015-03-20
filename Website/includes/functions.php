@@ -565,7 +565,7 @@ function unfavorite ($favoritor,$favoritee)
 }
 
 //favorite a user
-if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUEST["userId"]))
+if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUEST["userId"]) && isloggedin())
 {
 	$query = "INSERT INTO `liveportal`.`Favorites` (`favId`, `favoritorAccountId`, `favoritedAccountId`, `favoritedTime`) VALUES (NULL, '".$_SESSION['userId']."', '".$_REQUEST["userId"]."', CURRENT_TIMESTAMP)";
 

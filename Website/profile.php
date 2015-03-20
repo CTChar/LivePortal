@@ -9,7 +9,7 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 
 $username =  getFromTable ('Accounts','accountId',$userId,'username');
 $profileId = getFromTable ('Profiles','Accounts_accountId',$userId,'profileId');
-
+$keyValue = getFromTable ('Accounts', 'accountId', $userId, 'streamKey');
 $language = getFromTable ('Profiles','Accounts_accountId',$userId,'language');
 $bio = getFromTable ('Profiles','Accounts_accountId',$userId,'bio');
 $phone = getFromTable ('Profiles','Accounts_accountId',$userId,'phone');
@@ -46,6 +46,8 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 			Phone: <?php echo ($phone);?>
 			<br/>
 			Country: <?php echo ($country);?>
+			<br/>
+			Key: <?php echo ($keyValue);?>
 	
 
 	
