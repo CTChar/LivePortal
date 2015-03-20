@@ -3,8 +3,8 @@ body{
 }
 
 #wrapper{
-width: 1000px;
-margin: auto;
+	width: 1000px;
+	margin: auto;
 	color:#fff;
 	background: #111;
 	border-radius: 10px;
@@ -13,7 +13,16 @@ margin: auto;
 	padding: 10px;
 }
 input{
-color:#000;
+	color:#000;
+}
+
+.footer
+{
+	min-height: 100px;
+	background: #111;
+	margin-top: 20px;
+	text-align: center;
+	padding: 10px;
 }
 
 .errors{
@@ -22,7 +31,7 @@ color:#000;
 }
 
 .jumbotron{
-color:#000;
+	color:#000;
     text-align: center;
     font-family:"Impact";
 	border-radius: 10px;
