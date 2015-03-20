@@ -16,6 +16,11 @@ input{
 	color:#000;
 }
 
+.list-inline, .list-inline > li{
+	margin: auto;
+	text-align: center;
+}
+
 .footer
 {
 	min-height: 100px;

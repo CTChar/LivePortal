@@ -25,45 +25,49 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 			</h1> 
 		</div>
 		
-		<?php
+			<div class="row">
+				<div class="col-xs-6">
+					<img src='<?php echo (getAvatar($username,400)); ?>'>
+				</div>
+				<div class="col-xs-6">
 		
-						echo ("<img src='".getAvatar($username,400)."'>");
-						echo ('<br/>');
-		?>
-		
-			Stream: <a href="stream.php?userId=<?php echo($userId); ?>">Go to Stream</a>
-			<br/>
-			Favorites: <a href="favorites.php?userId=<?php echo($userId); ?>">View Favorites</a>
-			<br/>
+					Stream: <a href="stream.php?userId=<?php echo($userId); ?>">Go to Stream</a>
+					<br/>
+					Favorites: <a href="favorites.php?userId=<?php echo($userId); ?>">View Favorites</a>
+					<br/>
+					
+					
+					<?php
+					
+						$favorited = $userId;
+						require('includes/favoriteButtons.php');
+					?>
+					
+					
+					
+					
+					
+					<br/>
+					Language: <?php echo ($language);?>
+					<br/>
+					Bio: <?php echo ($bio);?>
+					<br/>
+					Phone: <?php echo ($phone);?>
+					<br/>
+					Country: <?php echo ($country);?>
+					<br/>
+					<?php
+					if (isLoggedIn() && $_SESSION['userId'] == $userId)	
+					{
+					echo ("Your Key: ".$keyValue);
 			
+					}
 			
+					?>
+			
+				</div>
+			</div>
 			<?php
-			
-				$favorited = $userId;
-				require('includes/favoriteButtons.php');
-			?>
-			
-			
-			
-			
-			
-			<br/>
-			Language: <?php echo ($language);?>
-			<br/>
-			Bio: <?php echo ($bio);?>
-			<br/>
-			Phone: <?php echo ($phone);?>
-			<br/>
-			Country: <?php echo ($country);?>
-			<br/>
-			<?php
-			if (isLoggedIn() && $_SESSION['userId'] == $userId)	
-			{
-			echo ("Your Key: ".$keyValue);
-	
-			}
-	
-
 
 
 

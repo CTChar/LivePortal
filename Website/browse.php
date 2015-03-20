@@ -19,24 +19,29 @@ require_once('includes/header.php');
 		}
 		else
 		{
+			echo ('<ul class="list-inline">');
 			 while($row = mysqli_fetch_array($result)) 
 			 {
-				echo ("<img src='".getAvatar($row['username'],100)."'>");
-				echo ('<br/>');
+				if ($row['accountId'] != $_SESSION['userId'])
+				{
+					echo ('<li>');
+					echo ("<a href='profile.php?userId=".$row['accountId']."'>"."<img width='100px' height='100px' src='".getAvatar($row['username'],100)."'><br/>".$row['username']."</a> ");
+					echo ('<br/>');
+					
+					echo ("<a href='stream.php?userId=".$row['accountId']."'>Go to Stream</a>");
+					
+					
+					$favorited = $row['accountId'];
+					require('includes/favoriteButtons.php');
+					
+					
+					
+					echo ('</li>');
 				
-				echo ("<a href='profile.php?userId=".$row['accountId']."'>".$row['username']."</a> ");
-				
-				echo ("<a href='stream.php?userId=".$row['accountId']."'>Go to Stream</a>");
-				
-				
-				$favorited = $row['accountId'];
-				require('includes/favoriteButtons.php');
-				
-				
-				
-				
-				
+				}
 			}
+			
+			echo ('</ul>');
 		}
 
 	?>
