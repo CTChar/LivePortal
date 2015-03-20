@@ -6,14 +6,22 @@ require_once('includes/header.php');
 $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";	
 
 //$key = $userId;
-
-
+?>
+	<div class="jumbotron">
+		<h1>
+			<?php
+					echo (getUsername($userId)."'s Favorites");
+			?>
+		</h1> 
+	</div>
+<?php
 	$query = "SELECT * FROM Favorites WHERE favoritorAccountId = '".clean($userId)."'";
 	
 	$result = mysqli_query($db, $query);
 	if($result != false)
 	{
 		$count = 0;
+		echo ('<ul class="list-inline">');
 		while($row = mysqli_fetch_array($result)) 
 		{
 			//echo ($row['favoritorAccountId']." Likes ".$row['favoritedAccountId']);
@@ -25,24 +33,38 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 				$irow = mysqli_fetch_assoc($iresult);
 				if($irow)
 				{
-					echo ("<img src='".getAvatar($irow['username'],100)."'>");
-					echo ('<br/>');
-					echo ($irow['username']);
+					
+						echo ('<li>');
+						
+						echo ("<a href='profile.php?userId=".$irow['accountId']."'>"."<img width='100px' height='100px' src='".getAvatar($irow['username'],100)."'><br/>".$irow['username']."</a> ");
+						echo ('<br/>');
+						
+						echo ("<a href='stream.php?userId=".$irow['accountId']."'>Go to Stream</a>");
+					
+						$favorited = $row['favoritedAccountId'];
+						require('includes/favoriteButtons.php');
+				
+						echo ('</li>');
+				
+					
+					
 				}
 			}
 			//echo (" on ".date( 'Y/m/d H:i:s', strtotime($row['favoritedTime'])));
 			//echo (" on ".date( 'l jS \of F Y h:i:s A', strtotime($row['favoritedTime']))."<br/>");
 			
-			$favorited = $row['favoritedAccountId'];
-			require('includes/favoriteButtons.php');
+			
 			
 			
 			$count++;
 		}
+		
 		if ($count == 0)
 		{
-			echo ('This user has no favorites');
+			echo ('<li>This user has no favorites</li>');
 		}
+		
+		echo ('</ul>');
 	}
 	
 	

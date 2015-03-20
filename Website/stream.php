@@ -28,7 +28,13 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 	
 	
 ?>
-
+		<div class="jumbotron">
+			<h1>
+				<?php
+						echo (getUsername($userId)."'s Stream");
+				?>
+			</h1> 
+		</div>
 
 		<script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 

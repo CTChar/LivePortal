@@ -29,18 +29,14 @@ require_once('includes/header.php');
 					echo ('<br/>');
 					
 					echo ("<a href='stream.php?userId=".$row['accountId']."'>Go to Stream</a>");
-					
-					
+				
 					$favorited = $row['accountId'];
 					require('includes/favoriteButtons.php');
-					
-					
 					
 					echo ('</li>');
 				
 				}
 			}
-			
 			echo ('</ul>');
 		}
 
