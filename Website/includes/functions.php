@@ -577,9 +577,22 @@ if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUE
 }
 
 //unfavorite a user
-if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQUEST["userId"]))
+if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQUEST["unfollowUserId"]))
 {
-	unfavorite($_SESSION['userId'],$_REQUEST['userId']);
+	unfavorite($_SESSION['userId'],$_REQUEST['unfollowUserId']);
+	if (basename($_SERVER['PHP_SELF']) == "browse.php")
+	{
+		$location = "Location: ".basename($_SERVER['PHP_SELF']);
+	}
+	elseif (basename($_SERVER['PHP_SELF']) == "favorites.php")
+	{
+		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["userId"];
+	}
+	else
+	{
+		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["unfollowUserId"];
+	}
+	header($location);
 }
 #################### Favorite Process ####################
 

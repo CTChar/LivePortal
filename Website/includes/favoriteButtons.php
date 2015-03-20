@@ -20,7 +20,7 @@ if (isLoggedIn())
 		{
 		?>
 			<form action="<?php echo $action; ?>">
-				<input type="hidden" name="userId" value="<?php echo $favorited?>">
+				<input type="hidden" name="unfollowUserId" value="<?php echo $favorited?>">
 				<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
 			</form>
 		<?php
@@ -32,7 +32,8 @@ if (isLoggedIn())
 		{
 		?>
 			<form action="<?php echo $action; ?>">
-				<input type="hidden" name="userId" value="<?php echo $favorited?>">
+				<input type="hidden" name="unfollowUserId" value="<?php echo $favorited?>">
+				<input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
 				<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
 			</form>
 		<?php
