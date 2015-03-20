@@ -34,6 +34,11 @@ input{
 	color:red;
 }
 
+#player_wrapper{
+	margin: auto;
+	text-align: center;
+}
+
 .jumbotron{
 	color:#000;
     text-align: center;

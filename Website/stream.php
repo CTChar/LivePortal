@@ -38,8 +38,8 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 		  jwplayer("player").setup({
 		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo("$key");?>",
 		  image: "http://example.com/uploads/myPoster.jpg",
-		  width: 640,
-		  height: 360
+		  width: 900,
+		  height: 500
 		  });
 		</script>
 
