@@ -24,6 +24,13 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 				?>
 			</h1> 
 		</div>
+		
+		<?php
+		
+						echo ("<img src='".getAvatar($username,400)."'>");
+						echo ('<br/>');
+		?>
+		
 			Stream: <a href="stream.php?userId=<?php echo($userId); ?>">Go to Stream</a>
 			<br/>
 			Favorites: <a href="favorites.php?userId=<?php echo($userId); ?>">View Favorites</a>

@@ -596,5 +596,41 @@ if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQU
 }
 #################### Favorite Process ####################
 
+#################### gravatar logos ####################
+
+function getAvatar($toHash,$size)
+{
+	$link = "http://www.gravatar.com/avatar/".md5( strtolower( trim( $toHash ) ) )."?d=retro&s=".$size;
+	return $link;
+}
+
+
+
+#################### gravatar logos ####################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
+
+
+
+
+
+
+
+
+
