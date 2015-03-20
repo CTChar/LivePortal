@@ -30,24 +30,8 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 			
 			<?php
 			
-			if (!favorited($_SESSION['userId'],$userId))
-			{
-			?>
-			<form action="profile.php">
-				<input type="hidden" name="userId" value="<?php echo $userId?>">
-				<input type="submit" name="favoriteSubmit" value="Favorite">
-			</form>
-			<?php
-			}
-			else
-				{
-					?>
-						<form action="profile.php">
-							<input type="hidden" name="userId" value="<?php echo $userId?>">
-							<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
-						</form>
-					<?php
-				}
+				$favorited = $userId;
+				require('includes/favoriteButtons.php');
 			?>
 			
 			

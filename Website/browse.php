@@ -24,28 +24,8 @@ require_once('includes/header.php');
 				echo ("<a href='profile.php?userId=".$row['accountId']."'>".$row['username']."</a>");
 				
 				
-			
-				if (!favorited($_SESSION['userId'],$row['accountId']))
-				{
-				?>
-				<form action="browse.php">
-					<input type="hidden" name="userId" value="<?php echo $row['accountId']?>">
-					<input type="submit" name="favoriteSubmit" value="Favorite">
-				</form>
-				
-				<?php
-				}
-				else
-				{
-					?>
-						<form action="browse.php">
-							<input type="hidden" name="userId" value="<?php echo $row['accountId']?>">
-							<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
-						</form>
-					<?php
-				}
-			
-				echo ('<br/>');
+				$favorited = $row['accountId'];
+				require('includes/favoriteButtons.php');
 				
 				
 				
