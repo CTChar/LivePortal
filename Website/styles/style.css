@@ -6,6 +6,11 @@ body{
 width: 1000px;
 margin: auto;
 	color:#fff;
+	background: #111;
+	border-radius: 10px;
+	border: 1px solid #fff;
+	min-height: 500px;
+	padding: 10px;
 }
 input{
 color:#000;
@@ -20,6 +25,7 @@ color:#000;
 color:#000;
     text-align: center;
     font-family:"Impact";
+	border-radius: 10px;
 }
 
 .carousel-inner > .item > img,
