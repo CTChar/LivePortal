@@ -40,7 +40,9 @@ require_once('functions.php');
 					<li><a href="#">Favorites</a></li>
 					<li><a href="#">Messages <span class="badge">12</span></a></li>
 					-->
-					<li  <?php if(basename($_SERVER['PHP_SELF']) == 'profile.php' || basename($_SERVER['PHP_SELF']) == 'stream.php') echo ('class="active dropdown"'); ?>>
+					<li  <?php 
+							if(basename($_SERVER['PHP_SELF']) == 'profile.php' || basename($_SERVER['PHP_SELF']) == 'stream.php') echo ('class="active dropdown"');
+							if(!isLoggedIn()) echo ('style="display:none"'); ?>>
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							<?php
 								if (isLoggedIn())
