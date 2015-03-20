@@ -39,7 +39,15 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 			</form>
 			<?php
 			}
-			
+			else
+				{
+					?>
+						<form action="profile.php">
+							<input type="hidden" name="userId" value="<?php echo $userId?>">
+							<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
+						</form>
+					<?php
+				}
 			?>
 			
 			

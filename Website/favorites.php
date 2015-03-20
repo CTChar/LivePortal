@@ -13,8 +13,8 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 	$result = mysqli_query($db, $query);
 	if($result != false)
 	{
-		$row = mysqli_fetch_assoc($result);
-		if($row)
+	$count = 0;
+		while($row = mysqli_fetch_array($result)) 
 		{
 			//echo ($row['favoritorAccountId']." Likes ".$row['favoritedAccountId']);
 			
@@ -42,13 +42,12 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 				}
 			}
 			//echo (" on ".date( 'Y/m/d H:i:s', strtotime($row['favoritedTime'])));
-			echo (" on ".date( 'l jS \of F Y h:i:s A', strtotime($row['favoritedTime'])));
+			echo (" on ".date( 'l jS \of F Y h:i:s A', strtotime($row['favoritedTime']))."<br/>");
 			
-			
+			$count++;
 		}
-		else
+		if ($count == 0)
 		{
-			$key = "";
 			echo ('This user has no favorites');
 		}
 	}

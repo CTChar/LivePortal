@@ -545,7 +545,26 @@ function favorited ($favoritor,$favoritee)
 	return false;
 }
 
+function unfavorite ($favoritor,$favoritee)
+{
+	//should not be able to favorite yourself
+	if ($favoritor == $favoritee)
+	{
+		return true;
+	}
+	global $db;
+	$query = "DELETE FROM `Favorites` WHERE `favoritorAccountId` = ".$favoritor." and `favoritedAccountId` = ".$favoritee;
 
+	$result = mysqli_query($db, $query);
+	
+	if($result != false)
+	{
+			return true;
+	}
+	return false;
+}
+
+//favorite a user
 if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUEST["userId"]))
 {
 	$query = "INSERT INTO `liveportal`.`Favorites` (`favId`, `favoritorAccountId`, `favoritedAccountId`, `favoritedTime`) VALUES (NULL, '".$_SESSION['userId']."', '".$_REQUEST["userId"]."', CURRENT_TIMESTAMP)";
@@ -555,6 +574,12 @@ if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUE
 	{
 		printf("Errorcode add Favorite: %s\n", mysqli_error($db));
 	}
+}
+
+//unfavorite a user
+if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQUEST["userId"]))
+{
+	unfavorite($_SESSION['userId'],$_REQUEST['userId']);
 }
 #################### Favorite Process ####################
 
