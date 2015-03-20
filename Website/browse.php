@@ -10,7 +10,7 @@ require_once('includes/header.php');
 		</div>
 	
 	<?php
-		$query = "SELECT * FROM Accounts";
+		$query = "SELECT * FROM Accounts ORDER BY username";
 
 		$result = mysqli_query($db, $query);
 		if ($db->errno)

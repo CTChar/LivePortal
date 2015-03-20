@@ -12,6 +12,7 @@ body{
 	min-height: 500px;
 	padding: 10px;
 }
+
 input{
 	color:#000;
 }
@@ -21,8 +22,7 @@ input{
 	text-align: center;
 }
 
-.footer
-{
+.footer{
 	min-height: 100px;
 	background: #111;
 	margin-top: 20px;
@@ -31,7 +31,6 @@ input{
 }
 
 .errors{
-
 	color:#fff;
 }
 
