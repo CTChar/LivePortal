@@ -30,8 +30,8 @@ input{
 	padding: 10px;
 }
 
-.errors{
-	color:#fff;
+.error{
+	color:red;
 }
 
 .jumbotron{

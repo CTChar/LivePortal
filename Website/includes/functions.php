@@ -11,7 +11,7 @@ function printErrors($errors)
 	{
 		for($x = 0; $x < count($errors); $x++) 
 		{
-			echo ('<span class="errors">'.$errors[$x]."</span><br>");
+			echo ('<span class="error">'.$errors[$x]."</span><br>");
 		}
 	}
 }
