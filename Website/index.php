@@ -85,10 +85,8 @@ require_once('includes/header.php');
 				<p>For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. You can crush me but you can't crush my spirit! There's one way and only one way to determine if an animal is intelligent. Dissect its brain! We're rescuing ya. Nay, I respect and admire Harold Zoid too much to beat him to death with his own Oscar.</p>
 			</div>
 			<div class="col-sm-4">
-				<h1>Radioactive Man</h1>
-					<p>How could you?! Haven't you learned anything from that guy who gives those sermons at church? Captain Whatshisname? We live in a society of laws! Why do you think I took you to all those Police Academy movies? For fun? Well, I didn't hear anybody laughing, did you? Except at that guy who made sound effects. Makes sound effects and laughs. Where was I? Oh yeah! Stay out of my booze. Slow down, Bart! My legs don't know how to be as long as yours. How is education supposed to make me feel smarter? Besides, every time I learn something new, it pushes some old stuff out of my brain. Remember when I took that home winemaking course, and I forgot how to drive? Our differences are only skin deep, but our sames go down to the bone.</p>
-					<h2>Last Exit to Springfield</h2>
-					<p>Uh, no, they're saying "Boo-urns, Boo-urns." Here's to alcohol, the cause of &mdash; and solution to &mdash; all life's problems. Yes! I am a citizen! Now which way to the welfare office? I'm kidding, I'm kidding. I work, I work. I've done everything the Bible says &mdash; even the stuff that contradicts the other stuff! I hope this has taught you kids a lesson: kids never learn.</p>
+				<h1>Cool</h1>
+				<p>My south mouth was trembling like jelly. With my spam castanets now much like a gutted trout, he thought it was time to start plunging my marmite motorway. Is now the time to tell him I really need to ease a colon cobra, I wondered? Inserting my fist into my chamber of squelch got me spouting vertical moisture faster than greased shit off a shiny shovel. The unrelenting orgasms from his skin flute hammering my hatchet wound made me come so hard, I began sweating like a gypsy near an unlocked shipping container. The mixture of sewer trout and creamy load in my rusty bullet hole created the delicious sphincter sauce that he was so fond of.</p>
 			</div>	
 			<div class="col-sm-4">
 				<h1>The Republic</h1>

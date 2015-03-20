@@ -4,24 +4,39 @@
 	$action = basename($_SERVER['PHP_SELF']);
 if (isLoggedIn())
 {
-	if (!favorited($_SESSION['userId'],$favorited))
+	if ($action != "favorites.php")
 	{
-	?>
-		<form action="<?php echo $action; ?>">
-			<input type="hidden" name="userId" value="<?php echo $favorited?>">
-			<input type="submit" name="favoriteSubmit" value="Favorite">
-		</form>
+		if (!favorited($_SESSION['userId'],$favorited))
+		{
+		?>
+			<form action="<?php echo $action; ?>">
+				<input type="hidden" name="userId" value="<?php echo $favorited?>">
+				<input type="submit" name="favoriteSubmit" value="Favorite">
+			</form>
 
-	<?php
+		<?php
+		}
+		elseif ($_SESSION['userId'] != $favorited)
+		{
+		?>
+			<form action="<?php echo $action; ?>">
+				<input type="hidden" name="userId" value="<?php echo $favorited?>">
+				<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
+			</form>
+		<?php
+		}
 	}
-	elseif ($_SESSION['userId'] != $favorited)
+	else
 	{
-	?>
-		<form action="<?php echo $action; ?>">
-			<input type="hidden" name="userId" value="<?php echo $favorited?>">
-			<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
-		</form>
-	<?php
+		if ($_SESSION['userId'] != $favorited && $userId == $_SESSION['userId'])
+		{
+		?>
+			<form action="<?php echo $action; ?>">
+				<input type="hidden" name="userId" value="<?php echo $favorited?>">
+				<input type="submit" name="unFavoriteSubmit" value="Un-favorite">
+			</form>
+		<?php
+		}
 	}
 }
 echo ('<br/>');
