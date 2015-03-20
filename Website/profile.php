@@ -26,6 +26,8 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 		</div>
 			Stream: <a href="stream.php?userId=<?php echo($userId); ?>">Go to Stream</a>
 			<br/>
+			Favorites: <a href="favorites.php?userId=<?php echo($userId); ?>">View Favorites</a>
+			<br/>
 			
 			
 			<?php
@@ -47,14 +49,17 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 			<br/>
 			Country: <?php echo ($country);?>
 			<br/>
-			Key: <?php echo ($keyValue);?>
+			<?php
+			if (isLoggedIn() && $_SESSION['userId'] == $userId)	
+			{
+			echo ("Your Key: ".$keyValue);
+	
+			}
 	
 
-	
 
 
 
-<?php
 require_once('includes/footer.php')
 
 ?>
