@@ -36,14 +36,10 @@ require_once('functions.php');
 					<!-- <li><a href="testStreamPage.php">Stream Page php</a></li> -->
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a href="browse.php">Browse</a></li>
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a href="irc.php">IRC</a></li>
-					<!-- 
-					<li><a href="#">Favorites</a></li>
-					<li><a href="#">Messages <span class="badge">12</span></a></li>
-					-->
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
 					<?php if(isLoggedIn()){ ?>
-					<li <?php 
-						if(basename($_SERVER['PHP_SELF']) == 'profile.php' || basename($_SERVER['PHP_SELF']) == 'stream.php') echo ('class="active dropdown"');
-						?>>
+					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							<?php
 								if (isLoggedIn())
@@ -61,27 +57,27 @@ require_once('functions.php');
 							<li><a href="profile.php?userId=<?php if (isLoggedIn()){echo ($_SESSION['userId']);} ?>">Profile</a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>">Stream</a></li>
 							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>">Favorites</a></li>
+							<li><a href="includes/functions.php?logout=true"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 						</ul>
 					</li> <?php } ?>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				
 					
 					<?php
 					//if logged in show logout button
-					if (isLoggedIn())
+					if (!isLoggedIn())
 					{
+						if(basename($_SERVER['PHP_SELF']) != 'login.php')
+						{
 					?>
-						<li><a href="includes/functions.php?logout=true"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+							<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 					<?php
-					}
-					//else show login button
-					else
-					{
+						}
+						if(basename($_SERVER['PHP_SELF']) != 'register.php')
+						{
 					?>
-					
-					<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<?php
+						}
 					}
 					?>
 

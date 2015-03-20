@@ -54,11 +54,8 @@ if (isset($_REQUEST["registerButton"]))
 		<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm Password" value="<?php echo("$confirmPassword"); ?>">
 	  </div>
 	  <div class="form-group">
-		<label for="dob">DOB</label>
+		<label for="dob">Date of Birth</label>
 		<input type="date" id="dob" name="dob" class="form-control" placeholder="Confirm Password" value="<?php echo("$dob"); ?>">
-	  </div>
-	  <div class="form-group">
-		<label for=""></label>
 	  </div>
 		<input type="submit" name="registerButton"  class="btn btn-default" value="Register">
 	</form>

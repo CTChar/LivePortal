@@ -16,7 +16,7 @@ if (isset($_REQUEST["loginButton"]))
 require_once('includes/header.php');
 ?>
 
-	<form action="register.php">
+	<form action="login.php">
 		<div class="form-group">
 		<label for="username">Username</label>
 		<input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<?php echo("$username"); ?>">
