@@ -50,11 +50,6 @@ $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
 					
 				}
 			}
-			//echo (" on ".date( 'Y/m/d H:i:s', strtotime($row['favoritedTime'])));
-			//echo (" on ".date( 'l jS \of F Y h:i:s A', strtotime($row['favoritedTime']))."<br/>");
-			
-			
-			
 			
 			$count++;
 		}

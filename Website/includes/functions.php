@@ -594,7 +594,7 @@ if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQU
 	}
 	header($location);
 }
-#################### Favorite Process ####################
+#################### End Favorite Process ####################
 
 #################### gravatar logos ####################
 
@@ -604,12 +604,70 @@ function getAvatar($toHash,$size)
 	return $link;
 }
 
+function getAvatarImg($toHash,$size)
+{
+	$link = "http://www.gravatar.com/avatar/".md5( strtolower( trim( $toHash ) ) )."?d=retro&s=".$size;
+	$img = '<img src="" alt="" class="img-thumbnail" >';
+	return $link;
+}
 
 
-#################### gravatar logos ####################
+
+#################### End gravatar logos ####################
 
 
+#################### Messages ####################
+function getMessageCount()
+{
+	global $db;
+	$query = "SELECT count(*) AS count FROM `Messages` WHERE `toId` = ".$_SESSION['userId'];
+	
+	$result = mysqli_query($db, $query);
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			return $row['count'];
+		}
+	}
+}
 
+function sendMessage($to,$subject,$message)
+{
+	global $db,$errors;
+	if (validMessage($subject,$message))
+	{
+		$query = "INSERT INTO `liveportal`.`Messages` (`messageId`, `fromId`, `toId`, `subject`, `message`, `fromDeleted`, `toDeleted`, `archived`, `read`) VALUES (NULL, '".$_SESSION['userId']."', '".$to."', '".$subject."', '".$message."', '0', '0', '0', '0')";
+		$result = mysqli_query($db, $query);
+		if($result == false)
+		{
+			printf("Errorcode send message: %s\n", mysqli_error($db));
+		}
+	}
+	else
+	{
+		printErrors($errors);
+	}
+}
+
+function validMessage($subject,$message)
+{
+	global $errors;
+	if(strlen($subject)<3)
+	{
+		$errors[]="The subject must be at least 3 characters";
+		return false;
+	}
+	elseif (strlen($message)<3)
+	{
+		$errors[]="The message must be at least 3 characters";
+		return false;
+	}
+	return true;
+}
+
+#################### end Messages ####################
 
 
 

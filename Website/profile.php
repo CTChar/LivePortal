@@ -67,6 +67,40 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 			
 				</div>
 			</div>
+			
+			<div>
+				<h2>Send a Message</h2>
+				
+				<?php
+				if (isset($_REQUEST['sent']) && $_REQUEST['sent'] == "sent")
+				{
+					echo ('Message Sent');
+				}
+				
+				
+				if (isset($_REQUEST['sendMessage']))
+				{
+					$subject = isset($_REQUEST["subject"]) ? $_REQUEST["subject"] : "";	
+					$message = isset($_REQUEST["message"]) ? $_REQUEST["message"] : "";	
+					sendMessage($userId,$subject,$message);
+					header('Location: profile.php?userId='.$userId.'&sent=sent');
+				}
+				
+				?>
+				
+				<form action="profile.php">
+				  <div class="form-group">
+					<label for="subject">Subject</label>
+					<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" <?php if (isset($_REQUEST['sendMessage'])){ echo $subject;} ?> >
+				  </div>
+				  <div class="form-group">
+					<label for="message">Message</label>
+					<textarea class="form-control" name="message" id="message"><?php if (isset($_REQUEST['sendMessage'])){ echo $message;} ?></textarea>
+				  </div>
+				  <input type="hidden" id="userId" name="userId" value="<?php echo $userId; ?>">
+				  <button type="submit" class="btn btn-default" name="sendMessage" id="sendMessage">Send</button>
+				</form>
+			</div>
 			<?php
 
 

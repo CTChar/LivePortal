@@ -12,15 +12,15 @@ require_once('functions.php');
 	<title>LivePortal.gq</title>
 	<meta charset="utf-8">
 	<!--include jquery-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="external\jquery-ui-1.11.4.custom\jquery-ui.min.css">
+	<script src="external\jquery-ui-1.11.4.custom\external/jquery/jquery.js"></script>
+	<script src="external\jquery-ui-1.11.4.custom\jquery-ui.min.js"></script>
 	<!--include bootstrap-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<!--include angular-->
-	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	
-	
+	<!-- our stylesheet -->
 	<link rel="stylesheet" href="styles/style.css">
   
 </head>
@@ -41,20 +41,31 @@ require_once('functions.php');
 					<?php if(isLoggedIn()){ ?>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+							<img width='20px' height='20px' src="<?php echo getAvatar($_SESSION['username'],20); ?> "> 
+							<?php echo $_SESSION['username']; ?>
+									
+							
 							<?php
-								if (isLoggedIn())
+								$messageCount = getMessageCount();
+								if ($messageCount > 0)
 								{
-									echo ($_SESSION['username']);
-								}
-								else
-								{
-									echo ("Username");
+									echo ('<span class="badge">'.$messageCount.'</span>');
 								}
 							?>
+							
 							<span class="caret"></span>
+							
+							
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="profile.php?userId=<?php if (isLoggedIn()){echo ($_SESSION['userId']);} ?>">Profile</a></li>
+							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>">Profile</a></li>
+							<li><a href="messages.php">Messages <span class="badge"><?php
+								if ($messageCount > 0)
+								{
+									echo ('<span class="badge">'.$messageCount.'</span>');
+								}
+							?></span></a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>">Stream</a></li>
 							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>">Favorites</a></li>
 							<li><a href="includes/functions.php?logout=true"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
