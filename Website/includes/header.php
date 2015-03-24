@@ -32,9 +32,9 @@ require_once('functions.php');
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo ('class="active"'); ?>><a href="index.php">Home</a></li>
+					<li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo ('class="active"'); ?>><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 					<!-- <li><a href="testStreamPage.php">Stream Page php</a></li> -->
-					<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a href="browse.php">Browse</a></li>
+					<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a href="irc.php">IRC</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -59,15 +59,16 @@ require_once('functions.php');
 							
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>">Profile</a></li>
-							<li><a href="messages.php">Messages <span class="badge"><?php
+							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge"><?php
 								if ($messageCount > 0)
 								{
 									echo ('<span class="badge">'.$messageCount.'</span>');
 								}
 							?></span></a></li>
-							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>">Stream</a></li>
-							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>">Favorites</a></li>
+							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
+							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-tags"></span> Favorites</a></li>
+							<li class="divider"></li>
 							<li><a href="includes/functions.php?logout=true"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 						</ul>
 					</li> <?php } ?>

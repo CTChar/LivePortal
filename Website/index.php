@@ -27,39 +27,59 @@ require_once('includes/header.php');
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
 			<li data-target="#myCarousel" data-slide-to="3"></li>
+			<li data-target="#myCarousel" data-slide-to="4"></li>
+			<li data-target="#myCarousel" data-slide-to="5"></li>
+			<li data-target="#myCarousel" data-slide-to="6"></li>
 		  </ol>
 
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
 			<div class="item active">
-			  <img src="images/img_chania.jpg" alt="Chania">
+			  <img src="images/1.jpg" alt="Flower">
 			  <div class="carousel-caption">
-				<h3>She Shrek</h3>
-				<p>This is what Shrek looks like as a woman</p>
+				<h3>Shrek Cosby</h3>
 			  </div>
 			</div>
 
 			<div class="item">
-			  <img src="images/img_chania2.jpg" alt="Chania">
+			  <img src="images/2.jpg" alt="Chania">
 			  <div class="carousel-caption">
-				<h3>Shrek</h3>
-				<p><a href="http://vimeo.com/97688364" target="_blank">Shrek is love Shrek is life</a></p>
+				<h3>Demon Shrek</h3>
 			  </div>
 			</div>
 
 			<div class="item">
-			  <img src="images/img_flower.jpg" alt="Flower">
+			  <img src="images/3.jpg" alt="Chania">
 			  <div class="carousel-caption">
-				<h3>Donkey</h3>
-				<p>Donkey!</p>
+				<h3>Happy Shrek</h3>
 			  </div>
 			</div>
 
 			<div class="item">
-			  <img src="images/img_flower2.jpg" alt="Flower">
+			  <img src="images/4.jpg" alt="Flower">
 			  <div class="carousel-caption">
-				<h3>Puss in the Stars</h3>
-				<p>You can see his soul</p>
+				<h3>Shrek Mike</h3>
+			  </div>
+			</div>
+			
+			<div class="item">
+			  <img src="images/5.jpg" alt="Flower">
+			  <div class="carousel-caption">
+				<h3>Shrek Cage</h3>
+			  </div>
+			</div>
+			
+			<div class="item">
+			  <img src="images/6.jpg" alt="Flower">
+			  <div class="carousel-caption">
+				<h3>She Shrek 1</h3>
+			  </div>
+			</div>
+			
+			<div class="item">
+			  <img src="images/7.jpg" alt="Flower">
+			  <div class="carousel-caption">
+				<h3>She Shrek 2</h3>
 			  </div>
 			</div>
 		  </div>
