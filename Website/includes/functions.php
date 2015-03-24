@@ -7,6 +7,7 @@ $errors = array();
 
 function printErrors($errors)
 {
+	echo ("<script>$('#myModal').modal('show')</script>");
 	if (count($errors) > 0)
 	{
 		for($x = 0; $x < count($errors); $x++) 

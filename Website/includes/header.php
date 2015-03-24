@@ -81,7 +81,11 @@ require_once('functions.php');
 						if(basename($_SERVER['PHP_SELF']) != 'login.php')
 						{
 					?>
-							<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							<!-- <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+							  Login
+							</button>
 					<?php
 						}
 						if(basename($_SERVER['PHP_SELF']) != 'register.php')
@@ -100,6 +104,63 @@ require_once('functions.php');
 		</nav>
 		
 		
+		
+		
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Sign In</h4>
+			  </div>
+			  <div class="modal-body">
+			  <?php
+				#################### start process user login ####################
+				## php must be processed here to print errors in the proper place
+				#username and password variables from login.php
+				$username = isset($_REQUEST["username"]) ? clean($_REQUEST["username"]) : "";	
+				$password = isset($_REQUEST["password"]) ? clean($_REQUEST["password"]) : "";	
+
+				if (isset($_REQUEST["loginButton"]))
+				{
+					login($username,$password);
+				}
+				#################### end process user login ####################
+
+				?>
+				<form action="<?php echo(basename($_SERVER['PHP_SELF'])) ?>">
+					<div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<?php echo("$username"); ?>">
+					Usernames must contain 
+					<ul>
+						<li>8 or more characters Ex. A B C 1 2 3 ! @ #</li>
+					</ul>
+					</div>
+					<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" id="password" name="password" class="form-control" placeholder="Password" value="<?php echo("$password"); ?>">
+					Passwords must contain: 
+						<ul>
+							<li>2 or more uppercase letters Ex. A B C</li> 
+							<li>2 or more lowercase letters Ex. a b c</li> 
+							<li>2 or more special symbols [ ! @ # $ % ^ & * ( ) \ - _ = + { } ; : , < . > ]</li> 
+							<li>2 or more numbers Ex. 1 2 3 </li> 
+							<li>8 or more characters Ex. A B C 1 2 3 ! @ #</li> 
+						</ul>
+					</div>
+					
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<input type="submit" name="loginButton"  class="btn btn-default" value="Login">
+				</form>
+			  </div>
+			</div>
+		  </div>
+		</div>
 		
 		
 		<div id="wrapper">
