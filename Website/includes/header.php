@@ -60,12 +60,7 @@ require_once('functions.php');
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge"><?php
-								if ($messageCount > 0)
-								{
-									echo ('<span class="badge">'.$messageCount.'</span>');
-								}
-							?></span></a></li>
+							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <?php if ($messageCount > 0){echo('<span class="badge">'.$messageCount.'</span>');} ?></a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
 							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-tags"></span> Favorites</a></li>
 							<li class="divider"></li>
@@ -83,7 +78,7 @@ require_once('functions.php');
 					?>
 							<!-- <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
 							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+							<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#signIn">
 							  Login
 							</button>
 					<?php
@@ -108,7 +103,7 @@ require_once('functions.php');
 		
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -155,7 +150,7 @@ require_once('functions.php');
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<input type="submit" name="loginButton"  class="btn btn-default" value="Login">
+				<input type="submit" name="loginButton"  class="btn btn-primary" value="Login">
 				</form>
 			  </div>
 			</div>

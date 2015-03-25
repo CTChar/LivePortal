@@ -2,10 +2,29 @@
 require_once('includes/functions.php');
 
 
-require_once('includes/header.php');
+
+
+
 
 
 $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";	
+
+
+//if (isset($_REQUEST['sent']) && $_REQUEST['sent'] == "sent")
+				//{
+				//	echo ('Message Sent');
+				//}
+				
+				if (isset($_REQUEST['sendMessage']))
+				{
+					$subject = isset($_REQUEST["subject"]) ? $_REQUEST["subject"] : "";	
+					$message = isset($_REQUEST["message"]) ? $_REQUEST["message"] : "";	
+					sendMessage($userId,$subject,$message);
+					//header('Location: profile.php?userId='.$userId.'&sent=sent');
+				}
+				
+require_once('includes/header.php');
+
 
 $username =  getFromTable ('Accounts','accountId',$userId,'username');
 $profileId = getFromTable ('Profiles','Accounts_accountId',$userId,'profileId');
@@ -14,14 +33,56 @@ $language = getFromTable ('Profiles','Accounts_accountId',$userId,'language');
 $bio = getFromTable ('Profiles','Accounts_accountId',$userId,'bio');
 $phone = getFromTable ('Profiles','Accounts_accountId',$userId,'phone');
 $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
+
+
+
+if (isLoggedIn())
+{
 ?>
+
+	<!-- Modal -->
+	<div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Send <?php echo ($username); ?> a message</h4>
+		  </div>
+		  <div class="modal-body">
+			<form action="profile.php">
+			  <div class="form-group">
+				<label for="subject">Subject</label>
+				<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" value="<?php if (isset($_REQUEST['sendMessage'])){ echo $subject;} ?>" >
+			  </div>
+			  <div class="form-group">
+				<label for="message">Message</label>
+				<textarea class="form-control" name="message" id="message"><?php if (isset($_REQUEST['sendMessage'])){ echo $message;} ?></textarea>
+			  </div>
+			  <input type="hidden" id="userId" name="userId" value="<?php echo $userId; ?>">
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-primary" name="sendMessage" id="sendMessage">Send</button>
+			</form>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+<?php
+}
+?>
+
+
+
+
+
+
+
+
 		<div class="jumbotron">
 			<h1>
-				<?php
-					
-						echo ($username."'s Profile");
-					
-				?>
+				<?php echo ($username."'s Profile"); ?>
 			</h1> 
 		</div>
 		
@@ -41,13 +102,22 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 					
 						$favorited = $userId;
 						require('includes/favoriteButtons.php');
+						
+						
+						
+					if (isLoggedIn())
+					{
 					?>
 					
-					
-					
-					
-					
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sendMessage">
+					  Message
+					</button>
 					<br/>
+					
+					<?php } ?>
+					
+					
 					Language: <?php echo ($language);?>
 					<br/>
 					Bio: <?php echo ($bio);?>
@@ -68,39 +138,7 @@ $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 				</div>
 			</div>
 			
-			<div>
-				<h2>Send a Message</h2>
 				
-				<?php
-				if (isset($_REQUEST['sent']) && $_REQUEST['sent'] == "sent")
-				{
-					echo ('Message Sent');
-				}
-				
-				
-				if (isset($_REQUEST['sendMessage']))
-				{
-					$subject = isset($_REQUEST["subject"]) ? $_REQUEST["subject"] : "";	
-					$message = isset($_REQUEST["message"]) ? $_REQUEST["message"] : "";	
-					sendMessage($userId,$subject,$message);
-					header('Location: profile.php?userId='.$userId.'&sent=sent');
-				}
-				
-				?>
-				
-				<form action="profile.php">
-				  <div class="form-group">
-					<label for="subject">Subject</label>
-					<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" <?php if (isset($_REQUEST['sendMessage'])){ echo $subject;} ?> >
-				  </div>
-				  <div class="form-group">
-					<label for="message">Message</label>
-					<textarea class="form-control" name="message" id="message"><?php if (isset($_REQUEST['sendMessage'])){ echo $message;} ?></textarea>
-				  </div>
-				  <input type="hidden" id="userId" name="userId" value="<?php echo $userId; ?>">
-				  <button type="submit" class="btn btn-default" name="sendMessage" id="sendMessage">Send</button>
-				</form>
-			</div>
 			<?php
 
 

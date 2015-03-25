@@ -7,7 +7,10 @@ $errors = array();
 
 function printErrors($errors)
 {
-	echo ("<script>$('#myModal').modal('show')</script>");
+	if (isset($_REQUEST["loginButton"]))
+	{
+		echo ("<script>$('#signIn').modal('show')</script>");
+	}
 	if (count($errors) > 0)
 	{
 		for($x = 0; $x < count($errors); $x++) 
@@ -645,6 +648,7 @@ function sendMessage($to,$subject,$message)
 		{
 			printf("Errorcode send message: %s\n", mysqli_error($db));
 		}
+			header("Location: profile.php?userId=".$to);
 	}
 	else
 	{

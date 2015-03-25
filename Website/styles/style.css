@@ -17,6 +17,10 @@ input{
 	color:#000;
 }
 
+.modal-title{
+color:#000;
+}
+
 .list-inline, .list-inline > li{
 	margin: 10px auto;
 	text-align: center;
