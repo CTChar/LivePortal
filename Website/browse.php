@@ -19,10 +19,12 @@ require_once('includes/header.php');
 		}
 		else
 		{
+			
+			$uid = isset($_SESSION['userId']) ? $_SESSION['userId'] : "";	
 			echo ('<ul class="list-inline">');
 			 while($row = mysqli_fetch_array($result)) 
 			 {
-				if ($row['accountId'] != $_SESSION['userId'])
+				if ($row['accountId'] != $uid)
 				{
 					echo ('<li>');
 					echo ("<a href='profile.php?userId=".$row['accountId']."'>"."<img width='100px' class='img-thumbnail' height='100px' src='".getAvatar($row['username'],100)."'><br/>".$row['username']."</a> ");
