@@ -17,8 +17,8 @@ require_once('functions.php');
 	<script src="external\jquery-ui-1.11.4.custom\jquery-ui.min.js"></script>
 	<!--include bootstrap-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	
 	<!-- our stylesheet -->
 	<link rel="stylesheet" href="styles/style.css">
@@ -36,6 +36,16 @@ require_once('functions.php');
 					<!-- <li><a href="testStreamPage.php">Stream Page php</a></li> -->
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a href="irc.php">IRC</a></li>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<?php if(isLoggedIn()){ ?>
