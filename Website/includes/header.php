@@ -36,26 +36,19 @@ require_once('functions.php');
 					<!-- <li><a href="testStreamPage.php">Stream Page php</a></li> -->
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a href="irc.php">IRC</a></li>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				
+				<!-- Stat User Menu -->
+				<ul class="nav navbar-nav navbar-right" style="margin-right: 5px;">
 					<?php if(isLoggedIn()){ ?>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							
+					<li class="userMenu">
+						<a class="userMenu" href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>">
 							<img width='20px' height='20px' src="<?php echo getAvatar($_SESSION['username'],20); ?> "> 
 							<?php echo $_SESSION['username']; ?>
-									
-							
+						</a>
+					</li>
+					<li class="userMenu">
+						<a href="messages.php" class="userMenu">
 							<?php
 								$messageCount = getMessageCount();
 								if ($messageCount > 0)
@@ -63,10 +56,11 @@ require_once('functions.php');
 									echo ('<span class="badge">'.$messageCount.'</span>');
 								}
 							?>
-							
-							<span class="caret"></span>
-							
-							
+						</a>
+					</li>
+					<li class="dropdown ">
+						<a class="dropdown-toggle userMenu" data-toggle="dropdown" href="#">
+							<span class="caret"></span>	
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -104,6 +98,7 @@ require_once('functions.php');
 
 				
 				</ul>
+				<!-- End User Menu -->
 			</div>
 		  </div>
 		</nav>

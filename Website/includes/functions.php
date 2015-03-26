@@ -677,7 +677,17 @@ function validMessage($subject,$message)
 
 
 
+#################### Permissions ####################
 
+//is u1 allowed to see the thing that u2 owns
+function permitted($u1,$u2)
+{
+
+
+}
+
+
+#################### Permissions ####################
 
 
 
