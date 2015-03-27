@@ -72,7 +72,7 @@ require_once('functions.php');
 						<ul class="dropdown-menu">
 							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 							<li><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
-							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <?php if ($messageCount > 0){echo('<span class="badge">'.$messageCount.'</span>');} ?></a></li>
+							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <?php echo('<span class="badge">'.$messageCount.'</span>'); ?></a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
 							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-tags"></span> Favorites</a></li>
 							<li class="divider"></li>

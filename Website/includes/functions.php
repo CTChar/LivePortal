@@ -624,7 +624,7 @@ function getAvatarImg($toHash,$size)
 function getMessageCount()
 {
 	global $db;
-	$query = "SELECT count(*) AS count FROM `Messages` WHERE `toId` = ".$_SESSION['userId'];
+	$query = "SELECT count(*) AS count FROM `Messages` WHERE `toId` = ".$_SESSION['userId']." AND messageRead = 0";
 	
 	$result = mysqli_query($db, $query);
 	if($result != false)

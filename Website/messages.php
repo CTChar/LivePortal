@@ -29,22 +29,6 @@ $username = $_SESSION['username'];
 	  
 		$( "#tabs" ).tabs();
 	
-		$( ".markUnread" ).click(function() {
-			var messageId = $(this).attr('messageId');
-			var toId = $(this).attr('toId');
-			var fromId = $(this).attr('fromId');
-			var messageType = $(this).attr('messageType');
-			var getTest = $.get( "ajax/messageAction.php", { messageId: messageId , toId : toId , fromId : fromId, messageType : messageType, messageAction: "markUnread" } )
-			.done(function( data ) {
-			//alert( data );
-			//$( "body" ).append( data );
-			});
-			
-			$(this).parent().removeClass('read');
-			$(this).parent().addCalss('unread');
-			event.stopImmediatePropagation();
-		});
-	
 		$( ".messageDelete" ).click(function() {
 			var messageId = $(this).attr('messageId');
 			var toId = $(this).attr('toId');
@@ -115,7 +99,6 @@ $username = $_SESSION['username'];
 								Subject: <?php echo $row['subject']; ?>
 							</div>
 							<div class="messageControls">
-								<span class="markUnread" messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">Unread</span>
 								<span class="messageDelete" messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">Delete</span>
 							</div>
 						</h3>
