@@ -13,12 +13,19 @@ require_once('functions.php');
 	<meta charset="utf-8">
 	<!--include jquery-->
 	<link rel="stylesheet" href="external\jquery-ui-1.11.4.custom\jquery-ui.min.css">
-	<script src="external\jquery-ui-1.11.4.custom\external/jquery/jquery.js"></script>
+	<script src="external\jquery-ui-1.11.4.custom\external\jquery\jquery.js"></script>
 	<script src="external\jquery-ui-1.11.4.custom\jquery-ui.min.js"></script>
-	<!--include bootstrap-->
+	
+	<!--include bootstrap -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
+	
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	
 	<!-- our stylesheet -->
 	<link rel="stylesheet" href="styles/style.css">
@@ -38,7 +45,7 @@ require_once('functions.php');
 					<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a href="irc.php">IRC</a></li>
 				</ul>
 				
-				<!-- Stat User Menu -->
+				<!-- Start User Menu -->
 				<ul class="nav navbar-nav navbar-right" style="margin-right: 5px;">
 					<?php if(isLoggedIn()){ ?>
 					<li class="userMenu">
@@ -64,6 +71,7 @@ require_once('functions.php');
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+							<li><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
 							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <?php if ($messageCount > 0){echo('<span class="badge">'.$messageCount.'</span>');} ?></a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
 							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-tags"></span> Favorites</a></li>
