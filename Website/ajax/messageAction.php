@@ -25,7 +25,17 @@ elseif ($messageAction == "markRead")
 	$result = mysqli_query($db, $query);
 	if($result == false)
 	{
-		//printf("Errorcode message read update: %s\n", mysqli_error($db));
+		printf("Errorcode message read update: %s\n", mysqli_error($db));
+	}
+}
+elseif ($messageAction == "markUnread")
+{
+	$query = "UPDATE  `liveportal`.`Messages` SET  `messageRead` =  '0' WHERE  `Messages`.`messageId` ='".$messageId."'";
+	
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		printf("Errorcode message read update: %s\n", mysqli_error($db));
 	}
 }
 

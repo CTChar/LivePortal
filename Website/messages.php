@@ -19,19 +19,32 @@ $username = $_SESSION['username'];
 	
 	<script>
 	  $(function() {
+		
 		$( ".accordion" ).accordion({
 		  collapsible: true,
 		  heightStyle: "content",
 		  active: false
 		});
-	  });
 	  
 	  
-	$(function() {
 		$( "#tabs" ).tabs();
-	});
 	
-	$(function() {
+		$( ".markUnread" ).click(function() {
+			var messageId = $(this).attr('messageId');
+			var toId = $(this).attr('toId');
+			var fromId = $(this).attr('fromId');
+			var messageType = $(this).attr('messageType');
+			var getTest = $.get( "ajax/messageAction.php", { messageId: messageId , toId : toId , fromId : fromId, messageType : messageType, messageAction: "markUnread" } )
+			.done(function( data ) {
+			//alert( data );
+			//$( "body" ).append( data );
+			});
+			
+			$(this).parent().removeClass('read');
+			$(this).parent().addCalss('unread');
+			event.stopImmediatePropagation();
+		});
+	
 		$( ".messageDelete" ).click(function() {
 			var messageId = $(this).attr('messageId');
 			var toId = $(this).attr('toId');
@@ -39,26 +52,26 @@ $username = $_SESSION['username'];
 			var messageType = $(this).attr('messageType');
 			var getTest = $.get( "ajax/messageAction.php", { messageId: messageId , toId : toId , fromId : fromId, messageType : messageType, messageAction: "delete" } )
 			.done(function( data ) {
-			alert( data );
-			$( "body" ).append( data );
+			//alert( data );
+			//$( "body" ).append( data );
 			
 		  });
 			event.stopImmediatePropagation();
 		});
-	});
 	
-	$(function() {
-		$( ".messageHeader" ).click(function() {
+		$( ".unread" ).click(function() {
 			var messageId = $(this).attr('messageId');
 			var toId = $(this).attr('toId');
 			var fromId = $(this).attr('fromId');
 			var messageType = $(this).attr('messageType');
-			var getTest = $.get( "ajax/messageAction.php", { messageId: messageId , toId : toId , fromId : fromId, messageType : messageType, messageAction: "markRead" } )
+			$.get( "ajax/messageAction.php", { messageId: messageId , toId : toId , fromId : fromId, messageType : messageType, messageAction: "markRead" } )
 			.done(function( data ) {
 			//alert( data );
 			//$( "body" ).append( data );
-			$(this).addCalss("read");
 			});
+			
+			$(this).removeClass('ui-state-active unread');
+			$(this).addCalss('read');
 		});
 	});
 	</script>
@@ -93,7 +106,7 @@ $username = $_SESSION['username'];
 						
 						?>
 						
-						<h3 class="messageHeader <?php if($row['messageRead'] == 1){echo ("read");} ?>"  messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">
+						<h3 class=" <?php if($row['messageRead'] == 1){echo ("read");} else {echo ("unread");} ?>"  messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">
 							<div>
 								From: <?php echo getUsername($row['fromId']); ?>
 								<br/>
@@ -102,6 +115,7 @@ $username = $_SESSION['username'];
 								Subject: <?php echo $row['subject']; ?>
 							</div>
 							<div class="messageControls">
+								<span class="markUnread" messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">Unread</span>
 								<span class="messageDelete" messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">Delete</span>
 							</div>
 						</h3>
