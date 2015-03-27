@@ -2,6 +2,14 @@ body{
 	background:#000;
 }
 
+.messageHeader{
+background:#008CBA !important;
+}
+
+.read{
+background: #222 !important;
+}
+
 #wrapper{
 	width: 1000px;
 	margin: auto;
@@ -15,6 +23,10 @@ body{
 
 input{
 	color:#000;
+}
+
+.messageControls{
+text-align: right;
 }
 
 .userMenu{
@@ -32,10 +44,10 @@ color:#000;
 }
 
 .badge{
-background-color: #777;
+background-color: #00536E !important;
 }
 .dropdown-menu{
-background-color: #777 !important;
+background-color: #00536E !important;
 }
 
 .footer{
@@ -57,7 +69,7 @@ background-color: #777 !important;
 }
 
 .jumbotron{
-	color:#000;
+	background: #008CBA;
     text-align: center;
 	border-radius: 10px;
 	padding: 10px;
