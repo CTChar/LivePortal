@@ -36,10 +36,11 @@ $username = $_SESSION['username'];
 			var messageType = $(this).attr('messageType');
 			var getTest = $.get( "ajax/messageAction.php", { messageId: messageId , toId : toId , fromId : fromId, messageType : messageType, messageAction: "delete" } )
 			.done(function( data ) {
-			//alert( data );
+			alert( data );
 			//$( "body" ).append( data );
-			
+			$('.'+messageId).hide();
 		  });
+			
 			event.stopImmediatePropagation();
 		});
 	
@@ -90,7 +91,7 @@ $username = $_SESSION['username'];
 						
 						?>
 						
-						<h3 class=" <?php if($row['messageRead'] == 1){echo ("read");} else {echo ("unread");} ?>"  messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">
+						<h3 class=" <?php echo $row['messageId']." "; if($row['messageRead'] == 1){echo ("read");} else {echo ("unread");} ?>"  messageType="received" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">
 							<div>
 								From: <?php echo getUsername($row['fromId']); ?>
 								<br/>
@@ -105,7 +106,7 @@ $username = $_SESSION['username'];
 						
 						<?php
 						
-						echo ("<div><p>Message: ".$row['message']."</p></div>");
+						echo ("<div class='".$row['messageId']."'><p>Message: ".$row['message']."</p></div>");
 					}
 				}
 			}

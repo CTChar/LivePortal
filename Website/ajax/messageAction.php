@@ -13,11 +13,19 @@ if ($messageAction == "delete")
 	
 	//echo ("DELETE messageId: ".$messageId." toId: ".$toId." fromId: ".$fromId." messageType: ".$messageType);
 	echo ("Message Deleted");
+	
+	$query = "DELETE FROM `liveportal`.`Messages` WHERE `Messages`.`messageId` ='".$messageId."'";
+	
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		printf("Errorcode message read update: %s\n", mysqli_error($db));
+	}
 }
 elseif ($messageAction == "markRead")
 {
 	
-	echo ("MARKREAD messageId: ".$messageId." toId: ".$toId." fromId: ".$fromId." messageType: ".$messageType);
+	//echo ("MARKREAD messageId: ".$messageId." toId: ".$toId." fromId: ".$fromId." messageType: ".$messageType);
 	//echo ("Message Read");
 	
 	$query = "UPDATE  `liveportal`.`Messages` SET  `messageRead` =  '1' WHERE  `Messages`.`messageId` ='".$messageId."'";
