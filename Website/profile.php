@@ -32,6 +32,7 @@ $keyValue = getFromTable ('Accounts', 'accountId', $userId, 'streamKey');
 $language = getFromTable ('Profiles','Accounts_accountId',$userId,'language');
 $bio = getFromTable ('Profiles','Accounts_accountId',$userId,'bio');
 $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
+$url = getFromTable ('Profiles','Accounts_accountId',$userId,'url');
 
 
 
@@ -118,6 +119,8 @@ if (isLoggedIn())
 					
 					
 					Language: <?php echo ($language);?>
+					<br/>
+					Website: <a href="<?php echo ($url);?>"><?php echo ($url);?></a>
 					<br/>
 					Bio: <?php echo ($bio);?>
 					<br/>
