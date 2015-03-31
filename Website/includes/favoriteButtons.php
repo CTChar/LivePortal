@@ -1,7 +1,6 @@
 <?php
+$action = basename($_SERVER['PHP_SELF']);
 
-
-	$action = basename($_SERVER['PHP_SELF']);
 if (isLoggedIn())
 {
 	if ($action != "favorites.php")

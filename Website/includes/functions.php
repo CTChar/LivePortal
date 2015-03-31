@@ -3,13 +3,16 @@ require_once('databaseConnect.php');
 
 #################### Error Processing ####################
 $errors = array();
-//printErrors($errors);
 
 function printErrors($errors)
 {
 	if (isset($_REQUEST["loginButton"]))
 	{
 		echo ("<script>$('#signIn').modal('show')</script>");
+	}
+	if (isset($_REQUEST['sendMessage']))
+	{
+		echo ("<script>$('#sendMessage').modal('show')</script>");
 	}
 	if (count($errors) > 0)
 	{
@@ -230,6 +233,26 @@ function checkUsername($username)
 			return true;
 		}
 	}
+}
+
+function isId($id)
+{
+	global $db,$errors;
+	$query = "SELECT * FROM `Accounts` WHERE `accountId` = ".$id;
+	
+	$result = mysqli_query($db, $query);
+	if ($db->errno)
+	{
+		echo "Error: (" . $db->errno . ") " . $db->error;
+	}
+	else
+	{
+		 while($row = mysqli_fetch_array($result)) 
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 #checks to see that username is more than 8 characters
@@ -642,17 +665,13 @@ function sendMessage($to,$subject,$message)
 	global $db,$errors;
 	if (validMessage($subject,$message))
 	{
-		$query = "INSERT INTO `liveportal`.`Messages` (`messageId`, `fromId`, `toId`, `subject`, `message`, `fromDeleted`, `toDeleted`, `archived`, `read`) VALUES (NULL, '".$_SESSION['userId']."', '".$to."', '".$subject."', '".$message."', '0', '0', '0', '0')";
+		$query = "INSERT INTO `liveportal`.`Messages` (`messageId`, `fromId`, `toId`, `subject`, `message`, `fromDeleted`, `toDeleted`, `archived`, `messageRead`) VALUES (NULL, '".$_SESSION['userId']."', '".$to."', '".$subject."', '".$message."', '0', '0', '0', '0')";
 		$result = mysqli_query($db, $query);
 		if($result == false)
 		{
 			printf("Errorcode send message: %s\n", mysqli_error($db));
 		}
-			header("Location: profile.php?userId=".$to);
-	}
-	else
-	{
-		printErrors($errors);
+			header("Location: profile.php?userId=".$to."&sent=sent");
 	}
 }
 

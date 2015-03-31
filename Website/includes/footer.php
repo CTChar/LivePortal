@@ -1,5 +1,5 @@
 <?php
-
+require_once('includes/functions.php');
 ?>
 		<!-- end the wrapper tag started in header.php -->
 		</div>
@@ -8,3 +8,7 @@
 		</footer>
 	</body>
 </html>
+
+<?php
+mysqli_close($db);
+?>

@@ -1,86 +1,86 @@
-body{
-	background:#000;
-	font: 130% "Trebuchet MS", sans-serif;
-}
+/* liveportal styles */
+	body{
+		background:#000;
+		font: 130% "Trebuchet MS", sans-serif;
+	}
+	input{
+		color:#000;
+	}
+	#wrapper{
+		width: 1000px;
+		margin: auto;
+		color:#fff;
+		background: #111;
+		border-radius: 10px;
+		border: 1px solid #00536E;
+		min-height: 500px;
+		padding: 10px;
+	}
 
-.unread{
-background:#008CBA !important;
-}
+	.unread{
+	background:#008CBA !important;
+	}
+	.read{
+	background: #222 !important;
+	}
+	.messageControls{
+		text-align: right;
+	}
 
-.read{
-background: #222 !important;
-}
+	.userMenu{
+		padding-left: 2px !important;
+		padding-right:2px !important;
+	}
 
-#wrapper{
-	width: 1000px;
-	margin: auto;
-	color:#fff;
-	background: #111;
-	border-radius: 10px;
-	border: 1px solid #00536E;
-	min-height: 500px;
-	padding: 10px;
-}
+	.footer{
+		min-height: 80px;
+		color:#fff;
+		background: #111;
+		margin-top: 20px;
+		text-align: center;
+		padding: 10px;
+	}
 
-input{
-	color:#000;
-}
+	.error{
+		color:red;
+	}
 
-.messageControls{
-text-align: right;
-}
+	#player_wrapper{
+		margin: auto;
+		text-align: center;
+	}
 
-.userMenu{
-padding-left: 2px !important;
-padding-right:2px !important;
-}
+/* jquery ui style override */
+	.modal-title{
+		color:#000;
+	}
 
-.modal-title{
-color:#000;
-}
-
-.list-inline, .list-inline > li{
-	margin: 10px auto;
-	text-align: center;
-}
-
-.badge{
-background-color: #00536E !important;
-}
-.dropdown-menu{
-background-color: #00536E !important;
-}
-
-.footer{
-	min-height: 80px;
-	color:#fff;
-	background: #111;
-	margin-top: 20px;
-	text-align: center;
-	padding: 10px;
-}
-
-.error{
-	color:red;
-}
-
-#player_wrapper{
-	margin: auto;
-	text-align: center;
-}
-
-.jumbotron{
-	background: #008CBA;
-    text-align: center;
-	border-radius: 10px;
-	padding: 10px;
-}
-
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-	height: 50%;
-	margin: auto;
-}
-.carousel-inner{
-	background:#fff;
+/* bootstrap style override */
+	.list-inline, .list-inline > li{
+		margin: 10px auto;
+		text-align: center;
+	}
+	
+	.badge{
+		background-color: #00536E !important;
+	}
+	
+	.dropdown-menu{
+		background-color: #00536E !important;
+	}
+	
+	.jumbotron{
+		background: #008CBA;
+		text-align: center;
+		border-radius: 10px;
+		padding: 10px;
+	}
+	
+	.carousel-inner > .item > img,
+	.carousel-inner > .item > a > img {
+		height: 50%;
+		margin: auto;
+	}
+	.carousel-inner{
+		background:#fff;
 }

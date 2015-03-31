@@ -10,11 +10,6 @@ $messageAction = isset($_REQUEST["messageAction"]) ? $_REQUEST["messageAction"] 
 
 if ($messageAction == "delete")
 {
-	
-	//echo ("DELETE messageId: ".$messageId." toId: ".$toId." fromId: ".$fromId." messageType: ".$messageType);
-	
-	
-	//$query = "DELETE FROM `liveportal`.`Messages` WHERE `Messages`.`messageId` ='".$messageId."'";
 	if ($messageType == "received")
 	{
 		$query = "UPDATE  `liveportal`.`Messages` SET  `toDeleted` =  '1' WHERE  `Messages`.`messageId` ='".$messageId."'";
@@ -34,10 +29,6 @@ if ($messageAction == "delete")
 }
 elseif ($messageAction == "markRead")
 {
-	
-	//echo ("MARKREAD messageId: ".$messageId." toId: ".$toId." fromId: ".$fromId." messageType: ".$messageType);
-	//echo ("Message Read");
-	
 	$query = "UPDATE  `liveportal`.`Messages` SET  `messageRead` =  '1' WHERE  `Messages`.`messageId` ='".$messageId."'";
 	
 	$result = mysqli_query($db, $query);
@@ -46,7 +37,5 @@ elseif ($messageAction == "markRead")
 		printf("Errorcode message read update: %s\n", mysqli_error($db));
 	}
 }
-
-
 
 ?>

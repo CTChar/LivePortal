@@ -1,6 +1,8 @@
 <?php
+	// this file resets all messages to unread and undeleted
 	
-require_once('../includes/functions.php');
+	
+	require_once('../includes/functions.php');
 
 	$query = "UPDATE  `liveportal`.`Messages` SET  `fromDeleted` =  '0' ";
 	$result = mysqli_query($db, $query);
