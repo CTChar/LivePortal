@@ -1,6 +1,8 @@
 <?php
 require_once('includes/functions.php');
 
+$keyValue = getFromTable ('Accounts', 'accountId', $_SESSION['userId'], 'streamKey');
+
 
 require_once('includes/header.php');
 
@@ -23,27 +25,35 @@ $username = $_SESSION['username'];
 	</div>
 	
 	<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Profile</a></li>
-    <li><a href="#tabs-2">Privacy</a></li>
-    <li><a href="#tabs-3">Account</a></li>
-  </ul>
-<div id="tabs-1">
-	<div>
-		<p>profile settings</p>
+		<ul>
+			<li><a href="#tabs-1">Account</a></li>
+			<li><a href="#tabs-2">Profile</a></li>
+			<li><a href="#tabs-3">Privacy</a></li>
+		</ul>
+		<div id="tabs-1">
+			<div>
+				<p>Account Settings</p>
+				<p>
+					<?php
+					if (isLoggedIn() && $_SESSION['userId'] == $userId)	
+					{
+						echo ("Your Stream Key: ".$keyValue);
+					}
+					?>
+				</p>
+			</div>
+		</div>
+		<div id="tabs-2">
+			<div>
+				<p>profile settings</p>
+			</div>
+		</div>
+		<div id="tabs-3">
+			<div>
+				<p>privacy settings</p>
+			</div>
+		</div>
 	</div>
-</div>
-  <div id="tabs-2">
-	<div>
-		<p>privacy settings</p>
-	</div>
-  </div>
-  <div id="tabs-3">
-	<div>
-		<p>account settings</p>
-	</div>
-  </div>
-</div>
 
 
 <?php

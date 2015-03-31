@@ -28,7 +28,6 @@ require_once('includes/header.php');
 
 $username =  getFromTable ('Accounts','accountId',$userId,'username');
 $profileId = getFromTable ('Profiles','Accounts_accountId',$userId,'profileId');
-$keyValue = getFromTable ('Accounts', 'accountId', $userId, 'streamKey');
 $language = getFromTable ('Profiles','Accounts_accountId',$userId,'language');
 $bio = getFromTable ('Profiles','Accounts_accountId',$userId,'bio');
 $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
@@ -125,15 +124,6 @@ if (isLoggedIn())
 					Bio: <?php echo ($bio);?>
 					<br/>
 					Country: <?php echo ($country);?>
-					<br/>
-					<?php
-					if (isLoggedIn() && $_SESSION['userId'] == $userId)	
-					{
-					echo ("Your Key: ".$keyValue);
-			
-					}
-			
-					?>
 			
 				</div>
 			</div>
