@@ -12,20 +12,21 @@ require_once('functions.php');
 	<title>LivePortal.gq</title>
 	<meta charset="utf-8">
 	<!--include jquery-->
-	<link rel="stylesheet" href="external\jquery-ui-1.11.4.custom\jquery-ui.min.css">
-	<script src="external\jquery-ui-1.11.4.custom\external\jquery\jquery.js"></script>
-	<script src="external\jquery-ui-1.11.4.custom\jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="external\jquery-ui-1.11.4.custom\jquery-ui.css">
+	<script src="external\jquery-ui-1.11.4.custom\jquery.js"></script>
+	<script src="external\jquery-ui-1.11.4.custom\jquery-ui.js"></script>
 	
 	<!--include bootstrap -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
-	
 	
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="external\bootstrap-3.3.4\js\bootstrap.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="external\bootstrap-3.3.4\css\bootstrap.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="external\bootstrap-3.3.4\css\bootstrap-yeti-theme.css">
+	
+	
 	
 	<!-- our stylesheet -->
 	<link rel="stylesheet" href="styles/style.css">
