@@ -83,7 +83,7 @@ $username = $_SESSION['username'];
 			{
 				while($row = mysqli_fetch_array($result)) 
 				{
-					if ($_SESSION['userId'] == $row['toId'])
+					if ($row['toDeleted'] == 0)
 					{
 						//echo ("From: ".$row['fromId']."<br/>To: ".$row['toId']."<br/>Subject: ".$row['subject']."<br/>Message: ".$row['message']."<br/><br/>");
 						//echo ("<h3>From: ".getUsername($row['fromId'])." ".date('F j, Y, g:i a',strtotime($row['sentTime']))."<br/>Subject: ".$row['subject']."</h3>");
@@ -132,7 +132,7 @@ $username = $_SESSION['username'];
 			{
 				while($row = mysqli_fetch_array($result)) 
 				{
-					if ($_SESSION['userId'] == $row['fromId'])
+					if ($row['fromDeleted'] == 0)
 					{
 						//echo ("From: ".$row['fromId']."<br/>To: ".$row['toId']."<br/>Subject: ".$row['subject']."<br/>Message: ".$row['message']."<br/><br/>");
 						//echo ("<h3>From: ".getUsername($row['fromId'])." ".date('F j, Y, g:i a',strtotime($row['sentTime']))."<br/>Subject: ".$row['subject']."</h3>");
@@ -140,7 +140,7 @@ $username = $_SESSION['username'];
 						
 						?>
 						
-						<h3>
+					<h3 class=" <?php echo $row['messageId']." "; ?>"  messageType="sent" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">
 							<div>
 								To: <?php echo getUsername($row['toId']); ?>
 								<br/>
@@ -149,13 +149,13 @@ $username = $_SESSION['username'];
 								Subject: <?php echo $row['subject']; ?>
 							</div>
 							<div class="messageControls">
-								Delete
+								<span class="messageDelete" messageType="sent" fromId="<?php echo $row['fromId'] ?>" toId="<?php echo $row['toId'] ?>"  messageId="<?php echo $row['messageId'] ?>">Delete</span>
 							</div>
 						</h3>
 						
 						<?php
 						
-						echo ("<div><p>Message: ".$row['message']."</p></div>");
+						echo ("<div class='".$row['messageId']."'><p>Message: ".$row['message']."</p></div>");
 					}
 				}
 			}

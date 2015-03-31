@@ -12,9 +12,19 @@ if ($messageAction == "delete")
 {
 	
 	//echo ("DELETE messageId: ".$messageId." toId: ".$toId." fromId: ".$fromId." messageType: ".$messageType);
-	echo ("Message Deleted");
 	
-	$query = "DELETE FROM `liveportal`.`Messages` WHERE `Messages`.`messageId` ='".$messageId."'";
+	
+	//$query = "DELETE FROM `liveportal`.`Messages` WHERE `Messages`.`messageId` ='".$messageId."'";
+	if ($messageType == "received")
+	{
+		$query = "UPDATE  `liveportal`.`Messages` SET  `toDeleted` =  '1' WHERE  `Messages`.`messageId` ='".$messageId."'";
+		echo ("Received Message Deleted");
+	}
+	elseif($messageType == "sent")
+	{
+		$query = "UPDATE  `liveportal`.`Messages` SET  `fromDeleted` =  '1' WHERE  `Messages`.`messageId` ='".$messageId."'";
+		echo ("Sent Message Deleted");
+	}
 	
 	$result = mysqli_query($db, $query);
 	if($result == false)
