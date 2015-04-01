@@ -16,6 +16,10 @@
 		min-height: 500px;
 		padding: 10px;
 	}
+	
+	form{
+	display: inline;
+	}
 
 	.unread{
 	background:#008CBA !important;

@@ -10,7 +10,7 @@ if (isLoggedIn())
 		?>
 			<form action="<?php echo $action; ?>">
 				<input type="hidden" name="userId" value="<?php echo $favorited?>">
-				<input class="btn btn-default" type="submit" name="favoriteSubmit" value="Favorite">
+				<input class="btn btn-primary  btn-xs" type="submit" name="favoriteSubmit" value="Favorite">
 			</form>
 
 		<?php
@@ -20,7 +20,7 @@ if (isLoggedIn())
 		?>
 			<form action="<?php echo $action; ?>">
 				<input type="hidden" name="unfollowUserId" value="<?php echo $favorited?>">
-				<input class="btn btn-default" type="submit" name="unFavoriteSubmit" value="Un-favorite">
+				<input class="btn btn-primary  btn-xs" type="submit" name="unFavoriteSubmit" value="Un-favorite">
 			</form>
 		<?php
 		}
@@ -33,11 +33,11 @@ if (isLoggedIn())
 			<form action="<?php echo $action; ?>">
 				<input type="hidden" name="unfollowUserId" value="<?php echo $favorited?>">
 				<input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
-				<input class="btn btn-default" type="submit" name="unFavoriteSubmit" value="Un-favorite">
+				<input class="btn btn-primary  btn-xs" type="submit" name="unFavoriteSubmit" value="Un-favorite">
 			</form>
 		<?php
 		}
 	}
 }
-echo ('<br/>');
+//echo ('<br/>');
 ?>

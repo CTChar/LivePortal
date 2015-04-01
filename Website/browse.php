@@ -31,6 +31,7 @@ else
 			echo ('<br/>');
 			
 			echo ("<a href='stream.php?userId=".$row['accountId']."'>Go to Stream</a>");
+			echo ('<br/>');
 		
 			$favorited = $row['accountId']; //required for favorite buttons
 			require('includes/favoriteButtons.php');

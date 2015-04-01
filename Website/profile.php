@@ -77,10 +77,10 @@ if (isLoggedIn())
 		</div>
 		<div class="col-xs-6">
 
-			Stream: <a href="stream.php?userId=<?php echo($userId); ?>">Go to Stream</a>
-			<br/>
-			Favorites: <a href="favorites.php?userId=<?php echo($userId); ?>">View Favorites</a>
-			<br/>
+			<a class="btn btn-primary btn-xs" href="stream.php?userId=<?php echo($userId); ?>">Stream</a>
+			
+			<a class="btn btn-primary btn-xs" href="favorites.php?userId=<?php echo($userId); ?>">Favorites</a>
+			
 			
 			<?php
 			
@@ -92,7 +92,7 @@ if (isLoggedIn())
 			?>
 			
 				<!-- Button trigger messages modal -->
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sendMessage">
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sendMessage">
 				  Message
 				</button>
 				<br/>

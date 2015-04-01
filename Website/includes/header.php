@@ -25,6 +25,9 @@ require_once('functions.php');
 	<link rel="stylesheet" href="external\bootstrap-3.3.4\css\bootstrap.css">
 	<link rel="stylesheet" href="external\bootstrap-3.3.4\css\bootstrap-yeti-theme.css">
 	
+	<!-- include hover.css -->
+	<link rel="stylesheet" href="external\hover-master\hover.css">
+	
 	<!-- liveportal stylesheet -->
 	<link rel="stylesheet" href="styles/style.css">
 </head>
@@ -36,9 +39,9 @@ require_once('functions.php');
 		</div>
 		<div>
 			<ul class="nav navbar-nav">
-				<li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo ('class="active"'); ?>><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
-				<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a href="irc.php">IRC</a></li>
+				<li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo ('class="active"'); ?>><a class="hvr-underline-from-left" href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
+				<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="irc.php">IRC</a></li>
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right" style="margin-right: 5px;">
