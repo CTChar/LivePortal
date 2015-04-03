@@ -33,6 +33,7 @@ if (isLoggedIn())
 			<form action="<?php echo $action; ?>">
 				<input type="hidden" name="unfollowUserId" value="<?php echo $favorited?>">
 				<input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>">
+				<input type="hidden" name="type" value="<?php echo $type?>">
 				<input class="btn btn-primary  btn-xs" type="submit" name="unFavoriteSubmit" value="Un-favorite">
 			</form>
 		<?php

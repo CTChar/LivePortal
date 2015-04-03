@@ -60,6 +60,12 @@
 	}
 
 /* bootstrap style override */
+
+.col-xs-6{
+border: 1px solid #fff;
+text-align: center;
+}
+
 	.list-inline, .list-inline > li{
 		margin: 10px auto;
 		text-align: center;

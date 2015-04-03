@@ -79,7 +79,8 @@ if (isLoggedIn())
 
 			<a class="btn btn-primary btn-xs" href="stream.php?userId=<?php echo($userId); ?>">Stream</a>
 			
-			<a class="btn btn-primary btn-xs" href="favorites.php?userId=<?php echo($userId); ?>">Favorites</a>
+			<a class="btn btn-primary btn-xs" href="favorites.php?userId=<?php echo($userId); ?>&type=followers">Followers</a>
+			<a class="btn btn-primary btn-xs" href="favorites.php?userId=<?php echo($userId); ?>&type=following">Following</a>
 			
 			
 			<?php

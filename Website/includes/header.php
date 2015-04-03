@@ -2,7 +2,8 @@
 require_once('functions.php');
 	//echo ("Session userId:".$_SESSION['userId']);
 	
-	
+	$action = basename($_SERVER['PHP_SELF']);
+$searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";	
 ?>
 
 
@@ -40,13 +41,22 @@ require_once('functions.php');
 		<div>
 			<ul class="nav navbar-nav">
 				<li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo ('class="active"'); ?>><a class="hvr-underline-from-left" href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
-				<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="irc.php">IRC</a></li>
+				<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-center"href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
+				<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-right"href="irc.php">IRC</a></li>
+				
+				<li>
+					<form action="search.php">
+						<input type="text" name="searchQuery" placeholder="Search..." <?php if($action == "search.php"){echo('value="'.$searchQuery.'"');} ?>>
+						<input class="btn btn-default btn-xs" type="submit" name="search" value="search">
+					</form>
+				</li>
+				
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right" style="margin-right: 5px;">
 				
 				<?php 
+				
 				if(isLoggedIn())
 				{ 
 				?>
