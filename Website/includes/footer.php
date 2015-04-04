@@ -5,6 +5,9 @@ require_once('includes/functions.php');
 		</div>
 		<footer class="footer">
 			© 2015 <a href="http://www.liveportal.gq">Liveportal.gq</a>
+			<br/>
+			<a href="about.php" alt="about">About</a>
+			<a href="help.php" alt="help">Help</a>
 		</footer>
 	</body>
 </html>

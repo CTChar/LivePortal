@@ -354,7 +354,7 @@ function validEmail($email)
 	return false;
 }
 
-function emailNotUsed ($email)
+function emailNotUsed($email)
 {
 	global $db,$errors;
 	$query = "SELECT * FROM Accounts WHERE email = '".$email."'";
@@ -447,7 +447,7 @@ function getStreamKey($userId)
 }
 
 //returns value from database where $value is a column of the database
-function getFromAccounts ($userId,$value)
+function getFromAccounts($userId,$value)
 {
 	global $db;
 	
@@ -471,7 +471,7 @@ function getFromAccounts ($userId,$value)
 //$value is a column of the database
 //$return what you want to return
 
-function getFromTable ($table,$key,$value,$return)
+function getFromTable($table,$key,$value,$return)
 {
 	global $db;
 	
@@ -529,7 +529,7 @@ function clean($value)
 }
 
 //check for the proper user agent and ip address
-function sessionIsOK ()
+function sessionIsOK()
 {
     return ($_SESSION['_user_agent'] == $_SERVER['HTTP_USER_AGENT'] &&
         $_SESSION['_remote_addr'] == $_SERVER['REMOTE_ADDR']);
@@ -549,7 +549,7 @@ function randomKey() {
 #################### end other functions ####################
 
 #################### Favorite Process ####################
-function favorited ($favoritor,$favoritee)
+function favorited($favoritor,$favoritee)
 {
 	//should not be able to favorite yourself
 	if ($favoritor == $favoritee)
@@ -572,7 +572,7 @@ function favorited ($favoritor,$favoritee)
 	return false;
 }
 
-function unfavorite ($favoritor,$favoritee)
+function unfavorite($favoritor,$favoritee)
 {
 	//should not be able to favorite yourself
 	if ($favoritor == $favoritee)

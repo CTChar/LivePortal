@@ -27,11 +27,20 @@ require_once('includes/header.php');
 		<li data-target="#myCarousel" data-slide-to="4"></li>
 		<li data-target="#myCarousel" data-slide-to="5"></li>
 		<li data-target="#myCarousel" data-slide-to="6"></li>
+		<li data-target="#myCarousel" data-slide-to="7"></li>
 	</ol>
 
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
+
 		<div class="item active">
+			<img src="http://2.media.collegehumor.cvcdn.com/11/66/5eebed43877e707b0c8354343fed4266.gif" alt="Flower">
+			<div class="carousel-caption">
+				<h3>Shrekception</h3>
+			</div>
+		</div>
+		
+		<div class="item">
 			<img src="images/1.jpg" alt="Flower">
 			<div class="carousel-caption">
 				<h3>Shrek Cosby</h3>

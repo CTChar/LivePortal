@@ -41,8 +41,8 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 		<div>
 			<ul class="nav navbar-nav">
 				<li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo ('class="active"'); ?>><a class="hvr-underline-from-left" href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-center"href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
-				<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-right"href="irc.php">IRC</a></li>
+				<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
+				<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="irc.php">IRC</a></li>
 				
 				<li>
 					<form action="search.php">
