@@ -87,7 +87,9 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 							<li><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
 							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <?php echo('<span class="badge">'.$messageCount.'</span>'); ?></a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
-							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-tags"></span> Favorites</a></li>
+							<li class="divider"></li>
+							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>&type=followers"><span class="glyphicon glyphicon-list-alt"></span> Followers</a></li>
+							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon glyphicon-star"></span> Favorites</a></li>
 							<li class="divider"></li>
 							<li><a href="includes/functions.php?logout=true"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 						</ul>
