@@ -2,6 +2,10 @@
 	body{
 		background:#000;
 		font: 130% "Trebuchet MS", sans-serif;
+		height: 100%;
+	}
+	html {
+		height:100%;
 	}
 	input{
 		color:#000;
@@ -43,6 +47,10 @@
 		margin-top: 20px;
 		text-align: center;
 		padding: 10px;
+		width: 100%;
+		margin: 0 auto;
+		bottom: 0;
+		position: absolute;
 	}
 
 	.error{
