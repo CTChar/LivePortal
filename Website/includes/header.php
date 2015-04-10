@@ -44,7 +44,7 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 				<li <?php if(basename($_SERVER['PHP_SELF']) == 'browse.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
 				<li <?php if(basename($_SERVER['PHP_SELF']) == 'irc.php') echo ('class="active"'); ?>><a  class="hvr-underline-from-left"href="irc.php">IRC</a></li>
 				
-				<li>
+				<li class="search">
 					<form action="search.php">
 						<input type="text" name="searchQuery" placeholder="Search..." <?php if($action == "search.php"){echo('value="'.$searchQuery.'"');} ?>>
 						<input class="btn btn-default btn-xs" type="submit" name="search" value="search">
