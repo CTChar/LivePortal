@@ -7,35 +7,45 @@
 	padding:0;
 	height:100%;
 	}
+	
 	input{
 		color:#000;
 	}
-	#everything {
+	
+	/*This is a div that wraps everything directly in the body tag*/
+	#wrapper {
 	min-height:100%;
 	position:relative;
-}
-	#wrapper{
+	}
+
+	/*This is a div for the content of a page*/
+	#content{
 		width: 1000px;
-		margin: 10px auto 30px;
+		margin: auto;
 		color:#fff;
 		background: #111;
 		border-radius: 10px;
 		border: 1px solid #00536E;
 		padding: 10px;
-		padding-bottom:100px;
 	}
-	.footer{
+	
+	/*This is the div for the footer*/
+	#footer{
 	height: 100px;
 		color:#fff;
 		background: #111;
-		margin-top: 1px;
 		text-align: center;
 		padding: 10px;
+		padding: 10px;
+		float: left;
 	width: 100%;
-		margin: 0 auto;
 	position: absolute;
 	bottom: 0;
 	left:0;
+	}
+	
+	.clear{
+		padding-bottom: 120px;
 	}
 	
 	.search{
@@ -89,8 +99,11 @@ text-align: center;
 		text-align: center;
 	}
 	
-	.badge{
+	.badge-dark{
 		background-color: #00536E !important;
+	}
+	.badge-light{
+		background-color: #008CBA !important;
 	}
 	
 	.dropdown-menu{

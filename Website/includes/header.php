@@ -33,7 +33,7 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-	<div id="everything">
+	<div id="wrapper">
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 		<div class="navbar-header">
@@ -74,7 +74,7 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 								$messageCount = getMessageCount();
 								if ($messageCount > 0)
 								{
-									echo ('<span class="badge">'.$messageCount.'</span>');
+									echo ('<span class="badge badge-dark">'.$messageCount.'</span>');
 								}
 							?>
 						</a>
@@ -86,7 +86,7 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 						<ul class="dropdown-menu">
 							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 							<li><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
-							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <?php echo('<span class="badge">'.$messageCount.'</span>'); ?></a></li>
+							<li><a href="messages.php"><span class="glyphicon glyphicon-envelope"></span> Messages <?php echo('<span class="badge badge-light">'.$messageCount.'</span>'); ?></a></li>
 							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
 							<li class="divider"></li>
 							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>&type=followers"><span class="glyphicon glyphicon-list-alt"></span> Followers</a></li>
@@ -176,5 +176,5 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 		</div>
 	</div>
 	
-	
-	<div id="wrapper">
+	<div class="clear">
+	<div id="content">
