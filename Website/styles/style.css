@@ -1,24 +1,41 @@
 /* liveportal styles */
-	body{
+
+	html ,body{
 		background:#000;
-		font: 130% "Trebuchet MS", sans-serif;
-		height: 100%;
-	}
-	html {
-		height:100%;
+		font: "Trebuchet MS", sans-serif;
+	margin:0;
+	padding:0;
+	height:100%;
 	}
 	input{
 		color:#000;
 	}
+	#everything {
+	min-height:100%;
+	position:relative;
+}
 	#wrapper{
 		width: 1000px;
-		margin: auto;
+		margin: 10px auto 30px;
 		color:#fff;
 		background: #111;
 		border-radius: 10px;
 		border: 1px solid #00536E;
-		min-height: 500px;
 		padding: 10px;
+		padding-bottom:100px;
+	}
+	.footer{
+	height: 100px;
+		color:#fff;
+		background: #111;
+		margin-top: 1px;
+		text-align: center;
+		padding: 10px;
+	width: 100%;
+		margin: 0 auto;
+	position: absolute;
+	bottom: 0;
+	left:0;
 	}
 	
 	.search{
@@ -44,18 +61,7 @@
 		padding-right:2px !important;
 	}
 
-	.footer{
-		min-height: 80px;
-		color:#fff;
-		background: #111;
-		margin-top: 20px;
-		text-align: center;
-		padding: 10px;
-		width: 100%;
-		margin: 0 auto;
-		bottom: 0;
-		position: absolute;
-	}
+	
 
 	.error{
 		color:red;

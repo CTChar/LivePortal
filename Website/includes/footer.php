@@ -9,6 +9,7 @@ require_once('includes/functions.php');
 			<a href="about.php" alt="about">About</a>
 			<a href="help.php" alt="help">Help</a>
 		</footer>
+		</div>
 	</body>
 </html>
 

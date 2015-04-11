@@ -33,6 +33,7 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+	<div id="everything">
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 		<div class="navbar-header">

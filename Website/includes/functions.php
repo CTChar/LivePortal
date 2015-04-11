@@ -572,21 +572,32 @@ function favorited($favoritor,$favoritee)
 	return false;
 }
 
-function unfavorite($favoritor,$favoritee)
+function favorite($favorite)
+{
+	$query = "INSERT INTO `liveportal`.`Favorites` (`favId`, `favoritorAccountId`, `favoritedAccountId`, `favoritedTime`) VALUES (NULL, '".$_SESSION['userId']."', '".$favorite."', CURRENT_TIMESTAMP)";
+
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		printf("Errorcode add Favorite: %s\n", mysqli_error($db));
+	}
+}
+
+function unfavorite($unfavorite)
 {
 	//should not be able to favorite yourself
-	if ($favoritor == $favoritee)
+	if ($_SESSION['userId'] == $unfavorite)
 	{
 		return true;
 	}
 	global $db;
-	$query = "DELETE FROM `Favorites` WHERE `favoritorAccountId` = ".$favoritor." and `favoritedAccountId` = ".$favoritee;
+	$query = "DELETE FROM `Favorites` WHERE `favoritorAccountId` = ".$_SESSION['userId']." and `favoritedAccountId` = ".$unfavorite;
 
 	$result = mysqli_query($db, $query);
 	
 	if($result != false)
 	{
-			return true;
+		return true;
 	}
 	return false;
 }
@@ -606,7 +617,7 @@ if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUE
 //unfavorite a user
 if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQUEST["unfollowUserId"]))
 {
-	unfavorite($_SESSION['userId'],$_REQUEST['unfollowUserId']);
+	unfavorite($_REQUEST['unfollowUserId']);
 	if (basename($_SERVER['PHP_SELF']) == "browse.php")
 	{
 		$location = "Location: ".basename($_SERVER['PHP_SELF']);
