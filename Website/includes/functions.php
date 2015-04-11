@@ -55,7 +55,6 @@ function login($username,$password)
 		
 		header('Location: index.php');
 	}
-	printErrors($errors);
 	//echo($_SESSION['_user_agent']." <br> ".$_SESSION['_remote_addr']." <br> ".$_SESSION['username']);
 	
 }

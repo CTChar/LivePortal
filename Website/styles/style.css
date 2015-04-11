@@ -31,10 +31,9 @@
 	
 	/*This is the div for the footer*/
 	#footer{
-	height: 100px;
+	height: 250px;
 		color:#fff;
 		background: #111;
-		text-align: center;
 		padding: 10px;
 		padding: 10px;
 		float: left;
@@ -44,8 +43,21 @@
 	left:0;
 	}
 	
+	.footerIcons img{
+		display: inline;
+	}
+	
+	footer ul{
+	padding: 0px;
+	list-style-type:none;
+	}
+	
 	.clear{
-		padding-bottom: 120px;
+		padding-bottom: 270px; /*This value must be the height of the footer +20px*/
+	}
+	
+	.center{
+	text-align: center;
 	}
 	
 	.search{
@@ -90,7 +102,13 @@
 /* bootstrap style override */
 
 .col-xs-6{
-border: 1px solid #fff;
+text-align: center;
+}
+
+.col-xs-1{
+text-align: center;
+}
+.col-xs-2{
 text-align: center;
 }
 
