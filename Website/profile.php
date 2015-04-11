@@ -9,10 +9,10 @@ if (isset($_REQUEST['sendMessage']))
 	$message = isset($_REQUEST["message"]) ? $_REQUEST["message"] : "";	
 	sendMessage($userId,$subject,$message);
 }
-				
+	$userName =  getFromTable ('Accounts','accountId',$userId,'username');			
 require_once('includes/header.php');
 
-$username =  getFromTable ('Accounts','accountId',$userId,'username');
+$username =  $userName;
 $profileId = getFromTable ('Profiles','Accounts_accountId',$userId,'profileId');
 $language = getFromTable ('Profiles','Accounts_accountId',$userId,'language');
 $bio = getFromTable ('Profiles','Accounts_accountId',$userId,'bio');

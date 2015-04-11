@@ -19,7 +19,46 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>LivePortal.gq</title>
+	<title>
+	<?php
+	if($action == "index.php")
+	{
+		echo "Home";
+	}
+	elseif($action == "profile.php")
+	{
+		echo ($userName."'s Profile");
+	}
+	elseif($action == "irc.php")
+	{
+		echo ("IRC");
+	}
+	elseif($action == "stream.php")
+	{
+		$userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
+		$userName =  getFromTable ('Accounts','accountId',$userId,'username');
+		echo ($userName."'s Stream");
+	}
+	elseif($action == "favorites.php")
+	{
+		$userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";
+		$userName =  getFromTable ('Accounts','accountId',$userId,'username');
+		if (isset($_REQUEST["type"]) && $_REQUEST["type"] == "followers")
+		{
+			echo ($userName."'s Followers");
+		}
+		else
+		{
+			echo ($userName."'s Favorites");
+		}
+	}
+	else
+	{
+		echo $withoutExt = ucfirst(preg_replace('/\\.[^.\\s]{3,4}$/', '', $action));
+	}
+	?>
+	
+	</title>
 	
 	<!-- favicons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
