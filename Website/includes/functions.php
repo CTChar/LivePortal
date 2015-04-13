@@ -181,7 +181,7 @@ function register($username,$email,$password,$confirmPassword,$dob)
 		
 							
 								//create profile
-								$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `bio`, `Accounts_accountId`, `country`, `url`) VALUES (NULL, NULL, NULL, '".$accountId."', NULL, NULL, NULL)";
+								$query = "INSERT INTO `liveportal`.`Profiles` (`profileId`, `language`, `bio`, `Accounts_accountId`, `country`, `url`) VALUES (NULL, NULL, NULL, '".$accountId."', NULL, NULL)";
 								$result = mysqli_query($db, $query);
 								if($result == false)
 								{
