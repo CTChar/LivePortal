@@ -85,17 +85,17 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!--include jquery-->
-	<link rel="stylesheet" href="external\jquery-ui-1.11.4.custom\jquery-ui.css">
-	<script src="external\jquery-ui-1.11.4.custom\jquery.js"></script>
-	<script src="external\jquery-ui-1.11.4.custom\jquery-ui.js"></script>
+	<link rel="stylesheet" href="external/jquery-ui-1.11.4.custom/jquery-ui.css">
+	<script src="external/jquery-ui-1.11.4.custom/jquery.js"></script>
+	<script src="external/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	
 	<!--include bootstrap -->
-	<script src="external\bootstrap-3.3.4\js\bootstrap.js"></script>
-	<link rel="stylesheet" href="external\bootstrap-3.3.4\css\bootstrap.css">
-	<link rel="stylesheet" href="external\bootstrap-3.3.4\css\bootstrap-yeti-theme.css">
+	<script src="external/bootstrap-3.3.4/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="external/bootstrap-3.3.4/css/bootstrap.css">
+	<link rel="stylesheet" href="external/bootstrap-3.3.4/css/bootstrap-yeti-theme.css">
 	
 	<!-- include hover.css -->
-	<link rel="stylesheet" href="external\hover-master\hover.css">
+	<link rel="stylesheet" href="external/hover-master/hover.css">
 	
 	<!-- liveportal stylesheet -->
 	<link rel="stylesheet" href="styles/style.css">
