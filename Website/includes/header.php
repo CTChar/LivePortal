@@ -170,7 +170,7 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 				{
 				?>
 					<!-- Button trigger login modal -->
-					<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#signIn">
+					<button type="button" name="loginButtonTop" id="loginButtonTop" class="btn btn-default btn-lg" data-toggle="modal" data-target="#signIn">
 					  Login
 					</button>
 				<?php
