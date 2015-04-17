@@ -54,6 +54,7 @@ require_once('includes/functions.php');
 						<li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 						<li><a href="browse.php"><span class="glyphicon glyphicon-th-list"></span> Browse</a></li>
 						<li><a href="irc.php"><span class="glyphicon glyphicon-list-alt"></span> IRC</a></li>
+						<li><a href="shrek.php"><span class="glyphicon glyphicon-heart"></span> Shrek</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-2">

@@ -4,6 +4,8 @@ require_once('includes/functions.php');
 require_once('includes/header.php');
 ?>
 
+       <script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
+
 <div class="jumbotron">
 	<h1>Welcome to LivePortal.gq 
 		<?php
@@ -28,11 +30,10 @@ require_once('includes/header.php');
    <!-- Carousel items -->
    <div class="carousel-inner">
       <div class="item active">
-       <script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 
-		<div id="player">Loading the player...</div>
+		<div id="player2">Loading the player...</div>
 		<script type="text/javascript">
-		  jwplayer("player").setup({
+		  jwplayer("player2").setup({
 		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo("$key");?>",
 		  image: "http://example.com/uploads/myPoster.jpg",
 		  width: 900,
