@@ -1,0 +1,96 @@
+Live Portal Requirements
+   
+David Dec   
+Richard Bird   
+Cole Herzog   
+______
+
+Overview   
+
+Live Portal is a Live content streaming website that allows viewers (consumers) to connect to a live video feed of a dedicated streamer’s actions. These actions are largely targeted at video game gameplay, but can be used for anything done on a user’s desktop. It would be perfectly reasonable for a coder to stream (making one’s desktop viewable through our website) their work, or an artist to stream their drawing. Live Portal is not made to record video or to post stand still images. The goal of the website is to allow consumers to watch what a streamer is doing on their desktop as it happens at the very second they’re viewing it.   
+
+Live Portal will also include a chat feature. This will allow both the streamer and the consumers to converse while watching a live stream. There will be one chat instance for every single live stream, and they will be separate entities. This means that steamer’s chat instances are only viewable to the streamer of that content, or to any viewers currently viewing the content.   
+
+Streamers are required to authenticate themselves before they are able to stream. Streamers are considered regular users who have applied and been accepted to stream content. Viewers are not required to authenticate themselves to view streams, but must authenticate themselves if they would like to view or use the chat system for the particular channel.    
+
+Live Portal is based off of twitch.tv, and will attempt to keep the listed functionality as close to twitch as possible.   
+
+Requirements   
+
+*	Well optimized back-end server   
+	*	Video transferring is an expensive process and requires a large server overhead   
+	*	Many streamers will be streaming at the same time, making optimization crucial   
+*	Easy to navigate web page   
+*	Optional Authentication   
+	*	Consumers and streamers are able to authenticate themselves (log in)   
+	*	Consumers are not required to authenticate to watch streams   
+	*	Streamers are required to authenticate to stream their content   
+
+*	Ability to stream content   
+	*	Streamers must be approved by the Live Portal team before being allowed to stream   
+	*	Streamers will be able to display their desktop or their current screen to all connected consumers in close to real time   
+		*	Delay should be no more than five seconds   
+			*	This delay depends on a consumer’s and streamers internet speeds, but the five second rule should be adhered to in at least 90% of cases.   
+	*	Streamers must be authenticated to stream their content   
+*	Ability to chat   
+	*	Streamers and consumers have the ability to chat with each other.   
+	*	There will be separate instances of the chat system for every channel   
+	*	Consumers and streamers will have to be authenticated to chat   
+*	Ability to favorite channels (Individual streams are called “channels”)   
+	*	Allows both streamers and consumers to mark individual channels as personal favorites   
+	*	Allows streamers to see which consumers or other streamers have favorited their channel   
+*	Ability to view and browse currently live channels   
+	*	Options on how to browse through channels   
+		*	By most popular   
+		*	By most viewed currently   
+		*	By your favorites   
+		*	By people who have favorited you   
+*	Ability to create a public profile   
+	*	Fields will be provided to allow a user to customize their public profile   
+		*	Name   
+		*	Bio   
+		*	Favorite Content to Stream   
+		*	Likely stream times   
+		*	Time Zone   
+
+Use Cases   
+
+1.	User wants to Register   
+		*	Actions:   
+				user clicks register button   
+				system brings up registration screen   
+				user inputs bad registration data   
+				system notifies user of a problem with the data they entered   
+				User enters correct registration data
+				system registers user 
+				system sends out email verification email
+
+2.	User Logs In   
+		*	Actions:   
+				user clicks login button   
+				Login is successful
+				system logs user in
+				Login is unsuccessful
+				system notifies user that the data entered is incorrect
+				system offers a password reset
+
+3.	User Resets Password
+		*	Actions: 
+				user clicks forgot password link
+				system brings up screen to reset password
+				user enters answers to security questions 
+				if answers are correct system sends out email for password reset 
+
+4.	User wants to browse streams
+		*	Actions:
+				user clicks the browse button
+				system brings up streams
+				systems provides sorting mechanisms for streams
+
+5.	user wants to stream their content
+		*	Actions:
+				streamer goes to their profile page
+				streamer hits the stream button
+				streamer is directed to their streaming page
+				streamer sets any preferences they would like that are available
+				streamer hits the Go Live button
