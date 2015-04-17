@@ -33,9 +33,9 @@ $key = getFromTable ('Accounts', 'accountId', clean($userId), 'streamKey');
 	  });
 	</script>
 
-  <div class="irc">
-        </div>
-        <iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#partyline" style="border:none; width:900px; height:500px; margin-left: 40px"></iframe>
+	<div class="irc">
+		<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#partyline" style="border:none; width:900px; height:500px; margin-left: 40px"></iframe>
+	</div>
 
 
 <?php
