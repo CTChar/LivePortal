@@ -22,8 +22,7 @@ require_once('includes/header.php');
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
    <!-- Carousel indicators -->
    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" 
-         class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
    </ol>   
@@ -31,10 +30,10 @@ require_once('includes/header.php');
    <div class="carousel-inner">
       <div class="item active">
 
-		<div id="player2">Loading the player...</div>
+		<div id="player1">Loading the player...</div>
 		<script type="text/javascript">
-		  jwplayer("player2").setup({
-		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo("$key");?>",
+		  jwplayer("player1").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/",
 		  image: "http://example.com/uploads/myPoster.jpg",
 		  width: 900,
 		  height: 500
@@ -45,13 +44,29 @@ require_once('includes/header.php');
 			</div>
       </div>
       <div class="item">
-         <img src="images/1.jpg" alt="Flower">
+	  <div id="player2">Loading the player...</div>
+		<script type="text/javascript">
+		  jwplayer("player2").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/",
+		  image: "http://example.com/uploads/myPoster.jpg",
+		  width: 900,
+		  height: 500
+		  });
+		</script>
 			<div class="carousel-caption">
 				<h3>Shrek Cosby</h3>
 			</div>
       </div>
       <div class="item">
-         <img src="images/2.jpg" alt="Chania">
+	  <div id="player3">Loading the player...</div>
+		<script type="text/javascript">
+		  jwplayer("player3").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/",
+		  image: "http://example.com/uploads/myPoster.jpg",
+		  width: 900,
+		  height: 500
+		  });
+		</script>
 			<div class="carousel-caption">
 				<h3>Demon Shrek</h3>
 			</div>
@@ -70,11 +85,6 @@ require_once('includes/header.php');
    <div style="text-align:center;">
       <input type="button" class="btn start-slide" value="Start">
       <input type="button" class="btn pause-slide" value="Pause">
-      <input type="button" class="btn prev-slide" value="Previous Slide">
-      <input type="button" class="btn next-slide" value="Next Slide">
-      <input type="button" class="btn slide-one" value="Slide 1">
-      <input type="button" class="btn slide-two" value="Slide 2">            
-      <input type="button" class="btn slide-three" value="Slide 3">
    </div>
 </div> 
 <script>
