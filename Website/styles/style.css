@@ -135,11 +135,17 @@ text-align: center;
 		padding: 10px;
 	}
 	
+	.carousel-inner > .item > .player,
 	.carousel-inner > .item > img,
-	.carousel-inner > .item > a > img {
+	.carousel-inner > .item > a > img,
+	.carousel-inner > .item > a > .player {
 		height: 50%;
 		margin: auto;
 	}
 	.carousel-inner{
 		background:#fff;
+}
+
+.carousel-indicators{
+padding: 10px;
 }

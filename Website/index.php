@@ -13,6 +13,13 @@ require_once('includes/header.php');
 			{
 				echo ($_SESSION['username']);
 			}
+			
+			$user0 = 3;
+			$user1 = 42;
+			$user2 = 43;
+			$user3 = 24;
+			$user4 = 41;
+			
 		?>
 	</h1> 
 	<p>LivePortal is a new place to stream whatever you think people want to see.</p> 
@@ -25,50 +32,80 @@ require_once('includes/header.php');
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
    </ol>   
    <!-- Carousel items -->
    <div class="carousel-inner">
       <div class="item active">
 
-		<div id="player1">Loading the player...</div>
+		<div class="player" id="player1">Loading the player...</div>
 		<script type="text/javascript">
 		  jwplayer("player1").setup({
-		  file: "rtmp://server.liveportal.gq/liveportal/",
-		  image: "http://example.com/uploads/myPoster.jpg",
-		  width: 900,
+		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user0)); ?>",
+		  image: "<?php echo getAvatar(getUsername($user0),500); ?>",
+		  width: 980,
 		  height: 500
 		  });
 		</script>
 	   <div class="carousel-caption">
-				<h3>Shrekception</h3>
+				<a href="profile.php?userId=<?php echo $user0; ?>"><h3><?php echo getUsername($user0); ?></h3></a>
 			</div>
       </div>
       <div class="item">
-	  <div id="player2">Loading the player...</div>
+	  <div class="player" id="player2">Loading the player...</div>
 		<script type="text/javascript">
 		  jwplayer("player2").setup({
-		  file: "rtmp://server.liveportal.gq/liveportal/",
-		  image: "http://example.com/uploads/myPoster.jpg",
-		  width: 900,
+		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user1)); ?>",
+		  image: "<?php echo getAvatar(getUsername($user1),500); ?>",
+		  width: 980,
 		  height: 500
 		  });
 		</script>
 			<div class="carousel-caption">
-				<h3>Shrek Cosby</h3>
+				<a href="profile.php?userId=<?php echo $user1; ?>"><h3><?php echo getUsername($user1); ?></h3></a>
 			</div>
       </div>
       <div class="item">
-	  <div id="player3">Loading the player...</div>
+	  <div class="player" id="player3">Loading the player...</div>
 		<script type="text/javascript">
 		  jwplayer("player3").setup({
-		  file: "rtmp://server.liveportal.gq/liveportal/",
-		  image: "http://example.com/uploads/myPoster.jpg",
-		  width: 900,
+		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user2)); ?>",
+		  image: "<?php echo getAvatar(getUsername($user2),500); ?>",
+		  width: 980,
 		  height: 500
 		  });
 		</script>
 			<div class="carousel-caption">
-				<h3>Demon Shrek</h3>
+				<a href="profile.php?userId=<?php echo $user2; ?>"><h3><?php echo getUsername($user2); ?></h3></a>
+			</div>
+      </div>
+      <div class="item">
+	  <div class="player" id="player4">Loading the player...</div>
+		<script type="text/javascript">
+		  jwplayer("player4").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user3)); ?>",
+		  image: "<?php echo getAvatar(getUsername($user3),500); ?>",
+		  width: 980,
+		  height: 500
+		  });
+		</script>
+			<div class="carousel-caption">
+				<a href="profile.php?userId=<?php echo $user3; ?>"><h3><?php echo getUsername($user3); ?></h3></a>
+			</div>
+      </div>
+      <div class="item">
+	  <div class="player" id="player5">Loading the player...</div>
+		<script type="text/javascript">
+		  jwplayer("player5").setup({
+		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user4)); ?>",
+		  image: "<?php echo getAvatar(getUsername($user4),500); ?>",
+		  width: 980,
+		  height: 500
+		  });
+		</script>
+			<div class="carousel-caption">
+				<a href="profile.php?userId=<?php echo $user4; ?>"><h3><?php echo getUsername($user4); ?></h3></a>
 			</div>
       </div>
    </div>
@@ -83,8 +120,8 @@ require_once('includes/header.php');
 	</a>
    <!-- Controls buttons -->
    <div style="text-align:center;">
-      <input type="button" class="btn start-slide" value="Start">
-      <input type="button" class="btn pause-slide" value="Pause">
+	  <span class="start-slide btn glyphicon glyphicon-play"></span>
+	  <span class="pause-slide btn glyphicon glyphicon-pause"></span>
    </div>
 </div> 
 <script>
