@@ -2,7 +2,14 @@
 require_once('includes/functions.php');
 
 require_once('includes/header.php');
+
+if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
+{
+	echo ("<script>$('#signIn').modal('show')</script>");
+}
 ?>
+
+
 
        <script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 

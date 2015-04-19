@@ -10,12 +10,15 @@ $dob = isset($_REQUEST["dob"]) ? clean($_REQUEST["dob"]) : "";
 
 #################### end registration process ####################
 
-require_once('includes/header.php');
+
 
 if (isset($_REQUEST["registerButton"]))
 {
 	register($username,$email,$password,$confirmPassword,$dob);
+	header('Location: index.php?register=success');
 }
+
+require_once('includes/header.php');
 ?>
 <form action="register.php">
 	<div class="form-group">

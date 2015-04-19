@@ -26,6 +26,10 @@ if ($messageAction == "delete")
 	{
 		printf("Errorcode message read update: %s\n", mysqli_error($db));
 	}
+	
+	//delete all messages that both parties have deleted
+	$query = "DELETE FROM `liveportal`.`Messages` WHERE `Messages`.`toDeleted` = 1 AND `Messages`.`fromDeleted` = 1";
+	$result = mysqli_query($db, $query);
 }
 elseif ($messageAction == "markRead")
 {

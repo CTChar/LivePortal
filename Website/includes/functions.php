@@ -198,7 +198,7 @@ function register($username,$email,$password,$confirmPassword,$dob)
 									}
 									
 									//header('Location: login.php?username='.$username.'&password='.$password);
-									login($username,$password);
+									//login($username,$password);
 								}
 							}
 						}else printErrors($errors);
