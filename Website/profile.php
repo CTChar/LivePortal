@@ -9,6 +9,14 @@ if (isset($_REQUEST['sendMessage']))
 	$message = isset($_REQUEST["message"]) ? $_REQUEST["message"] : "";	
 	sendMessage($userId,$subject,$message);
 }
+if (isset($_REQUEST['editProfile']))
+{
+	$language = isset($_REQUEST["language"]) ? $_REQUEST["language"] : "";	
+	$bio = isset($_REQUEST["bio"]) ? $_REQUEST["bio"] : "";	
+	$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
+	$url = isset($_REQUEST["url"]) ? $_REQUEST["url"] : "";	
+	editProfile($language,$bio,$country,$url);
+}
 	$userName =  getFromTable ('Accounts','accountId',$userId,'username');			
 require_once('includes/header.php');
 
@@ -21,6 +29,57 @@ $url = getFromTable ('Profiles','Accounts_accountId',$userId,'url');
 
 if (isLoggedIn())
 {
+	if ($_SESSION['userId'] == $userId)
+	{
+		?>
+			<!-- Profile Modal -->
+			<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="profileLabel">Edit Your Profile</h4>
+						</div>
+						<div class="modal-body">
+
+							<?php
+							if (isset($_REQUEST['sendMessage']) && count($errors) > 0)
+							{
+								printErrors($errors);
+							}
+							?>
+
+							<form action="profile.php" method="get">
+								<div class="form-group">
+									<label for="language">Language</label>
+									<input type="text" class="form-control" id="language" name="language" placeholder="Subject" value="<?php echo $language; ?>" >
+								</div>
+								<div class="form-group">
+									<label for="bio">Bio</label>
+									<input type="text" class="form-control" id="bio" name="bio" placeholder="Subject" value="<?php echo $bio; ?>" >
+								</div>
+								<div class="form-group">
+									<label for="country">Country</label>
+									<input type="text" class="form-control" id="country" name="country" placeholder="Subject" value="<?php echo $country; ?>" >
+								</div>
+								<div class="form-group">
+									<label for="url">URL</label>
+									<input type="text" class="form-control" id="url" name="url" placeholder="Subject" value="<?php echo $url; ?>" >
+								</div>
+								
+							<input type="hidden" id="userId" name="userId" value="<?php echo $_SESSION['userId']; ?>">
+						</div>
+						<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button type="submit" class="btn btn-primary" name="editProfile" id="editProfile">Confirm</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Profile Modal -->
+		<?php
+	}
 ?>
 
 	<!-- Message Modal -->
@@ -90,9 +149,18 @@ if (isLoggedIn())
 				
 			if (isLoggedIn())
 			{
+				if ($_SESSION['userId'] == $userId)
+				{
+					?>
+					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#profileModal">
+					  Edit Profile
+					</button>
+					<?php
+				}
 			?>
 			
 				<!-- Button trigger messages modal -->
+				
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sendMessage">
 				  Message
 				</button>

@@ -720,6 +720,43 @@ function permitted($u1,$u2)
 
 
 
+#################### Edit Profile ####################
+
+function editField($field,$content)
+{
+	global $db,$errors;
+	$content=clean($content);
+	
+	$query = "UPDATE  `liveportal`.`Profiles` SET  `".$field."` =  '".$content."' WHERE  `Profiles`.`Accounts_accountId` ='".$_SESSION['userId']."'";
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		printf("Errorcode edit field: %s\n", mysqli_error($db));
+	}
+}
+function editProfile($lang,$bio,$country,$url)
+{
+	global $db,$errors;
+	$lang=clean($lang);
+	$bio=clean($bio);
+	$country=clean($country);
+	$url=clean($url);
+	
+	
+	
+	$query = "UPDATE `liveportal`.`Profiles` SET `language` = '".$lang."', `bio` = '".$bio."', `country` = '".$country."', `url` = '".$url."' WHERE `Profiles`.`Accounts_accountId` ='".$_SESSION['userId']."'";
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		printf("Errorcode edit profile: %s\n", mysqli_error($db));
+	}
+}
+
+
+#################### Edit Profile ####################
+
+
+
 
 
 
