@@ -119,7 +119,7 @@ require_once('includes/header.php');
 		<span class="sr-only">Next</span>
 	</a>
    <!-- Controls buttons -->
-   <div style="text-align:center;">
+   <div style="background-color:#000;text-align:center;">
 	  <span class="start-slide btn glyphicon glyphicon-play"></span>
 	  <span class="pause-slide btn glyphicon glyphicon-pause"></span>
    </div>
@@ -157,7 +157,7 @@ require_once('includes/header.php');
 <!-- End Carousel -->
 
 <br/>
-
+<!--
 <div class="row" style="text-align: center;color:#fff;">
 	<div class="col-sm-4">
 		<h1>Col 1</h1>
@@ -169,7 +169,7 @@ require_once('includes/header.php');
 		<h1>Col 3</h1>
 	</div>
 </div>
-
+-->
 <?php
 require_once('includes/footer.php')
 ?>
