@@ -16,6 +16,7 @@ if (isset($_REQUEST['editProfile']))
 	$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
 	$url = isset($_REQUEST["url"]) ? $_REQUEST["url"] : "";	
 	editProfile($language,$bio,$country,$url);
+	header('Location: profile.php?userId='.$userId);
 }
 	$userName =  getFromTable ('Accounts','accountId',$userId,'username');			
 require_once('includes/header.php');
