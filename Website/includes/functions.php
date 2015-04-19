@@ -44,12 +44,26 @@ function login($username,$password)
 		$_SESSION['_user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 		$_SESSION['_remote_addr'] = $_SERVER['REMOTE_ADDR'];
 		
-		$_SESSION['username'] = $username;
 		
 		
-		$userId =  getFromTable ('Accounts','username',$username,'accountId');
-		//echo ($userId);
-		$_SESSION['userId'] = $userId;
+		if (validEmail($username))
+		{
+			$userId =  getFromTable ('Accounts','email',$username,'accountId');
+			$username = getFromTable ('Accounts','accountId',$userId ,'username');
+			//echo ($userId);
+			$_SESSION['userId'] = $userId;
+			$_SESSION['username'] = $username;
+		}
+		else
+		{
+			$userId =  getFromTable ('Accounts','username',$username,'accountId');
+			//echo ($userId);
+			$_SESSION['userId'] = $userId;
+			$_SESSION['username'] = $username;
+		}
+		
+		
+		
 		
 		
 		
@@ -111,7 +125,7 @@ function isLoggedIn()
 function checkCredentials($username, $password)
 {
 	global $db,$errors;
-	$query = "SELECT * FROM Accounts WHERE username = '".clean($username)."'";
+	$query = "SELECT * FROM Accounts WHERE username = '".clean($username)."' OR email = '".clean($username)."'";
 	
 	$result = mysqli_query($db, $query);
 	//echo (mysqli_fetch_assoc($result));
