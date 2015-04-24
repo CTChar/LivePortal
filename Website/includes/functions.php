@@ -559,6 +559,23 @@ function randomKey() {
 	$pass = implode($pass);
     return $pass; //turn the array into a string
 }
+
+
+function deleteAccount()
+{
+	global $db;
+	$query = "DELETE FROM `liveportal`.`Accounts` WHERE `Accounts`.`accountId` =".$_SESSION['userId'];
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		printf("Errorcode accountDelete: %s\n", mysqli_error($db));
+	}
+	else
+	{
+		logout();
+	}
+	
+}
 #################### end other functions ####################
 
 #################### Favorite Process ####################

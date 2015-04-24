@@ -1,15 +1,21 @@
 <?php
 require_once('includes/functions.php');
 
-$keyValue = getFromTable ('Accounts', 'accountId', $_SESSION['userId'], 'streamKey');
-
-
-require_once('includes/header.php');
-
 if (!isLoggedIn())
 {
 	header('Location: index.php');
 }
+
+$keyValue = getFromTable ('Accounts', 'accountId', $_SESSION['userId'], 'streamKey');
+
+if (isset($_POST['deleteAccount']))
+{
+	deleteAccount();
+}
+
+require_once('includes/header.php');
+
+
 
 $userId = $_SESSION['userId'];
 $username = $_SESSION['username'];
@@ -39,6 +45,14 @@ $username = $_SESSION['username'];
 					
 					?>
 				</p>
+				
+				<p>
+					Delete Account
+				</p>
+				<form action="settings.php" method="post">
+					<input class="btn btn-primary  btn-xs" type="submit" name="deleteAccount" value="Delete Your Account">
+				</form>
+				
 				<p>Change Security Questions</p>
 				<?php
 				$q1 = getFromTable ('Accounts','accountId',$userId ,'q1');
