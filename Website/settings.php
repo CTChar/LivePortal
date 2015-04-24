@@ -52,7 +52,7 @@ $username = $_SESSION['username'];
 				<form action="settings.php" method="post">
 					<input class="btn btn-primary  btn-xs" type="submit" name="deleteAccount" value="Delete Your Account">
 				</form>
-				
+				<!--
 				<p>Change Security Questions</p>
 				<?php
 				$q1 = getFromTable ('Accounts','accountId',$userId ,'q1');
@@ -69,12 +69,12 @@ $username = $_SESSION['username'];
 				else
 				{
 					
-					echo ('<select>');
-					while($row = mysqli_fetch_array($result)) 
+					//echo ('<select>');
+					//while($row = mysqli_fetch_array($result)) 
 					{
-						echo ('<option value="'.$row['qid'].'">'.$row['question'].'</option>');
+						//echo ('<option value="'.$row['qid'].'">'.$row['question'].'</option>');
 					}
-					echo ('</select>');
+					//echo ('</select>');
 				}
 				
 				
@@ -83,6 +83,7 @@ $username = $_SESSION['username'];
 				
 				
 				<p>Reset Password</p>
+				-->
 			</div>
 		</div>
 		<div id="tabs-2">
