@@ -14,7 +14,7 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
        <script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 
 <div class="jumbotron">
-	<h1>Welcome to LivePortal.gq 
+	<h1>Welcome to LivePortal
 		<?php
 			if (isLoggedIn())
 			{
@@ -29,7 +29,7 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
 			
 		?>
 	</h1> 
-	<p>LivePortal is a new place to stream whatever you think people want to see.</p> 
+	<!-- <p>LivePortal is a new place to stream whatever you think people want to see.</p> -->
 </div>
 
 <!-- Start Carousel -->
