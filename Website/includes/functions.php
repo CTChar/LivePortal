@@ -587,6 +587,7 @@ function favorited($favoritor,$favoritee)
 
 function favorite($favorite)
 {
+	global $db;
 	$query = "INSERT INTO `liveportal`.`Favorites` (`favId`, `favoritorAccountId`, `favoritedAccountId`, `favoritedTime`) VALUES (NULL, '".$_SESSION['userId']."', '".$favorite."', CURRENT_TIMESTAMP)";
 
 	$result = mysqli_query($db, $query);
@@ -616,15 +617,29 @@ function unfavorite($unfavorite)
 }
 
 //favorite a user
-if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUEST["userId"]) && isloggedin())
+if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUEST["favoriteUserId"]) && isloggedin())
 {
-	$query = "INSERT INTO `liveportal`.`Favorites` (`favId`, `favoritorAccountId`, `favoritedAccountId`, `favoritedTime`) VALUES (NULL, '".$_SESSION['userId']."', '".$_REQUEST["userId"]."', CURRENT_TIMESTAMP)";
+	favorite($_REQUEST["favoriteUserId"]);
+	//$query = "INSERT INTO `liveportal`.`Favorites` (`favId`, `favoritorAccountId`, `favoritedAccountId`, `favoritedTime`) VALUES (NULL, '".$_SESSION['userId']."', '".$_REQUEST["favoriteUserId"]."', CURRENT_TIMESTAMP)";
 
-	$result = mysqli_query($db, $query);
-	if($result == false)
+	//$result = mysqli_query($db, $query);
+	//if($result == false)
+	//{
+	//	printf("Errorcode add Favorite: %s\n", mysqli_error($db));
+	//}
+	if (basename($_SERVER['PHP_SELF']) == "browse.php")
 	{
-		printf("Errorcode add Favorite: %s\n", mysqli_error($db));
+		$location = "Location: ".basename($_SERVER['PHP_SELF']);
 	}
+	elseif (basename($_SERVER['PHP_SELF']) == "favorites.php")
+	{
+		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["userId"]."&type=".$_REQUEST['type'];
+	}
+	else
+	{
+		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["unfollowUserId"];
+	}
+	header($location);
 }
 
 //unfavorite a user
@@ -637,7 +652,7 @@ if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQU
 	}
 	elseif (basename($_SERVER['PHP_SELF']) == "favorites.php")
 	{
-		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["userId"];
+		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["userId"]."&type=".$_REQUEST['type'];
 	}
 	else
 	{
