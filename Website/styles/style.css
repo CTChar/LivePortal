@@ -8,9 +8,6 @@
 	height:100%;
 	}
 	
-	input{
-		color:#000;
-	}
 	
 	/*This is a div that wraps everything directly in the body tag*/
 	#wrapper {
@@ -66,6 +63,15 @@
 	
 	form{
 	display: inline;
+	}
+	
+	
+	input{
+		color:#000;
+	}
+	
+	select{
+	color: #000;
 	}
 
 	.unread{

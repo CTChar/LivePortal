@@ -18,7 +18,11 @@ if (isset($_REQUEST['editProfile']))
 	editProfile($language,$bio,$country,$url);
 	header('Location: profile.php?userId='.$userId);
 }
-	$userName =  getFromTable ('Accounts','accountId',$userId,'username');			
+	$userName =  getFromTable ('Accounts','accountId',$userId,'username');	
+if ($userName == "")
+{
+	header('Location: index.php');
+}	
 require_once('includes/header.php');
 
 $username =  $userName;
@@ -28,8 +32,16 @@ $bio = getFromTable ('Profiles','Accounts_accountId',$userId,'bio');
 $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 $url = getFromTable ('Profiles','Accounts_accountId',$userId,'url');
 
+
+
+//$addViewUserId = isset($_SESSION['userId']) ? $_SESSION['userId'] : "";	
+//addView($profileId,$addViewUserId);
+	
+	
 if (isLoggedIn())
 {
+	//add a view for this profile
+	addView($profileId,$_SESSION['userId']);
 	if ($_SESSION['userId'] == $userId)
 	{
 		?>
@@ -178,6 +190,9 @@ if (isLoggedIn())
 			Language: <?php echo ($language);?>
 			<br/>
 			Country: <?php echo ($country);?>
+			<br/>
+			<br/>
+			Profile Views: <?php echo getViews($profileId); ?>
 		</div>
 	</div>
 

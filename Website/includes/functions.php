@@ -771,6 +771,60 @@ function editProfile($lang,$bio,$country,$url)
 
 
 
+#################### view function ####################
+
+//database unique for profileId and userId makes it so a single user can only view a profile one time.
+function addView($profileId,$userId)
+{
+	global $db;
+	$ip = $_SERVER['REMOTE_ADDR'];
+	
+	if ($userId == "")
+	{
+		$query="INSERT INTO `liveportal`.`Profile_views` (`viewId`, `profileId`, `viewerId`, `ipAddress`) VALUES (NULL, '".$profileId."', NULL, '".$ip."')";
+	}
+	else
+	{
+		$query="INSERT INTO `liveportal`.`Profile_views` (`viewId`, `profileId`, `viewerId`, `ipAddress`) VALUES (NULL, '".$profileId."', '".$userId."', '".$ip."')";
+	}
+	$result = mysqli_query($db, $query);
+	if($result == false)
+	{
+		//printf("Errorcode add view: %s\n", mysqli_error($db));
+	}
+	
+}
+
+function getViews($profileId)
+{
+	global $db;
+	$query="SELECT count(*) as count FROM `Profile_views` WHERE `profileId` = ".$profileId;
+	$result = mysqli_query($db, $query);
+	if($result != false)
+	{
+		$row = mysqli_fetch_assoc($result);
+		if($row)
+		{
+			return $row['count'];
+		}
+		else
+		{
+			return 0;
+		}
+	}
+}
+
+//gets a list of the most viewed profiles up to n
+function getTop($n)
+{
+	global $db;
+	$query = "SELECT profileId, count(*) AS count FROM Profile_views GROUP BY profileId ORDER BY count DESC LIMIT 0,".$n;
+}
+
+#################### view function ####################
+
+
+
 
 
 

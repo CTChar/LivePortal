@@ -32,15 +32,43 @@ $username = $_SESSION['username'];
 		</ul>
 		<div id="tabs-1">
 			<div>
-				<p>Account Settings</p>
 				<p>
 					<?php
-					if (isLoggedIn() && $_SESSION['userId'] == $userId)	
-					{
+					
 						echo ("Your Stream Key: ".$keyValue);
-					}
+					
 					?>
 				</p>
+				<p>Change Security Questions</p>
+				<?php
+				$q1 = getFromTable ('Accounts','accountId',$userId ,'q1');
+				$q2 = getFromTable ('Accounts','accountId',$userId ,'q2');
+				$q3 = getFromTable ('Accounts','accountId',$userId ,'q3');
+				
+				
+				$query = "SELECT * FROM Security_questions";
+				$result = mysqli_query($db, $query);
+				if ($db->errno)
+				{
+					echo "Error: (" . $db->errno . ") " . $db->error;
+				}
+				else
+				{
+					
+					echo ('<select>');
+					while($row = mysqli_fetch_array($result)) 
+					{
+						echo ('<option value="'.$row['qid'].'">'.$row['question'].'</option>');
+					}
+					echo ('</select>');
+				}
+				
+				
+				?>
+				
+				
+				
+				<p>Reset Password</p>
 			</div>
 		</div>
 		<div id="tabs-2">

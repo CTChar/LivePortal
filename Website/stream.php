@@ -3,6 +3,7 @@ require_once('includes/functions.php');
 
 $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";	
 
+
 if (!isId($userId))
 {
 	header('Location: index.php');
@@ -11,12 +12,12 @@ if (!isId($userId))
 require_once('includes/header.php');
 
 $key = getFromTable ('Accounts', 'accountId', clean($userId), 'streamKey');
-	
+	$username = getUsername($userId);
 ?>
 	<div class="jumbotron">
 		<h1>
 			<?php
-				echo (getUsername($userId)."'s Stream");
+				echo ($username."'s Stream");
 			?>
 		</h1> 
 	</div>
@@ -34,7 +35,7 @@ $key = getFromTable ('Accounts', 'accountId', clean($userId), 'streamKey');
 	</script>
 
 	<div class="irc">
-		<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#partyline" style="border:none; width:900px; height:500px; margin-left: 40px"></iframe>
+		<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#<?php echo $username; ?>" style="border:none; width:900px; height:500px; margin-left: 40px"></iframe>
 	</div>
 
 
