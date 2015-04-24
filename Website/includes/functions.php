@@ -423,6 +423,16 @@ function makePass()
 
 
 #################### start other functions ####################
+function shorten($text,$size)
+{
+	if(strlen($text)>$size)
+	{
+		$text=substr($text, 0, $size);
+		$text.="...";
+	}
+		return $text;
+}
+
 function getUsername($userId)
 {
 	global $db;

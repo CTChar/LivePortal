@@ -27,7 +27,7 @@ else
 		if ($row['accountId'] != $uid)
 		{
 			echo ('<li>');
-			echo ("<a href='profile.php?userId=".$row['accountId']."'>"."<img width='100px' class='img-thumbnail' height='100px' src='".getAvatar($row['username'],100)."'><br/>".$row['username']."</a> ");
+			echo ("<a href='profile.php?userId=".$row['accountId']."'>"."<img width='100px' class='img-thumbnail' height='100px' src='".getAvatar($row['username'],100)."'><br/>".shorten($row['username'],12)."</a> ");
 			echo ('<br/>');
 			
 			echo ("<a href='stream.php?userId=".$row['accountId']."'>Go to Stream</a>");
