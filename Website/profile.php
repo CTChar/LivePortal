@@ -139,6 +139,7 @@ if (isLoggedIn())
 		</div>
 	</div>
 
+	
 <?php
 }
 ?>
@@ -151,11 +152,11 @@ if (isLoggedIn())
 	$(function() {
 		$( "#tabs" ).tabs({
 		  <?php 
-			if ($tab == 'profile')
+			if ($tab == 'stream')
 			{
 				echo "active: 0";
 			}
-			elseif ($tab == 'stream')
+			elseif ($tab == 'profile')
 			{
 				echo "active: 1";
 			}
@@ -173,8 +174,8 @@ if (isLoggedIn())
 </script>
 <div id="tabs">
 	<ul>
-		<li><a href="#tabs-2">Profile</a></li>
-		<li><a href="#tabs-1">Stream</a></li>
+		<li><a href="#tabs-2">Stream</a></li>
+		<li><a href="#tabs-1">Profile</a></li>
 		<li><a href="#tabs-3">Followers
 		<?php
 		$query = "SELECT * FROM Favorites WHERE favoritedAccountId = '".clean($userId)."'";
