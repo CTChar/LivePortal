@@ -250,7 +250,7 @@ if (isLoggedIn())
 	<div id="tabs-2">
 		<div class="row">
 
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 				<div id="player">Loading the player...</div>
 				<script type="text/javascript">
@@ -258,14 +258,15 @@ if (isLoggedIn())
 				  file: "rtmp://server.liveportal.gq/liveportal/<?php echo("$key");?>",
 				  image: "<?php echo getAvatar($username,500) ?>",
 				  //width: 450,
-				  height: 500
+				  height: 500,
+				  width: 750
 				  });
 				</script>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="irc">
-					<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#<?php echo $username; ?>" style="border:none; width:470px; height:500px; margin: 0px"></iframe>
+					<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#<?php echo $username; ?>" style="border:none; width:100%; height:500px; margin: 0px"></iframe>
 				</div>
 			</div>
 		</div>

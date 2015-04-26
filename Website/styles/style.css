@@ -17,7 +17,7 @@
 
 	/*This is a div for the content of a page*/
 	#content{
-		width: 1000px;
+		width: 100%;
 		margin: auto;
 		color:#fff;
 		background: #111;

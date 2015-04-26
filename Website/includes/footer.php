@@ -22,9 +22,12 @@ require_once('includes/functions.php');
 						</a></li>
 							<li><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
 							<li><a href="messages.php"><?php echo('<span class="badge badge-light">'.$messageCount.'</span>'); ?> Messages</a></li>
-							<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
-							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>&type=followers"><span class="glyphicon glyphicon-list-alt"></span> Followers</a></li>
-							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon glyphicon-star"></span> Favorites</a></li>
+								<!--<li><a href="stream.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>-->
+							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>&tab=stream"><span class="glyphicon glyphicon-facetime-video"></span> Stream</a></li>
+							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>&tab=followers"><span class="glyphicon glyphicon-list-alt"></span> Followers</a></li>
+							<li><a href="profile.php?userId=<?php echo ($_SESSION['userId']); ?>&tab=favorites"><span class="glyphicon glyphicon glyphicon-star"></span> Favorites</a></li>
+							<!--<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>&type=followers"><span class="glyphicon glyphicon-list-alt"></span> Followers</a></li>
+							<li><a href="favorites.php?userId=<?php echo($_SESSION['userId']);?>"><span class="glyphicon glyphicon glyphicon-star"></span> Favorites</a></li>-->
 							<li><a href="includes/functions.php?logout=true"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 						</ul>
 					<!-- End User Menu -->
