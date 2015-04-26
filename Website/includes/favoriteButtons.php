@@ -10,6 +10,8 @@ if (isLoggedIn())
 		?>
 			<form action="<?php echo $action; ?>">
 				<input type="hidden" name="favoriteUserId" value="<?php echo $favorited?>">
+					<input type="hidden" name="userId" value="<?php if(isset($userId)) echo $userId;?>">
+					<input type="hidden" name="tab" value="<?php if(isset($tab)) echo $tab;?>">
 				<input class="btn btn-primary  btn-xs" type="submit" name="favoriteSubmit" value="Favorite">
 			</form>
 
@@ -20,6 +22,8 @@ if (isLoggedIn())
 		?>
 			<form action="<?php echo $action; ?>">
 				<input type="hidden" name="unfollowUserId" value="<?php echo $favorited?>">
+					<input type="hidden" name="userId" value="<?php if(isset($userId)) echo $userId;?>">
+					<input type="hidden" name="tab" value="<?php if(isset($tab)) echo $tab;?>">
 				<input class="btn btn-primary  btn-xs" type="submit" name="unFavoriteSubmit" value="Un-favorite">
 			</form>
 		<?php

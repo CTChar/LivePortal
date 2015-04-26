@@ -30,7 +30,7 @@ else
 			echo ("<a href='profile.php?userId=".$row['accountId']."'>"."<img width='100px' class='img-thumbnail' height='100px' src='".getAvatar($row['username'],100)."'><br/>".shorten($row['username'],12)."</a> ");
 			echo ('<br/>');
 			
-			echo ("<a href='stream.php?userId=".$row['accountId']."'>Go to Stream</a>");
+			echo ("<a href='stream.php?userId=".$row['accountId']."'>View Stream</a>");
 			echo ('<br/>');
 		
 			$favorited = $row['accountId']; //required for favorite buttons

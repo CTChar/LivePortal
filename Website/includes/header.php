@@ -140,10 +140,7 @@ $searchQuery = isset($_REQUEST["searchQuery"]) ? $_REQUEST["searchQuery"] : "";
 						<a href="messages.php" class="userMenu">
 							<?php
 								$messageCount = getMessageCount();
-								if ($messageCount > 0)
-								{
-									echo ('<span class="badge badge-dark">'.$messageCount.'</span>');
-								}
+								echo ('<span class="badge badge-dark">'.$messageCount.'</span>');
 							?>
 						</a>
 					</li>

@@ -664,7 +664,7 @@ if (isset($_REQUEST["favoriteSubmit"]) && !favorited($_SESSION['userId'],$_REQUE
 	}
 	else
 	{
-		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["unfollowUserId"];
+		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["userId"]."&tab=".$tab;
 	}
 	header($location);
 }
@@ -683,7 +683,14 @@ if (isset($_REQUEST["unFavoriteSubmit"]) && favorited($_SESSION['userId'],$_REQU
 	}
 	else
 	{
-		$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["unfollowUserId"];
+		if (isset($tab) && $tab != "")
+		{
+			$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["userId"]."&tab=".$tab;
+		}
+		else
+		{
+			$location = "Location: ".basename($_SERVER['PHP_SELF'])."?userId=".$_REQUEST["userId"];
+		}
 	}
 	header($location);
 }
@@ -722,6 +729,10 @@ function getMessageCount()
 		if($row)
 		{
 			return $row['count'];
+		}
+		else
+		{
+			return 0;
 		}
 	}
 }
