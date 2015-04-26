@@ -1,5 +1,9 @@
 <?php
+
+
+$tab = isset($_REQUEST["tab"]) ? $_REQUEST["tab"] : "";	
 require_once('includes/functions.php');
+
 
 $userId = isset($_REQUEST["userId"]) ? $_REQUEST["userId"] : "";	
 
@@ -21,7 +25,7 @@ if (isset($_REQUEST['editProfile']))
 	$userName =  getFromTable ('Accounts','accountId',$userId,'username');	
 if ($userName == "")
 {
-	header('Location: index.php');
+	//header('Location: index.php');
 }	
 require_once('includes/header.php');
 
@@ -32,7 +36,7 @@ $bio = getFromTable ('Profiles','Accounts_accountId',$userId,'bio');
 $country = getFromTable ('Profiles','Accounts_accountId',$userId,'country');
 $url = getFromTable ('Profiles','Accounts_accountId',$userId,'url');
 
-
+$key = getFromTable ('Accounts', 'accountId', clean($userId), 'streamKey');
 
 //$addViewUserId = isset($_SESSION['userId']) ? $_SESSION['userId'] : "";	
 //addView($profileId,$addViewUserId);
@@ -42,6 +46,7 @@ if (isLoggedIn())
 {
 	//add a view for this profile
 	addView($profileId,$_SESSION['userId']);
+	
 	if ($_SESSION['userId'] == $userId)
 	{
 		?>
@@ -139,62 +144,225 @@ if (isLoggedIn())
 ?>
 	<div class="jumbotron">
 		<h1>
-			<?php echo ($username."'s Profile"); ?>
+			<?php echo ($username); ?>
 		</h1> 
 	</div>
-
-	<div class="row">
-		<div class="col-xs-6">
-			<img src='<?php echo (getAvatar($username,400)); ?>'>
-		</div>
-		<div class="col-xs-6">
-
-			<a class="btn btn-primary btn-xs" href="stream.php?userId=<?php echo($userId); ?>">Stream</a>
-			
-			<a class="btn btn-primary btn-xs" href="favorites.php?userId=<?php echo($userId); ?>&type=followers">Followers</a>
-			<a class="btn btn-primary btn-xs" href="favorites.php?userId=<?php echo($userId); ?>&type=following">Following</a>
-			
-			
-			<?php
-			
-			$favorited = $userId; //required for favorite buttons
-			require('includes/favoriteButtons.php');
-				
-			if (isLoggedIn())
+<script>
+	$(function() {
+		$( "#tabs" ).tabs({
+		  <?php 
+			if ($tab == 'profile')
 			{
-				if ($_SESSION['userId'] == $userId)
-				{
-					?>
-					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#profileModal">
-					  Edit Profile
-					</button>
-					<?php
-				}
-			?>
-			
-				<!-- Button trigger messages modal -->
+				echo "active: 0";
+			}
+			elseif ($tab == 'stream')
+			{
+				echo "active: 1";
+			}
+			elseif ($tab == 'followers')
+			{
+				echo "active: 2";
+			}
+			elseif ($tab == 'favorites')
+			{
+				echo "active: 3";
+			}
+		  ?>
+		});
+	});
+</script>
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-2">Profile</a></li>
+		<li><a href="#tabs-1">Stream</a></li>
+		<li><a href="#tabs-3">Followers
+		<?php
+		$query = "SELECT * FROM Favorites WHERE favoritedAccountId = '".clean($userId)."'";
+	
+		$result = mysqli_query($db, $query);
+		$rowCount = mysqli_num_rows($result);
+		echo '<span class="badge badge-dark">'.$rowCount.'</span>';
+		?>
+		</a></li>
+		<li><a href="#tabs-4">Favorites
+		<?php
+		$query = "SELECT * FROM Favorites WHERE favoritorAccountId = '".clean($userId)."'";
+	
+		$result = mysqli_query($db, $query);
+		$rowCount = mysqli_num_rows($result);
+		echo '<span class="badge badge-dark">'.$rowCount.'</span>';
+		?>
+		</a></li>
+	</ul>
+	<!-- Profile Tab -->
+	<div id="tabs-1">
+
+		<div class="row">
+			<div class="col-xs-6">
+				<img src='<?php echo (getAvatar($username,400)); ?>'>
+			</div>
+			<div class="col-xs-6">
 				
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sendMessage">
-				  Message
-				</button>
+				<?php
+				
+				$favorited = $userId; //required for favorite buttons
+				require('includes/favoriteButtons.php');
+					
+				if (isLoggedIn())
+				{
+					if ($_SESSION['userId'] == $userId)
+					{
+						?>
+						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#profileModal">
+						  Edit Profile
+						</button>
+						<?php
+					}
+				?>
+				
+					<!-- Button trigger messages modal -->
+					
+					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sendMessage">
+					  Message
+					</button>
+					<br/>
+				
+				<?php 
+				} 
+				?>
+				
+				Website: <a href="<?php echo ($url);?>"><?php echo ($url);?></a>
 				<br/>
-			
-			<?php 
-			} 
-			?>
-			
-			Website: <a href="<?php echo ($url);?>"><?php echo ($url);?></a>
-			<br/>
-			Bio: <?php echo ($bio);?>
-			<br/>
-			Language: <?php echo ($language);?>
-			<br/>
-			Country: <?php echo ($country);?>
-			<br/>
-			<br/>
-			Profile Views: <?php echo getViews($profileId); ?>
+				Bio: <?php echo ($bio);?>
+				<br/>
+				Language: <?php echo ($language);?>
+				<br/>
+				Country: <?php echo ($country);?>
+				<br/>
+				<br/>
+				Profile Views: <?php echo getViews($profileId); ?>
+			</div>
 		</div>
 	</div>
+	
+	<!-- Stream Tab -->
+	<div id="tabs-2">
+		<div class="row">
+
+			<div class="col-md-6">
+				<script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
+				<div id="player">Loading the player...</div>
+				<script type="text/javascript">
+				  jwplayer("player").setup({
+				  file: "rtmp://server.liveportal.gq/liveportal/<?php echo("$key");?>",
+				  image: "<?php echo getAvatar($username,500) ?>",
+				  //width: 450,
+				  height: 500
+				  });
+				</script>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="irc">
+					<iframe src="https://kiwiirc.com/client/server.liveportal.gq/?nick=Test|?&theme=cli#<?php echo $username; ?>" style="border:none; width:470px; height:500px; margin: 0px"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Followers Tab -->
+	<div id="tabs-3">
+	
+		<?php
+		$query = "SELECT * FROM Favorites WHERE favoritedAccountId = '".clean($userId)."'";
+	
+		$result = mysqli_query($db, $query);
+		if($result != false)
+		{
+			$count = 0;
+			echo ('<ul class="list-inline">');
+			while($row = mysqli_fetch_array($result)) 
+			{
+				$iquery = "SELECT * FROM Accounts WHERE accountId = '".$row['favoritorAccountId']."'";
+				$iresult = mysqli_query($db, $iquery);
+				if($iresult != false)
+				{
+					$irow = mysqli_fetch_assoc($iresult);
+					if($irow)
+					{
+						
+						echo ('<li>');
+						
+						echo ("<a href='profile.php?userId=".$irow['accountId']."'>"."<img width='100px' class='img-thumbnail' height='100px' src='".getAvatar($irow['username'],100)."'><br/>".shorten($irow['username'],10)."</a> ");
+						echo ('<br/>');
+						
+						//echo ("<a href='stream.php?userId=".$irow['accountId']."'>Go to Stream</a>");
+					
+						$favorited = $row['favoritorAccountId'];
+						$tab="followers";
+						require('includes/favoriteButtons.php');
+				
+						echo ('</li>');
+					}
+				}
+				$count++;
+			}
+			if ($count == 0)
+			{
+				echo ("<li>".$username." has no followers</li>");
+			}
+			echo ('</ul>');
+		}
+		?>
+	
+	</div>
+	
+	<!-- Favorites Tab -->
+	<div id="tabs-4">
+		
+		<?php
+		$query = "SELECT * FROM Favorites WHERE favoritorAccountId = '".clean($userId)."'";
+		$result = mysqli_query($db, $query);
+		if($result != false)
+		{
+			$count = 0;
+			echo ('<ul class="list-inline">');
+			while($row = mysqli_fetch_array($result)) 
+			{
+				$iquery = "SELECT * FROM Accounts WHERE accountId = '".$row['favoritedAccountId']."'";
+				$iresult = mysqli_query($db, $iquery);
+				if($iresult != false)
+				{
+					$irow = mysqli_fetch_assoc($iresult);
+					if($irow)
+					{
+						
+						echo ('<li>');
+						
+						echo ("<a href='profile.php?userId=".$irow['accountId']."'>"."<img width='100px' class='img-thumbnail' height='100px' src='".getAvatar($irow['username'],100)."'><br/>".shorten($irow['username'],10)."</a> ");
+						echo ('<br/>');
+						
+						//echo ("<a href='stream.php?userId=".$irow['accountId']."'>Go to Stream</a>");
+					
+						$favorited = $row['favoritedAccountId'];
+						$tab="favorites";
+						require('includes/favoriteButtons.php');
+				
+						echo ('</li>');
+					}
+				}
+				$count++;
+			}
+			if ($count == 0)
+			{
+				echo ('<li>'.$username.' has no favorites</li>');
+			}
+			echo ('</ul>');
+		}
+		?>
+		
+	</div>
+	
 
 <?php
 require_once('includes/footer.php')
