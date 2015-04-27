@@ -50,9 +50,9 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
 		<script type="text/javascript">
 		  jwplayer("player1").setup({
 		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user0)); ?>",
-		  image: "<?php echo getAvatar(getUsername($user0),500); ?>",
-		  width: 980,
-		  height: 500
+		  image: "<?php echo getAvatar(getUsername($user0),563); ?>",
+		  width: 1000,
+		  height: 563
 		  });
 		</script>
 	   <div class="carousel-caption">
@@ -64,9 +64,9 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
 		<script type="text/javascript">
 		  jwplayer("player2").setup({
 		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user1)); ?>",
-		  image: "<?php echo getAvatar(getUsername($user1),500); ?>",
-		  width: 980,
-		  height: 500
+		  image: "<?php echo getAvatar(getUsername($user1),563); ?>",
+		  width: 1000,
+		  height: 563
 		  });
 		</script>
 			<div class="carousel-caption">
@@ -78,9 +78,9 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
 		<script type="text/javascript">
 		  jwplayer("player3").setup({
 		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user2)); ?>",
-		  image: "<?php echo getAvatar(getUsername($user2),500); ?>",
-		  width: 980,
-		  height: 500
+		  image: "<?php echo getAvatar(getUsername($user2),563); ?>",
+		  width: 1000,
+		  height: 563
 		  });
 		</script>
 			<div class="carousel-caption">
@@ -92,9 +92,9 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
 		<script type="text/javascript">
 		  jwplayer("player4").setup({
 		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user3)); ?>",
-		  image: "<?php echo getAvatar(getUsername($user3),500); ?>",
-		  width: 980,
-		  height: 500
+		  image: "<?php echo getAvatar(getUsername($user3),563); ?>",
+		  width: 1000,
+		  height: 563
 		  });
 		</script>
 			<div class="carousel-caption">
@@ -106,9 +106,9 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
 		<script type="text/javascript">
 		  jwplayer("player5").setup({
 		  file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user4)); ?>",
-		  image: "<?php echo getAvatar(getUsername($user4),500); ?>",
-		  width: 980,
-		  height: 500
+		  image: "<?php echo getAvatar(getUsername($user4),563); ?>",
+		  width: 1000,
+		  height: 563
 		  });
 		</script>
 			<div class="carousel-caption">

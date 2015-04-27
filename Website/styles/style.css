@@ -95,7 +95,11 @@
 		color:red;
 	}
 
-	#player_wrapper{
+	#player1_wrapper,
+	#player2_wrapper,
+	#player3_wrapper,
+	#player4_wrapper,
+	#player5_wrapper{
 		margin: auto;
 		text-align: center;
 	}
