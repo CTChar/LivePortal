@@ -144,9 +144,7 @@ if (isLoggedIn())
 }
 ?>
 	<div class="jumbotron">
-		<h1>
-			<?php echo ($username); ?>
-		</h1> 
+		<h1><?php echo ($username); ?></h1> 
 	</div>
 <script>
 	$(function() {
@@ -199,49 +197,64 @@ if (isLoggedIn())
 	<div id="tabs-1">
 
 		<div class="row">
-			<div class="col-xs-6">
-				<img src='<?php echo (getAvatar($username,400)); ?>'>
+			<div class="col-md-4 center">
+				<img src='<?php echo (getAvatar($username,500)); ?>'>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-md-8">
 				
-				<?php
-				
-				$favorited = $userId; //required for favorite buttons
-				require('includes/favoriteButtons.php');
-					
-				if (isLoggedIn())
-				{
-					if ($_SESSION['userId'] == $userId)
-					{
-						?>
-						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#profileModal">
-						  Edit Profile
-						</button>
-						<?php
-					}
-				?>
-				
-					<!-- Button trigger messages modal -->
-					
-					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sendMessage">
-					  Message
-					</button>
-					<br/>
-				
-				<?php 
-				} 
-				?>
-				
-				Website: <a href="<?php echo ($url);?>"><?php echo ($url);?></a>
-				<br/>
-				Bio: <?php echo ($bio);?>
-				<br/>
-				Language: <?php echo ($language);?>
-				<br/>
-				Country: <?php echo ($country);?>
-				<br/>
-				<br/>
-				Profile Views: <?php echo getViews($profileId); ?>
+				<table id="profileInfo">
+					<tr>
+						<td colspan="2" class="center">
+							<?php
+							
+							$favorited = $userId; //required for favorite buttons
+							require('includes/favoriteButtons.php');
+								
+							if (isLoggedIn())
+							{
+								if ($_SESSION['userId'] == $userId)
+								{
+									?>
+									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#profileModal">
+									  Edit Profile
+									</button>
+									<?php
+								}
+							?>
+							
+								<!-- Button trigger messages modal -->
+								
+								<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sendMessage">
+								  Message
+								</button>
+								<br/>
+							
+							<?php 
+							} 
+							?>
+						</td>
+					</tr>
+					<tr>
+							<td class="right">Profile Views:&nbsp;</td>
+							<td class="left"><?php echo getViews($profileId); ?></td>
+					</tr>
+					<tr>
+							<td class="right">Website:&nbsp;</td>
+							<td class="left"><a href="<?php echo ($url);?>"><?php echo ($url);?></a></td>
+					</tr>
+					<tr>
+							<td class="right">Bio:&nbsp;</td>
+							<td class="left"><?php echo ($bio);?></td>
+					</tr>
+					<tr>
+							<td class="right">Language:&nbsp;</td>
+							<td class="left"><?php echo ($language);?></td>
+					</tr>
+					<tr>
+							<td class="right">Country:&nbsp;</td>
+							<td class="left"><?php echo ($country);?></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>

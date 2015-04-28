@@ -57,6 +57,14 @@
 	text-align: center;
 	}
 	
+	.right{
+	text-align: right;
+	}
+	
+	.left{
+	text-align: left;
+	}
+	
 	.search{
 		margin: 8px 10px 0px;
 	}
@@ -90,6 +98,16 @@
 	}
 
 	
+	
+	#profileInfo{
+	margin: auto;
+	font-size: 125%;
+	}
+	
+	#profileInfo td{
+	/*border:1px solid #fff;*/
+	padding: 5px;
+	}
 
 	.error{
 		color:red;
