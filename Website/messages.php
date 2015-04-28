@@ -36,7 +36,7 @@ $username = $_SESSION['username'];
 			var messageType = $(this).attr('messageType');
 			var getTest = $.get( "ajax/messageAction.php", { messageId: messageId , toId : toId , fromId : fromId, messageType : messageType, messageAction: "delete" } )
 			.done(function( data ) {
-			alert( data );
+			//alert( data );
 			//$( "body" ).append( data );
 			$('.'+messageId).hide();
 		  });

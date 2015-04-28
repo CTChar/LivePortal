@@ -20,7 +20,7 @@ if (isset($_REQUEST['editProfile']))
 	$country = isset($_REQUEST["country"]) ? $_REQUEST["country"] : "";	
 	$url = isset($_REQUEST["url"]) ? $_REQUEST["url"] : "";	
 	editProfile($language,$bio,$country,$url);
-	header('Location: profile.php?userId='.$userId);
+	header('Location: profile.php?userId='.$userId."&tab=profile");
 }
 	$userName =  getFromTable ('Accounts','accountId',$userId,'username');	
 if ($userName == "")

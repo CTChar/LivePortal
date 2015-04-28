@@ -748,7 +748,7 @@ function sendMessage($to,$subject,$message)
 		{
 			printf("Errorcode send message: %s\n", mysqli_error($db));
 		}
-			header("Location: profile.php?userId=".$to."&sent=sent");
+			header("Location: profile.php?userId=".$to."&tab=profile&sent=sent");
 	}
 }
 
