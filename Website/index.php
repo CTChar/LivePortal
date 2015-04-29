@@ -15,7 +15,9 @@ $user = 3;
 	<h1>Featured Streamers</h1> 
 </div>
 <div class="row">
-	<div class="col-md-9">
+	<div class="col-md-1">
+	</div>
+	<div style="padding-right:0px;" class="col-md-8">
 		<script src="http://jwpsrv.com/library/Djeg0sQVEeSFjg4AfQhyIQ.js"></script>
 
 		<div id='container'></div>
@@ -39,32 +41,34 @@ $user = 3;
 		}
 		</script>
 	</div>
-	<div class="col-md-3">
+	<div style="padding-left:0px;" class="col-md-2">
 <?php $user = 3; ?>
-		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
+		<div style="margin-top: 0px;" class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
 			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
-			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo shorten(getUsername($user),12); ?></a>
 		</div>
 <?php $user = 42; ?>
 		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
 			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
-			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo shorten(getUsername($user),12); ?></a>
 		</div>
 <?php $user = 43; ?>
 		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
 			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
-			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo shorten(getUsername($user),12); ?></a>
 		</div>
 <?php $user = 24; ?>
 		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
 			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
-			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo shorten(getUsername($user),12); ?></a>
 		</div>
 <?php $user = 41; ?>
 		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
 			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
-			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo shorten(getUsername($user),12); ?></a>
 		</div>
+	</div>
+	<div class="col-md-1">
 	</div>
 </div>
 
