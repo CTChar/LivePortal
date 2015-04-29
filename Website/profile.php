@@ -271,8 +271,8 @@ if (isLoggedIn())
 				  file: "rtmp://server.liveportal.gq/liveportal/<?php echo("$key");?>",
 				  image: "<?php echo getAvatar($username,500) ?>",
 				  //width: 450,
-				  height: 500,
-				  width: 750
+				   width: "100%",
+					aspectratio: "16:9",
 				  });
 				</script>
 			</div>
