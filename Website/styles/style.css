@@ -3,16 +3,16 @@
 	html ,body{
 		background:#000;
 		font: "Trebuchet MS", sans-serif;
-	margin:0;
-	padding:0;
-	height:100%;
+		margin:0;
+		padding:0;
+		height:100%;
 	}
 	
 	
 	/*This is a div that wraps everything directly in the body tag*/
 	#wrapper {
-	min-height:100%;
-	position:relative;
+		min-height:100%;
+		position:relative;
 	}
 
 	/*This is a div for the content of a page*/
@@ -28,16 +28,16 @@
 	
 	/*This is the div for the footer*/
 	#footer{
-	height: 250px;
+		height: 250px;
 		color:#fff;
 		background: #111;
 		padding: 10px;
 		padding: 10px;
 		float: left;
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left:0;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left:0;
 	}
 	
 	.footerIcons img{
@@ -45,8 +45,8 @@
 	}
 	
 	footer ul{
-	padding: 0px;
-	list-style-type:none;
+		padding: 0px;
+		list-style-type:none;
 	}
 	
 	.clear{
@@ -70,7 +70,7 @@
 	}
 	
 	form{
-	display: inline;
+		display: inline;
 	}
 	
 	
@@ -79,14 +79,14 @@
 	}
 	
 	select{
-	color: #000;
+		color: #000;
 	}
 
 	.unread{
-	background:#008CBA !important;
+		background:#008CBA !important;
 	}
 	.read{
-	background: #222 !important;
+		background: #222 !important;
 	}
 	.messageControls{
 		text-align: right;
@@ -98,25 +98,29 @@
 	}
 
 	.playerLink{
-	cursor:pointer;
-	-webkit-border-top-right-radius: 10px;
--webkit-border-bottom-right-radius: 10px;
--moz-border-radius-topright: 10px;
--moz-border-radius-bottomright: 10px;
-border-top-right-radius: 10px;
-border-bottom-right-radius: 10px;
+		cursor:pointer;
+		-webkit-border-top-right-radius: 10px;
+		-webkit-border-bottom-right-radius: 10px;
+		-moz-border-radius-topright: 10px;
+		-moz-border-radius-bottomright: 10px;
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 10px;
 		border: 1px solid #00536E;
-	margin: 5px;
+		margin: 5px;
+		padding: 5px;
+	}
+	.playerLink:hover{
+		border: 1px solid #fff;
 	}
 	
 	#profileInfo{
-	margin: auto;
-	font-size: 125%;
+		margin: auto;
+		font-size: 125%;
 	}
 	
 	#profileInfo td{
-	/*border:1px solid #fff;*/
-	padding: 5px;
+		/*border:1px solid #fff;*/
+		padding: 5px;
 	}
 
 	.error{
@@ -140,16 +144,16 @@ border-bottom-right-radius: 10px;
 
 /* bootstrap style override */
 
-.col-xs-6{
-text-align: center;
-}
+	.col-xs-6{
+		text-align: center;
+	}
 
-.col-xs-1{
-text-align: center;
-}
-.col-xs-2{
-text-align: center;
-}
+	.col-xs-1{
+		text-align: center;
+	}
+	.col-xs-2{
+	text-align: center;
+		}
 
 	.list-inline, .list-inline > li{
 		margin: 10px auto;
@@ -173,18 +177,3 @@ text-align: center;
 		border-radius: 10px;
 		padding: 10px;
 	}
-	
-	.carousel-inner > .item > .player,
-	.carousel-inner > .item > img,
-	.carousel-inner > .item > a > img,
-	.carousel-inner > .item > a > .player {
-		height: 50%;
-		margin: auto;
-	}
-	.carousel-inner{
-		background:#000;
-}
-
-.carousel-indicators{
-padding: 10px;
-}
