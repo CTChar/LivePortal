@@ -8,13 +8,9 @@ if (isset($_REQUEST["register"]) && $_REQUEST["register"] == "success")
 	echo ("<script>$('#signIn').modal('show')</script>");
 }
 
-$user0 = 3;
-$user1 = 42;
-$user2 = 43;
-$user3 = 24;
-$user4 = 41;
-?>
+$user = 3;
 
+?>
 <div class="jumbotron">
 	<h1>Featured Streamers</h1> 
 </div>
@@ -25,9 +21,9 @@ $user4 = 41;
 		<div id='container'></div>
 		<script type="text/javascript">
 		  jwplayer("container").setup({
-			file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user0)); ?>",
-			image: "<?php echo getAvatar(getUsername($user0),50); ?>",
-			  title: "<?php echo getUsername($user0); ?>",
+			file: "rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>",
+			image: "<?php echo getAvatar(getUsername($user),50); ?>",
+			  title: "<?php echo getUsername($user); ?>",
 			width: "100%",
 			  aspectratio: "16:9",
 			
@@ -44,20 +40,31 @@ $user4 = 41;
 		</script>
 	</div>
 	<div class="col-md-3">
-		<a href="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user0)); ?>', '<?php echo getAvatar(getUsername($user0),100); ?>', '<?php echo getUsername($user0); ?>')"><img alt="" border="0" src="<?php echo getAvatar(getUsername($user0),75); ?>" /></a>
-		<a href="profile.php?userId=<?php echo $user0; ?>"><?php echo getUsername($user0); ?></a>
-		<br/>
-		<a href="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user1)); ?>', '<?php echo getAvatar(getUsername($user1),100); ?>', '<?php echo getUsername($user1); ?>')"><img alt="" border="0" src="<?php echo getAvatar(getUsername($user1),75); ?>" /></a>
-		<a href="profile.php?userId=<?php echo $user1; ?>"><?php echo getUsername($user1); ?></a>
-		<br/>
-		<a href="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user2)); ?>', '<?php echo getAvatar(getUsername($user2),100); ?>', '<?php echo getUsername($user2); ?>')"><img alt="" border="0" src="<?php echo getAvatar(getUsername($user2),75); ?>" /></a>
-		<a href="profile.php?userId=<?php echo $user2; ?>"><?php echo getUsername($user2); ?></a>
-		<br/>
-		<a href="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user3)); ?>', '<?php echo getAvatar(getUsername($user3),100); ?>', '<?php echo getUsername($user3); ?>')"><img alt="" border="0" src="<?php echo getAvatar(getUsername($user3),75); ?>" /></a>
-		<a href="profile.php?userId=<?php echo $user3; ?>"><?php echo getUsername($user3); ?></a>
-		<br/>
-		<a href="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user4)); ?>', '<?php echo getAvatar(getUsername($user4),100); ?>', '<?php echo getUsername($user4); ?>')"><img alt="" border="0" src="<?php echo getAvatar(getUsername($user4),75); ?>" /></a>
-		<a href="profile.php?userId=<?php echo $user4; ?>"><?php echo getUsername($user4); ?></a>
+<?php $user = 3; ?>
+		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
+			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+		</div>
+<?php $user = 42; ?>
+		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
+			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+		</div>
+<?php $user = 43; ?>
+		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
+			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+		</div>
+<?php $user = 24; ?>
+		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
+			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+		</div>
+<?php $user = 41; ?>
+		<div class="playerLink" onclick="javascript:playTrailer('rtmp://server.liveportal.gq/liveportal/<?php echo(getStreamKey($user)); ?>', '<?php echo getAvatar(getUsername($user),100); ?>', '<?php echo getUsername($user); ?>')">
+			<img alt="" border="0" src="<?php echo getAvatar(getUsername($user),75); ?>" />
+			<a href="profile.php?userId=<?php echo $user; ?>"><?php echo getUsername($user); ?></a>
+		</div>
 	</div>
 </div>
 

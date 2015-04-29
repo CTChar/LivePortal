@@ -97,7 +97,10 @@
 		padding-right:2px !important;
 	}
 
-	
+	.playerLink{
+	cursor:pointer;
+	border: 1px solid #fff;
+	}
 	
 	#profileInfo{
 	margin: auto;
